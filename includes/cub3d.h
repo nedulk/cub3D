@@ -92,14 +92,14 @@ int		check_error(char *map, t_vars *vars);
 void	find_p(t_vars *vars);
 void	find_a_way(t_vars *vars, int x, int y);
 int		nb_line(int fd);
-int		check_epc(t_vars *vars);
+int		check_nsew(t_vars *vars);
 void	free_vars(t_vars *vars);
 void	free_modified_map(t_vars *vars);
 void	destroy_image(t_vars *vars);
 int		close_with_x(t_vars *vars);
 int		close_with_esc(int keycode, t_vars *vars);
 int		parsing(t_vars *vars, char **argv, int argc);
-int	check_caracters(char *map, t_vars *vars);
+int		check_map(char *map, t_vars *vars);
 
 ////// GAME //////
 

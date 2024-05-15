@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/15 13:20:19 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:15:06 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ void	init_vars(t_vars *vars)
 
 void	init_vars2(t_vars *vars)
 {
-	vars->play_x = (vars->ll * 64 / 2) - (40);
-	vars->play_y = (vars->l * 64 / 2) + (32);
-	vars->title_x = (vars->ll * 64 / 2) - 400;
-	vars->title_y = (vars->l * 64 / 2) - (250);
+	vars->play_x = 1920 / 2 - 32;
+	vars->play_y = 1080 / 2 - 32;
+	vars->title_x = 1920 / 2 - 350;
+	vars->title_y = 1080 / 2 - 300;
 }
 
 int	menu_player(t_vars *vars)
 {
-	vars->win = mlx_new_window(vars->mlx, vars->ll * 64, vars->l * 64,
+	vars->win = mlx_new_window(vars->mlx, 1920, 1080,
 			"cub3D");
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->play_click,
 		vars->play_x, vars->play_y);
