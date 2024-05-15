@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:43:32 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/15 12:09:38 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/15 14:22:21 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ int	stock_map(char *map, t_vars *vars)
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf("Error\nInvalid map\n");
+		printf(RED"Error\n"RESET);
+		printf(YELLOW"Can't open map\n"RESET);
 		return (0);
 	}
 	vars->map = malloc(sizeof(char *) * (nb_line(fd) + 1));
@@ -115,7 +116,7 @@ int	stock_map(char *map, t_vars *vars)
 	return (1);
 }
 
-int	check_error(char *map, t_vars *vars)
+int	check_caracters(char *map, t_vars *vars)
 {
 	if (stock_map(map, vars) == 0 || check_border(vars) == 0
 		|| check_epc(vars) == 0 || is_square(vars) == 0)

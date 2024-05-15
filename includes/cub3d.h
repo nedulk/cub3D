@@ -17,6 +17,20 @@
 # include <../mlx/mlx_int.h>
 # include "libft.h"
 
+# define RESET   "\x1B[0m"
+# define RED     "\x1B[31m"
+# define GREEN   "\x1B[32m"
+# define YELLOW  "\x1B[33m"
+# define BLUE    "\x1B[34m"
+# define MAGENTA "\x1B[35m"
+# define CYAN    "\x1B[36m"
+# define WHITE   "\x1B[37m"
+
+# define R   "\x1B[31m"
+# define G   "\x1B[32m"
+# define Y   "\x1B[33m"
+# define RESET "\x1B[0m"
+
 typedef struct s_vars {
 	void	*mlx;
 	void	*win;
@@ -84,6 +98,8 @@ void	free_modified_map(t_vars *vars);
 void	destroy_image(t_vars *vars);
 int		close_with_x(t_vars *vars);
 int		close_with_esc(int keycode, t_vars *vars);
+int		parsing(t_vars *vars, char **argv, int argc);
+int	check_caracters(char *map, t_vars *vars);
 
 ////// GAME //////
 

@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/15 12:53:08 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:20:19 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,8 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	init_vars(vars);
-	if (argc != 2 || check_error(argv[1], vars) == 0)
-	{
-		ft_printf("Error\nPlease specify a valid map\n");
-		free_map(vars);
-	}
+	if (parsing(vars, argv, argc) == 1)
+		return (1);
 	init_vars2(vars);
 	vars->mlx = mlx_init();
 	load_img(vars);

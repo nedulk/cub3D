@@ -6,7 +6,7 @@
 #    By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/05/15 12:58:11 by kprigent         ###   ########.fr        #
+#    Updated: 2024/05/15 13:18:43 by kprigent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ MAIN_SRCS = src_parsing/main.c \
 		src_parsing/check_error2.c \
 		src_parsing/free_and_exit.c \
 		src_parsing/free_map_is_square.c \
+		src_parsing/parsing.c \
 		libft/ft_printf.c \
 		libft/ft_putcharp.c \
 		libft/ft_putnbr_base.c \
