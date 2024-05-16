@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/15 16:15:06 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:39:04 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ void	load_img(t_vars *vars)
 
 void	init_vars(t_vars *vars)
 {
+	vars->no = 0;
+	vars->so = 0;
+	vars->we = 0;
+	vars->ea = 0;
+	vars->f = 0;
+	vars->c = 0;
 	vars->victory = 0;
 	vars->start = 0;
 	vars->line = NULL;
@@ -65,6 +71,7 @@ int	main(int argc, char **argv)
 {
 	t_vars	*vars;
 
+	vars = NULL;
 	vars = malloc(sizeof(t_vars));
 	if (vars == NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:47:29 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/15 12:41:55 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/16 16:28:59 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	go_in_game(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->play_selec);
 	vars->play_selec = NULL;
 	mlx_destroy_image(vars->mlx, vars->title);
-	exit(0);
+	free_vars(vars);
 	
 	//////////////////////
 	// START GAME HERE //

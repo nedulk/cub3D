@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:43:32 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/15 17:36:24 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:50:41 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,19 @@ void	map_to_chart(t_vars *vars, int fd)
 {
 	int		a;
 	int		i;
+	int 	b;
 
 	a = 0;
+	b = 0;
 	i = 0;
 	while (vars->line || a == 0)
 	{
+		while (b < vars->line_map)
+		{
+			vars->line = get_next_line(fd);
+			free(vars->line);
+			b++;
+		}
 		vars->line = get_next_line(fd);
 		if (vars->line == NULL)
 			break ;

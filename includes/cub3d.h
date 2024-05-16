@@ -45,7 +45,19 @@ typedef struct s_vars {
 	int		solong_y;
 	int		title_x;
 	int		title_y;
-///////////////////////////
+
+///////////PARISNG HANDLE////////////////////
+
+	char **texture;
+	int		line_map;
+	int		no;
+	int		so;
+	int		we;
+	int		ea;
+	int		f;
+	int		c;
+
+////////////////////
 	void	*title;
 	void	*you_win;
 	char	**map;
@@ -55,7 +67,6 @@ typedef struct s_vars {
 	int		victory;
 	int		one;
 	int		p;
-	int		c;
 	int		e;
 	int		wrong;
 	int		start;
@@ -100,6 +111,10 @@ int		close_with_x(t_vars *vars);
 int		close_with_esc(int keycode, t_vars *vars);
 int		parsing(t_vars *vars, char **argv, int argc);
 int		check_map(char *map, t_vars *vars);
+int		check_param(char *map, t_vars *vars);
+int 	check_param_valid(t_vars *vars);
+char 	*remove_space(char *tab);
+void 	free_exit(t_vars *vars);
 
 ////// GAME //////
 

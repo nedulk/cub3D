@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/15 12:53:21 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/16 17:00:41 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,18 @@ void	free_vars(t_vars *vars)
 	int	i;
 
 	i = 0;
-	mlx_do_key_autorepeaton(vars->mlx);
 	if (vars->map)
 	{
-		while (i < vars->l)
+		while (vars->map[i])
 			free(vars->map[i++]);
 		free(vars->map);
+	}
+	if (vars->texture)
+	{
+		i = 0;
+		while (i < 7)
+			free(vars->texture[i++]);
+		free(vars->texture);
 	}
 	destroy_image(vars);
 	mlx_destroy_window(vars->mlx, vars->win);
