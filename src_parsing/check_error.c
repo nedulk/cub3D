@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:43:32 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/16 15:50:41 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/20 15:23:55 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,8 +179,8 @@ int	check_map(char *map, t_vars *vars)
 		return (1);
 	if (check_char(vars->map) == 1)
 		return (1);
-	if (check_nsew(vars) == 1)
-		return (1);
+	// if (check_nsew(vars) == 1)
+	// 	return (1);
 	if (check_border(vars) == 1)
 	{
 		printf(RED"Error\n"RESET);

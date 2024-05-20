@@ -39,48 +39,58 @@
 # define RESET "\x1B[0m"
 
 typedef struct s_vars {
-	void	*mlx;
-	void	*win;
+    void    *mlx;
+    void    *win;
 
-////////////IMG MENUE HANDLE////////////////	
+////////////IMG MENUE HANDLE////////////////    
 
-	void	*play_click;
-	void	*play_selec;
-	int		play_x;
-	int		play_y;
-	int		solong_x;
-	int		solong_y;
-	int		title_x;
-	int		title_y;
-///////////////////////////
-	void	*title;
-	void	*you_win;
-	char	**map;
-	char	*line;
-	int		width;
-	int		height;
-	int		victory;
-	int		one;
-	int		p;
-	int		c;
-	int		e;
-	int		wrong;
-	int		start;
-	int		button_clicked;
-	int		nb_of_collectible;
-	int		l;
-	int		ll;
-	int		p_y;
-	int		p_x;
-	int		map_x;
-	int		map_y;
+    void    *play_click;
+    void    *play_selec;
+    int        play_x;
+    int        play_y;
+    int        solong_x;
+    int        solong_y;
+    int        title_x;
+    int        title_y;
+
+///////////PARISNG HANDLE////////////////////
+
+    char **texture;
+    int        line_map;
+    int        no;
+    int        so;
+    int        we;
+    int        ea;
+    int        f;
+    int        c;
+
+////////////////////
+    void    *title;
+    void    *you_win;
+    char    **map;
+    char    *line;
+    int        width;
+    int        height;
+    int        victory;
+    int        one;
+    int        p;
+    int        e;
+    int        wrong;
+    int        start;
+    int        button_clicked;
+    int        nb_of_collectible;
+    int        l;
+    int        ll;
+    int        p_y;
+    int        p_x;
+    int        map_x;
+    int        map_y;
 ///////////////////////////
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
 	void			*img;
 	void			*addr;
-///////////////////////////
 	double		rotate_x1;
 	double		rotate_y1;
 	double			x0;
@@ -151,25 +161,30 @@ int		check_walls_path(t_vars *vars);
 
 ////// MENU AND PARSING //////
 
-int		count_c(t_vars *vars);
-void	free_map(t_vars *vars);
-int		is_square(t_vars *vars);
-void	go_in_game(t_vars *vars);
-void	event_game(t_vars *vars);
-int		mouse_click(int button, int x, int y, t_vars *vars);
-int		mouse_over(int x, int y, t_vars *vars);
-int		check_error(char *map, t_vars *vars);
-void	find_p(t_vars *vars);
-void	find_a_way(t_vars *vars, int x, int y);
-int		nb_line(int fd);
-int		check_epc(t_vars *vars);
-void	free_vars(t_vars *vars);
-void	free_modified_map(t_vars *vars);
-void	destroy_image(t_vars *vars);
-int		close_with_x(t_vars *vars);
-int		close_with_esc(int keycode, t_vars *vars);
-int		parsing(t_vars *vars, char **argv, int argc);
-int	check_caracters(char *map, t_vars *vars);
+int        count_c(t_vars *vars);
+void    free_map(t_vars *vars);
+int        is_square(t_vars *vars);
+void    go_in_game(t_vars *vars);
+void    event_game(t_vars *vars);
+int        mouse_click(int button, int x, int y, t_vars *vars);
+int        mouse_over(int x, int y, t_vars *vars);
+int        check_error(char *map, t_vars *vars);
+void    find_p(t_vars *vars);
+void    find_a_way(t_vars *vars, int x, int y);
+int        nb_line(int fd);
+int        check_nsew(t_vars *vars);
+void    free_vars(t_vars *vars);
+void    free_modified_map(t_vars *vars);
+void    destroy_image(t_vars *vars);
+int        close_with_x(t_vars *vars);
+int        close_with_esc(int keycode, t_vars *vars);
+int        parsing(t_vars *vars, char **argv, int argc);
+int        check_map(char *map, t_vars *vars);
+int        check_param(char *map, t_vars *vars);
+int   	  check_param_valid(t_vars *vars);
+char     *remove_space(char *tab);
+void     free_exit(t_vars *vars);
+int check_param(char *map, t_vars *vars);
 
 ////// GAME /////
 

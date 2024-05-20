@@ -6,7 +6,7 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/05/16 16:16:46 by dboire           ###   ########.fr        #
+#    Updated: 2024/05/20 15:30:26 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ MAIN_SRCS = src_parsing/main.c \
 			src_parsing/free_and_exit.c \
 			src_parsing/free_map_is_square.c \
 			src_parsing/parsing.c \
+			src_parsing/parsing_param.c \
+			src_parsing/parsing_valid.c \
 			libft/ft_printf.c \
 			libft/ft_strdup.c \
 			libft/ft_putcharp.c \
@@ -32,6 +34,7 @@ MAIN_SRCS = src_parsing/main.c \
 			libft/ft_strlen.c \
 			libft/get_next_line.c \
 			libft/get_next_line_utils.c\
+			libft/ft_strncmp.c \
 			exec/exec.c\
 			exec/draw.c\
 			exec/redraw.c\
