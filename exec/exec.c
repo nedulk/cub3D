@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/20 16:11:23 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/20 17:27:07 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ int	check_walls_path(t_vars *vars)
 	
 	x_map = 0;
 	y_map = 0;
-	i = (WIDTH / 3);
+	i = 0;
 	while(i < vars->ray_x0)
 	{
 		i += EDGE;
 		x_map++;
 	}
 	i = (i - vars->ray_x0) / EDGE; // i = position precis du pixel i
-	y = (HEIGHT / 3);
+	y = 0;
 	while(y < vars->ray_y0)
 	{
 		y += EDGE;
@@ -56,14 +56,14 @@ int	check_walls_ray(t_vars *vars)
 	
 	x_map = 0;
 	y_map = 0;
-	i = (WIDTH / 3);
+	i = 0;
 	while(i <= vars->ray_x1)
 	{
 		i += EDGE;
 		x_map++;
 	}
 	i = (i - vars->ray_x1) / EDGE; // i = position precis du pixel i
-	y = (HEIGHT / 3);
+	y = 0;
 	while(y <= vars->ray_y1)
 	{
 		y += EDGE;
@@ -91,14 +91,14 @@ int	check_walls2(t_vars *vars)
 	
 	x_map = 0;
 	y_map = 0;
-	i = (WIDTH / 3);
+	i = 0;
 	while(i < vars->play_x + 2)
 	{
 		i += EDGE;
 		x_map++;
 	}
 	i = (i - vars->play_x) / EDGE; // i = position precis du pixel i
-	y = (HEIGHT / 3);
+	y = 0;
 	while(y < vars->play_y + 2)
 	{
 		y += EDGE;
@@ -120,14 +120,14 @@ int	check_walls(t_vars *vars)
 	
 	x_map = 0;
 	y_map = 0;
-	i = (WIDTH / 3);
+	i = 0;
 	while(i < vars->play_x)
 	{
 		i += EDGE;
 		x_map++;
 	}
 	i = (i - vars->play_x) / EDGE; // i = position precis du pixel i
-	y = (HEIGHT / 3);
+	y = 0;
 	while(y < vars->play_y)
 	{
 		y += EDGE;
@@ -149,7 +149,7 @@ void	draw_grid(t_vars *vars)
 	while (vars->map[i])
 	{
 		y = 0;
-		vars->x = WIDTH / 3;
+		vars->x = 0;
 		vars->y0 = vars->y;
 		while (vars->map[i][y])
 		{
@@ -213,9 +213,9 @@ int	move(int keycode, t_vars *vars)
 	}
 	if (keycode == XK_Escape)
 		exit(0);
-	vars->y = HEIGHT / 3;
+	vars->y = 0;
 	vars->y0 = vars->y;
-	vars->x = WIDTH / 3;
+	vars->x =  0;
 	vars->x0 = vars->x;
 	mlx_destroy_image(vars->mlx, vars->img);
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
@@ -234,7 +234,7 @@ int	exec(t_vars *vars)
 	i = 0;
 	y = 0;
 	vars->angle = 360;
-	vars->y = HEIGHT / 3;
+	vars->y = 0;
 	vars->y0 = vars->y;
 	mlx_clear_window(vars->mlx, vars->win);
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);

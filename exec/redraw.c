@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redraw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:44 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/20 14:28:56 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/20 17:24:14 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	redraw_grid(t_vars *vars)
 	while (vars->map[i])
 	{
 		y = 0;
-		vars->x = WIDTH / 3;
+		vars->x = 0;
 		vars->y0 = vars->y;
 		while (vars->map[i][y])
 		{

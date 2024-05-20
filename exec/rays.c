@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/20 16:46:52 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/20 17:44:34 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,38 @@ void rotation_matrix(t_vars *vars)
 	vars->rotate_y1 =(dx * sin_a) + (dy * cos_a);
 }
 
- int calculate_wall_height(int distance)
+int calculate_wall_height(int distance)
 {
     int wall_height;
 
-    wall_height = (HEIGHT/ distance);
+    wall_height = (HEIGHT / distance);
     // pas plus grand que la hauteur de l'écran
     if (wall_height > HEIGHT)
         wall_height = HEIGHT;
     return (wall_height);
 }
+void draw_wall(t_vars *vars, int x, int wall_height)
+{
+    // int centerX = WIDTH / 2;
+    int centerY = HEIGHT / 2;
+    
 
+    int draw_start = centerY - wall_height / 2;
+    if(draw_start < 0)
+        draw_start = 0;
+    int draw_end = centerY + wall_height / 2;
+    if(draw_end >= HEIGHT)
+        draw_end = HEIGHT;
+
+    int wall_color = 0xFFFFFF;
+
+    int j = draw_start;
+    while (j < draw_end)
+    {
+        my_mlx_pixel_put(vars, x, j, wall_color);
+        j++;
+    }
+}
 void	draw_rays(t_vars *vars)
 {
 	int	i;
@@ -53,7 +74,7 @@ void	draw_rays(t_vars *vars)
 	double	distance;
 	int	y;
 
-	y = 1;
+	y = 90;
 	i = 0;
 	angle = vars->angle - (y / 2);
 	while(i < y)
@@ -68,8 +89,9 @@ void	draw_rays(t_vars *vars)
 		ft_draw_line_bresenham(vars);
 		distance = sqrt(pow(vars->ray_x0 - vars->play_x, 2) + pow(vars->ray_y0 - vars->play_y, 2));
 		int h = calculate_wall_height(distance);
+		draw_wall(vars, h, i);
 		// printf("ray : %d %f\n", i, distance);
-		printf("Thales : %d\n", h);
+		// printf("Thales : %d\n", h);
 		vars->angle += 1;
 		vars->angle =  vars->angle % 360;
 		i++;
