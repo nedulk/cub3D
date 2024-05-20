@@ -46,8 +46,8 @@ typedef struct s_vars {
 
     void    *play_click;
     void    *play_selec;
-    int        play_x;
-    int        play_y;
+	int		play_button_x;
+	int		play_button_y;
     int        solong_x;
     int        solong_y;
     int        title_x;
@@ -86,6 +86,8 @@ typedef struct s_vars {
     int        map_x;
     int        map_y;
 ///////////////////////////
+    int        play_x;
+    int        play_y;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
