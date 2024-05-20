@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/20 15:22:31 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/20 16:00:11 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	init_vars(t_vars *vars)
 
 void	init_vars2(t_vars *vars)
 {
-	vars->play_x = (vars->ll * 64 / 2) - (40);
-	vars->play_y = (vars->l * 64 / 2) + (32);
-	vars->title_x = (vars->ll * 64 / 2) - 400;
-	vars->title_y = (vars->l * 64 / 2) - (250);
+	vars->play_button_x = (1920 / 2) - 64;
+	vars->play_button_y = 500;
+	vars->title_x = (1920 / 2) - 380;
+	vars->title_y = 300;
 }
 
 int	menu_player(t_vars *vars)
@@ -55,7 +55,7 @@ int	menu_player(t_vars *vars)
 	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT,
 			"cub3D");
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->play_click,
-		vars->play_x, vars->play_y);
+		vars->play_button_x, vars->play_button_y);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->title,
 		vars->title_x, vars->title_y);
 	event_game(vars);
