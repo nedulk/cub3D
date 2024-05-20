@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/16 12:58:08 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/20 15:22:31 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ int	main(int argc, char **argv)
 	}
 	init_vars(vars);
 	if (parsing(vars, argv, argc) == 1)
+	{
 		return (1);
+	}
 	init_vars2(vars);
 	vars->mlx = mlx_init();
 	load_img(vars);
