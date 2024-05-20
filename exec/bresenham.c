@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:47:54 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/20 14:20:10 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/20 16:29:41 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	ft_draw_line_bresenham(t_vars *vars)
 	vars->incx = ft_sign(vars->ray_x1 - vars->ray_x0);
 	vars->dy = ft_absolute_number(vars->ray_y1 - vars->ray_y0);
 	vars->incy = ft_sign(vars->ray_y1 - vars->ray_y0);
-	// printf("dx : %f\n", vars->dx);
 	if (vars->dx == 0)
 		ft_draw_line_y(vars);
 	else if (vars->dy == 0)
@@ -55,9 +54,6 @@ int	ft_draw_line_bresenham(t_vars *vars)
 
 void	ft_draw_line_x(t_vars *vars)
 {
-	// printf("90\n");
-	// printf("x0 : %f\n", vars->ray_x0);
-	// printf("x1 : %f\n", vars->ray_x1);
 	while(vars->ray_x0 != vars->ray_x1)
 	{
 		if(check_walls_path(vars) == 1)
@@ -65,8 +61,6 @@ void	ft_draw_line_x(t_vars *vars)
 		my_mlx_pixel_put(vars, vars->ray_x0, vars->play_y, 0x00FF0000);
 		vars->ray_x0 += vars->incx;
 	}
-	// printf("After : x0 : %f\n", vars->ray_x0);
-	// printf("x1 : %f\n", vars->ray_x1);
 }
 
 void	ft_draw_line_y(t_vars *vars)

@@ -102,9 +102,9 @@ typedef struct s_vars {
 	float			ray_y0;
 	float			ray_x1;
 	float			ray_y1;
-	int			x;
-	int			y;
-	int		angle;
+	int				x;
+	int				y;
+	int				angle;
 	double			dx;
 	double			dy;
 	double			incx;
