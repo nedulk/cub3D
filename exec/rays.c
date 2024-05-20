@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/20 16:32:59 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/20 16:46:52 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@ void rotation_matrix(t_vars *vars)
 	vars->rotate_y1 =(dx * sin_a) + (dy * cos_a);
 }
 
+ int calculate_wall_height(int distance)
+{
+    int wall_height;
+
+    wall_height = (HEIGHT/ distance);
+    // pas plus grand que la hauteur de l'écran
+    if (wall_height > HEIGHT)
+        wall_height = HEIGHT;
+    return (wall_height);
+}
+
 void	draw_rays(t_vars *vars)
 {
 	int	i;
@@ -42,7 +53,7 @@ void	draw_rays(t_vars *vars)
 	double	distance;
 	int	y;
 
-	y = 90;
+	y = 1;
 	i = 0;
 	angle = vars->angle - (y / 2);
 	while(i < y)
@@ -56,7 +67,9 @@ void	draw_rays(t_vars *vars)
 		vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
 		ft_draw_line_bresenham(vars);
 		distance = sqrt(pow(vars->ray_x0 - vars->play_x, 2) + pow(vars->ray_y0 - vars->play_y, 2));
-		printf("ray : %d %f\n", i, distance);
+		int h = calculate_wall_height(distance);
+		// printf("ray : %d %f\n", i, distance);
+		printf("Thales : %d\n", h);
 		vars->angle += 1;
 		vars->angle =  vars->angle % 360;
 		i++;
