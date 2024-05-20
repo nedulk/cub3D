@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/20 17:27:07 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:39:49 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,21 +92,26 @@ int	check_walls2(t_vars *vars)
 	x_map = 0;
 	y_map = 0;
 	i = 0;
-	while(i < vars->play_x + 2)
+	while(i < vars->play_x + 1)
 	{
 		i += EDGE;
 		x_map++;
 	}
 	i = (i - vars->play_x) / EDGE; // i = position precis du pixel i
 	y = 0;
-	while(y < vars->play_y + 2)
+	while(y < vars->play_y + 1)
 	{
 		y += EDGE;
 		y_map++;
 	}
 	y = (y - vars->play_y) / EDGE; // y = position precis du pixel y
-	//vars->map[y_map - 1][x_map - 1]
-	if(vars->map[y_map - 1][x_map - 1] == '1')
+	if(x_map > 0)
+		x_map -= 1;
+	if(y_map > 0)
+		y_map -= 1;
+	// printf("path :y_map:%d\n", y_map);
+	// printf("path :x_map:%d\n", x_map);
+	if(vars->map[y_map][x_map] == '1')
 		return (1);
 	return (0);
 }
@@ -134,8 +139,13 @@ int	check_walls(t_vars *vars)
 		y_map++;
 	}
 	y = (y - vars->play_y) / EDGE; // y = position precis du pixel y
-	//vars->map[y_map - 1][x_map - 1]
-	if(vars->map[y_map - 1][x_map - 1] == '1')
+	if(x_map > 0)
+		x_map -= 1;
+	if(y_map > 0)
+		y_map -= 1;
+	// printf("path :y_map:%d\n", y_map);
+	// printf("path :x_map:%d\n", x_map);
+	if(vars->map[y_map][x_map] == '1')
 		return (1);
 	return (0);
 }
@@ -180,8 +190,7 @@ int	move(int keycode, t_vars *vars)
 		vars->play_y -= 1;
 		if(check_walls(vars) == 1 || check_walls2(vars) == 1)
 		{
-			vars->play_y += 1;
-			return (1);
+			vars->play_y = sin(vars->angle * PI / 180);			return (1);
 		}
 	}
 	if (keycode == XK_a)

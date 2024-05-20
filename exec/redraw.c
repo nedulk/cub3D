@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redraw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:44 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/20 17:24:14 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/20 19:00:36 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@ void	redraw_player(t_vars *vars)
 		return ;
 	if(vars->angle == -1)
 		vars->angle = 359;
-	vars->angle =  vars->angle % 360;
+	while (vars->angle < 0)
+		vars->angle += 360.0;
+	while (vars->angle >= 360)
+		vars->angle -= 360.0;
 	// printf("%d", vars->angle);
-	my_mlx_pixel_put(vars, vars->play_x, vars->play_y, 0x00FF0000);
-	my_mlx_pixel_put(vars, vars->play_x + 1, vars->play_y, 0x00FF0000);
-	my_mlx_pixel_put(vars, vars->play_x, vars->play_y + 1, 0x00FF0000);
-	my_mlx_pixel_put(vars, vars->play_x + 1, vars->play_y + 1, 0x00FF0000);
+	// my_mlx_pixel_put(vars, vars->play_x, vars->play_y, 0x00FF0000);
+	// my_mlx_pixel_put(vars, vars->play_x + 1, vars->play_y, 0x00FF0000);
+	// my_mlx_pixel_put(vars, vars->play_x, vars->play_y + 1, 0x00FF0000);
+	// my_mlx_pixel_put(vars, vars->play_x + 1, vars->play_y + 1, 0x00FF0000);
 	draw_rays(vars);
 }
 
