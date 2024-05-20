@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/16 16:39:04 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/16 12:58:08 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,7 @@ void	load_img(t_vars *vars)
 
 void	init_vars(t_vars *vars)
 {
-	vars->no = 0;
-	vars->so = 0;
-	vars->we = 0;
-	vars->ea = 0;
-	vars->f = 0;
-	vars->c = 0;
+	vars->bool = 0;
 	vars->victory = 0;
 	vars->start = 0;
 	vars->line = NULL;
@@ -49,15 +44,15 @@ void	init_vars(t_vars *vars)
 
 void	init_vars2(t_vars *vars)
 {
-	vars->play_x = 1920 / 2 - 32;
-	vars->play_y = 1080 / 2 - 32;
-	vars->title_x = 1920 / 2 - 350;
-	vars->title_y = 1080 / 2 - 300;
+	vars->play_x = (vars->ll * 64 / 2) - (40);
+	vars->play_y = (vars->l * 64 / 2) + (32);
+	vars->title_x = (vars->ll * 64 / 2) - 400;
+	vars->title_y = (vars->l * 64 / 2) - (250);
 }
 
 int	menu_player(t_vars *vars)
 {
-	vars->win = mlx_new_window(vars->mlx, 1920, 1080,
+	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT,
 			"cub3D");
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->play_click,
 		vars->play_x, vars->play_y);
@@ -69,9 +64,10 @@ int	menu_player(t_vars *vars)
 
 int	main(int argc, char **argv)
 {
+	(void)argc;
+	(void)argv;
 	t_vars	*vars;
 
-	vars = NULL;
 	vars = malloc(sizeof(t_vars));
 	if (vars == NULL)
 	{

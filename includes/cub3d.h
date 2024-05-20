@@ -14,8 +14,15 @@
 # define CUB3D_H
 
 # include "../mlx/mlx.h"
-# include <../mlx/mlx_int.h>
+# include "../mlx/mlx_int.h"
 # include "libft.h"
+# include <stdint.h>
+# include <math.h>
+
+# define WIDTH 1920
+# define HEIGHT 1080
+# define EDGE 64
+# define PI 3.14159265
 
 # define RESET   "\x1B[0m"
 # define RED     "\x1B[31m"
@@ -45,19 +52,7 @@ typedef struct s_vars {
 	int		solong_y;
 	int		title_x;
 	int		title_y;
-
-///////////PARISNG HANDLE////////////////////
-
-	char **texture;
-	int		line_map;
-	int		no;
-	int		so;
-	int		we;
-	int		ea;
-	int		f;
-	int		c;
-
-////////////////////
+///////////////////////////
 	void	*title;
 	void	*you_win;
 	char	**map;
@@ -67,6 +62,7 @@ typedef struct s_vars {
 	int		victory;
 	int		one;
 	int		p;
+	int		c;
 	int		e;
 	int		wrong;
 	int		start;
@@ -78,6 +74,43 @@ typedef struct s_vars {
 	int		p_x;
 	int		map_x;
 	int		map_y;
+///////////////////////////
+	int				bits_per_pixel;
+	int				line_length;
+	int				endian;
+	void			*img;
+	void			*addr;
+///////////////////////////
+	double		rotate_x1;
+	double		rotate_y1;
+	double			x0;
+	double			x1;
+	double			y0;
+	double			y1;
+	double			c2;
+	float			ray_x0;
+	float			ray_y0;
+	float			ray_x1;
+	float			ray_y1;
+	int			x;
+	int			y;
+	int		angle;
+	double			dx;
+	double			dy;
+	double			incx;
+	double			incy;
+	double			rotate;
+	int			length_x;
+	int			length_y;
+	int			zoom;
+	int			shift_x;
+	int			shift_y;
+	int			bool;
+	double long	cos;
+	double long	sin;
+	uint32_t	color;
+	uint32_t	color1;
+
 }	t_vars;
 
 typedef struct s_point
@@ -89,6 +122,32 @@ typedef struct s_point
 
 }	t_point;
 
+
+
+
+
+void	ft_draw_line_x(t_vars *vars);
+void	ft_draw_line_y(t_vars *vars);
+void	ft_draw_horizontal(t_vars *vars);
+void	ft_draw_vertical(t_vars *vars);
+int		ft_draw_line_bresenham(t_vars *vars);
+void	draw_rays(t_vars *vars);
+
+
+////// EXEC //////////////////
+int		exec(t_vars *vars);
+void	draw_player(t_vars *vars);
+void	draw_floor_tile(t_vars *vars);
+void	draw_wall_tile(t_vars *vars);
+void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
+void	draw_rays(t_vars *vars);
+int		check_walls2(t_vars *vars);
+int		check_walls(t_vars *vars);
+void	draw_grid(t_vars *vars);
+void	redraw_player(t_vars *vars);
+void	redraw_grid(t_vars *vars);
+int		check_walls_ray(t_vars *vars);
+int		check_walls_path(t_vars *vars);
 
 ////// MENU AND PARSING //////
 
@@ -103,19 +162,15 @@ int		check_error(char *map, t_vars *vars);
 void	find_p(t_vars *vars);
 void	find_a_way(t_vars *vars, int x, int y);
 int		nb_line(int fd);
-int		check_nsew(t_vars *vars);
+int		check_epc(t_vars *vars);
 void	free_vars(t_vars *vars);
 void	free_modified_map(t_vars *vars);
 void	destroy_image(t_vars *vars);
 int		close_with_x(t_vars *vars);
 int		close_with_esc(int keycode, t_vars *vars);
 int		parsing(t_vars *vars, char **argv, int argc);
-int		check_map(char *map, t_vars *vars);
-int		check_param(char *map, t_vars *vars);
-int 	check_param_valid(t_vars *vars);
-char 	*remove_space(char *tab);
-void 	free_exit(t_vars *vars);
+int	check_caracters(char *map, t_vars *vars);
 
-////// GAME //////
+////// GAME /////
 
 #endif
