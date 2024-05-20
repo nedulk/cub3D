@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/16 16:39:04 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/20 14:53:26 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,9 @@ int	main(int argc, char **argv)
 	}
 	init_vars(vars);
 	if (parsing(vars, argv, argc) == 1)
+	{
 		return (1);
+	}
 	init_vars2(vars);
 	vars->mlx = mlx_init();
 	load_img(vars);

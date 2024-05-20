@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:14:21 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/16 16:51:29 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/20 15:08:13 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,18 @@ int		parsing(t_vars *vars, char **argv, int argc)
 		return (1);
 	}
 	else if (check_param(argv[1], vars) == 1)
+	{
+		free_vars(vars);	
 		return (1);
+	}
 	else if ((vars->line_map != 0) && check_map(argv[1], vars) == 1)
 	{
-		free_map(vars);
+		free_vars(vars);
 		return (1);
 	}
 	if (check_param_valid(vars) == 1)
 	{
-		free_map(vars);
+		free_vars(vars);
 		return (1);
 	}
 	return (0);
