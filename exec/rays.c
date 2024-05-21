@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/20 20:35:22 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/21 11:35:39 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,33 +37,42 @@ void rotation_matrix(t_vars *vars)
 
 double calculate_wall_height(t_vars *vars, double distance, double ray_angle)
 {
-    int wall_height;
+    double wall_height;
 	(void)vars;
 	
-    double corrected_distance = distance * cos(((ray_angle * (PI / 180.0)) - (vars->angle * (PI / 180.0))) * PI / 180.0);
-    wall_height = (HEIGHT / corrected_distance) * 5;
+    double corrected_distance = distance * (cos(((ray_angle * (PI / 180.0)) - (vars->angle * (PI / 180.0))) * PI / 180.0));
+    wall_height = (HEIGHT / (corrected_distance));
     // pas plus grand que la hauteur de l'écran
     if (wall_height > HEIGHT)
         wall_height = HEIGHT;
+    printf("Wall height : %f ", wall_height);
+    printf("Ray angle : %f ", ray_angle);
+    printf("Angle : %f ", vars->angle);
+    printf("Distance : %f ", distance);
+    printf("Corrected distance : %f\n", corrected_distance);
+
+
+   
     return (wall_height);
 }
-void draw_wall(t_vars *vars, int x, int wall_height)
+void draw_wall(t_vars *vars, double x, double wall_height)
 {
 	// int centerX = WIDTH / 2;
-	int centerY = HEIGHT / 2;
+	// double centerY = HEIGHT;
 
-	int draw_start = centerY - wall_height;	
+	double draw_start = 540;
 	if(draw_start < 0)
 		draw_start = 0;
-	int draw_end = centerY + wall_height;
+	double draw_end = 540 + wall_height;
 	if(draw_end >= HEIGHT)
 		draw_end = HEIGHT - 1;
-	int wall_color = 0x00FF0000;
-	int j = draw_start;
+	double wall_color = 0x00FF0000;
+	double j = draw_start;
+	printf("j : %f\n", j);
+	printf("draw_end : %f\n", draw_end);
 	while (j < draw_end)
 	{
-		my_mlx_pixel_put(vars, x, j, wall_color);
-		j++;
+		my_mlx_pixel_put(vars, x, j++, wall_color);;
 	}
 }
 void	draw_rays(t_vars *vars)
@@ -79,8 +88,9 @@ void	draw_rays(t_vars *vars)
 	angle = vars->angle - (y / 2);
 	while(i < y)
 	{
-		double ray_angle = vars->angle + i * 0.1;
 		vars->ray_x0 = vars->play_x;
+		vars->ray_x0 = vars->play_x;
+		double ray_angle = vars->angle + i * 0.1;
 		vars->ray_y0 = vars->play_y;
 		vars->ray_x1 = cos(vars->angle * PI / 180);
 		vars->ray_y1 = sin(vars->angle * PI / 180);
@@ -88,10 +98,13 @@ void	draw_rays(t_vars *vars)
 		vars->ray_x1 = vars->ray_x0 + vars->rotate_x1;
 		vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
 		ft_draw_line_bresenham(vars);
-		distance = sqrt(pow(vars->ray_x0 - vars->play_x, 2) + pow(vars->ray_y0 - vars->play_y, 2));
+		printf("\nx0 : %f x_p : %f y0 : %f y_p : %f\n", vars->ray_x, vars->play_x, vars->ray_y, vars->play_y);
+		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
+		// vars->ray_x = vars->play_x;
 		// printf("distance : %f\n", distance);
-		int h = calculate_wall_height(vars, distance, ray_angle);
+		double h = calculate_wall_height(vars, distance, ray_angle);
 		draw_wall(vars, x++, h);
+		// printf("x : %d ", x);
 		// printf("ray : %d %f\n", i, distance);
 		// printf("Thales : %d\n", h);
 		vars->angle += 0.05;

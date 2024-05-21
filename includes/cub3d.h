@@ -86,8 +86,8 @@ typedef struct s_vars {
     int        map_x;
     int        map_y;
 ///////////////////////////
-    int        play_x;
-    int        play_y;
+    float        play_x;
+    float        play_y;
 	int				bits_per_pixel;
 	int				line_length;
 	int				endian;
@@ -102,6 +102,8 @@ typedef struct s_vars {
 	double			c2;
 	float			ray_x0;
 	float			ray_y0;
+	float			ray_y;
+	float			ray_x;
 	float			ray_x1;
 	float			ray_y1;
 	int				x;

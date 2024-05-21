@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/20 19:39:49 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/21 10:36:27 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@ int	check_walls_path(t_vars *vars)
 	x_map = 0;
 	y_map = 0;
 	i = 0;
-	while(i < vars->ray_x0)
+	while(i < vars->ray_x)
 	{
 		i += EDGE;
 		x_map++;
 	}
-	i = (i - vars->ray_x0) / EDGE; // i = position precis du pixel i
+	i = (i - vars->ray_x) / EDGE; // i = position precis du pixel i
 	y = 0;
-	while(y < vars->ray_y0)
+	while(y < vars->ray_y)
 	{
 		y += EDGE;
 		y_map++;
 	}
-	y = (y - vars->ray_y0) / EDGE; // y = position precis du pixel y
+	y = (y - vars->ray_y) / EDGE; // y = position precis du pixel y
 	//vars->map[y_map - 1][x_map - 1]
 	if(x_map > 0)
 		x_map -= 1;
