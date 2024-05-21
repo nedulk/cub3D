@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/21 16:05:23 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/21 19:07:33 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ double calculate_wall_height(t_vars *vars, double distance, double ray_angle)
 	(void)vars;
 	
     double corrected_distance = distance * cos(((ray_angle * (PI / 180.0)) - (vars->angle * (PI / 180.0))) * PI / 180.0);
-    wall_height = (HEIGHT / corrected_distance) * 5;
+    wall_height = (HEIGHT / corrected_distance);
     // pas plus grand que la hauteur de l'écran
     if (wall_height > HEIGHT)
         wall_height = HEIGHT;
@@ -88,7 +88,17 @@ void	draw_rays(t_vars *vars)
 		vars->ray_x1 = vars->ray_x0 + vars->rotate_x1;
 		vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
 		ft_draw_line_bresenham(vars);
-		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
+		if(vars->prev_pos_map_x != vars->x_map || vars->prev_pos_map_y != vars->y_map)
+		{
+			distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
+			vars->prev_pos_map_x = vars->x_map;
+			vars->prev_pos_map_y = vars->y_map;
+		}
+		else
+		{
+			vars->ray_x = vars->play_x;
+			vars->ray_y = vars->play_y;
+		}
 		// printf("distance : %f\n", distance);
 		int h = calculate_wall_height(vars, distance, ray_angle);
 		draw_wall(vars, x++, h);

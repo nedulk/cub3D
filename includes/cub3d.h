@@ -94,6 +94,10 @@ typedef struct s_vars {
 	int				endian;
 	void			*img;
 	void			*addr;
+	int				x_map;
+	int				y_map;
+	int				prev_pos_map_x;
+	int				prev_pos_map_y;
 	double		rotate_x1;
 	double		rotate_y1;
 	double			x0;

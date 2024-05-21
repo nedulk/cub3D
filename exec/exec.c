@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/21 16:04:27 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/21 18:12:56 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ int	check_walls_path(t_vars *vars)
 		y_map -= 1;
 	// printf("path :y_map:%d\n", y_map);
 	// printf("path :x_map:%d\n", x_map);
+	vars->x_map = x_map;
+	vars->y_map = y_map;
 	if(vars->map[y_map][x_map] == '1')
 		return (1);
+
 	return (0);
 }
 
@@ -246,6 +249,8 @@ int	exec(t_vars *vars)
 	vars->angle = 270;
 	vars->y = 0;
 	vars->y0 = vars->y;
+	vars->x_map = 0;
+	vars->y_map = 0;
 	mlx_clear_window(vars->mlx, vars->win);
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
