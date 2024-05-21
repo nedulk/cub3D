@@ -22,6 +22,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define EDGE 20
+# define FOV 60
 # define PI 3.14159265
 
 # define RESET   "\x1B[0m"

@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/21 10:36:27 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/21 16:04:27 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,8 @@ int	move(int keycode, t_vars *vars)
 		vars->play_y -= 1;
 		if(check_walls(vars) == 1 || check_walls2(vars) == 1)
 		{
-			vars->play_y = sin(vars->angle * PI / 180);			return (1);
+			vars->play_y -= 1;
+			return (1);
 		}
 	}
 	if (keycode == XK_a)
@@ -224,7 +225,7 @@ int	move(int keycode, t_vars *vars)
 		exit(0);
 	vars->y = 0;
 	vars->y0 = vars->y;
-	vars->x =  0;
+	vars->x = 0;
 	vars->x0 = vars->x;
 	mlx_destroy_image(vars->mlx, vars->img);
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
@@ -242,7 +243,7 @@ int	exec(t_vars *vars)
 
 	i = 0;
 	y = 0;
-	vars->angle = 360;
+	vars->angle = 270;
 	vars->y = 0;
 	vars->y0 = vars->y;
 	mlx_clear_window(vars->mlx, vars->win);
