@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 11:28:04 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/20 15:11:02 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:10:00 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ int check_param(char *map, t_vars *vars)
 	}
 	vars->texture[6] = NULL;
 	fd = open(map, O_RDONLY);
+	if (fd == -1)
+	{
+		printf(RED"Error\n"RESET);
+		printf(YELLOW"Can't open map\n"RESET);
+		return (1);
+	}
 	while (line || i == 0)
 	{
 		line = get_next_line(fd);

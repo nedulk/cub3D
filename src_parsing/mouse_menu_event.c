@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_menu_event.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:47:29 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/20 19:15:57 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/22 16:05:36 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int	mouse_over(int x, int y, t_vars *vars)
 {
 	if (vars->play_click && vars->play_selec)
 	{
-		if (x >= vars->play_x && x <= vars->play_x + 90 && y >= vars->play_y
-			&& y <= vars->play_y + 90)
+		if (x >= vars->play_button_x && x <= vars->play_button_x + 90 && y >= vars->play_button_y
+			&& y <= vars->play_button_y + 90)
 			mlx_put_image_to_window(vars->mlx, vars->win, vars->play_selec,
-				vars->play_x, vars->play_y);
+				vars->play_button_x, vars->play_button_y);
 		else
 			mlx_put_image_to_window(vars->mlx, vars->win, vars->play_click,
-				vars->play_x, vars->play_y);
+				vars->play_button_x, vars->play_button_y);
 	}
 	return (0);
 }
@@ -37,8 +37,8 @@ int	mouse_click(int button, int x, int y, t_vars *vars)
 	mlx_mouse_get_pos(vars->mlx, vars->win, &mouse_x, &mouse_y);
 	if (button == 1)
 	{
-		if (mouse_x >= vars->play_x && mouse_x <= vars->play_x + 100
-			&& mouse_y >= vars->play_y && mouse_y <= vars->play_y + 100
+		if (mouse_x >= vars->play_button_x && mouse_x <= vars->play_button_x + 100
+			&& mouse_y >= vars->play_button_y && mouse_y <= vars->play_button_y + 100
 			&& vars->play_click)
 		{
 			vars->button_clicked = 1;
