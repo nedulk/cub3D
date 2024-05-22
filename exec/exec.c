@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/22 12:56:50 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:44:10 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,38 +181,57 @@ void	draw_grid(t_vars *vars)
 		i++;
 	}
 }
+void move_forward(t_vars *vars, double speed)
+{
+	printf("angle : %f\n", vars->angle);
+	double radian_angle = vars->angle * PI / 180.0;
+	double move_step_x = sin(radian_angle) * speed;
+	double move_step_y = -cos(radian_angle) * speed;
+
+	vars->play_x += move_step_x;
+	vars->play_y += move_step_y;
+
+	if(check_walls(vars) == 1 || check_walls2(vars) == 1)
+	{
+		vars->play_x -= move_step_x;
+		vars->play_y -= move_step_y;
+	}
+}
 
 int	move(int keycode, t_vars *vars)
 {
-	int step = 1;
-	double angle_rad;
-
-	if (keycode == XK_a)
+	if (keycode == XK_Left)
 		vars->angle -= 1;
-	if (keycode == XK_d)
+	if (keycode == XK_Right)
 		vars->angle += 1;
-	printf("angle : %f\n", vars->angle);
 	if (keycode == XK_w)
 	{
-		angle_rad = vars->angle * PI / 180.0;
-		vars->play_x += cos(angle_rad) * step;
-		vars->play_y += sin(angle_rad) * step;
-		if(check_walls(vars) == 1 || check_walls2(vars) == 1)
+		move_forward(vars, 1.0);
+	}
+	if (keycode == XK_a)
+	{
+		vars->play_x -= 1;
+		if(check_walls(vars) == 1 || check_walls2(vars) == 1 )
 		{
-			vars->play_x -= cos(angle_rad) * step;
-			vars->play_y -= sin(angle_rad) * step;
+			vars->play_x += 1;
 			return (1);
 		}
 	}
 	if (keycode == XK_s)
 	{
-		angle_rad = vars->angle * PI / 180.0;
-		vars->play_x -= cos(angle_rad) * step;
-		vars->play_y -= sin(angle_rad) * step;
+		vars->play_y += 1;
 		if(check_walls(vars) == 1 || check_walls2(vars) == 1)
 		{
-			vars->play_x += cos(angle_rad) * step;
-			vars->play_y += sin(angle_rad) * step;
+			vars->play_y -= 1;
+			return (1);
+		}
+	}
+	if (keycode == XK_d)
+	{
+		vars->play_x += 1;
+		if(check_walls(vars) == 1 || check_walls2(vars) == 1)
+		{
+			vars->play_x -= 1;
 			return (1);
 		}
 	}
