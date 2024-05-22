@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/22 15:19:16 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:48:10 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,12 +86,14 @@ void	draw_rays(t_vars *vars)
 	int	y;
 	int x = WIDTH / 5;
 
-	y = 1400;
+	y = 1200;
 	i = 0;
 	angle = vars->angle - (y / 2);
 	while(i < y)
 	{
-		double ray_angle = vars->angle + i * 0.1;
+		vars->ray_y = vars->ray_y0;
+		vars->ray_x = vars->ray_x0;
+		double ray_angle = vars->angle + i;
 		vars->ray_x0 = vars->play_x;
 		vars->ray_y0 = vars->play_y;
 		vars->ray_x1 = cos(vars->angle * PI / 180);
@@ -100,17 +102,7 @@ void	draw_rays(t_vars *vars)
 		vars->ray_x1 = vars->ray_x0 + vars->rotate_x1;
 		vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
 		ft_draw_line_bresenham(vars);
-		if(vars->prev_pos_map_x != vars->x_map || vars->prev_pos_map_y != vars->y_map)
-		{
-			distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
-			// vars->prev_pos_map_x = vars->x_map;
-			// vars->prev_pos_map_y = vars->y_map;
-		}
-		else
-		{
-			vars->ray_x = vars->play_x;
-			vars->ray_y = vars->play_y;
-		}
+		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
 		int h = calculate_wall_height(vars, distance, ray_angle);
 		draw_wall(vars, x++, h);
 		vars->angle += 0.05;

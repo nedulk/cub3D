@@ -6,22 +6,22 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:47:54 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/21 11:04:18 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/22 16:50:53 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../includes/cub3d.h"
 
-int	ft_absolute_number(int value)
+double	ft_absolute_number(double value)
 {
 	if (value < 0)
 		value = value * -1;
 	return (value);	
 }
 
-int	ft_sign(int value)
+double	ft_sign(double value)
 {
-	int	i;
+	double	i;
 
 	i = 1;
 	if (value < 0)
@@ -35,8 +35,12 @@ int	ft_draw_line_bresenham(t_vars *vars)
 	vars->incx = ft_sign(vars->ray_x1 - vars->ray_x0);
 	vars->dy = ft_absolute_number(vars->ray_y1 - vars->ray_y0);
 	vars->incy = ft_sign(vars->ray_y1 - vars->ray_y0);
+	vars->incx /= 20;
+	vars->incy /= 20;
 	vars->ray_y = vars->ray_y0;
 	vars->ray_x = vars->ray_x0;
+	printf("incx:%f\n", vars->incx);
+	printf("incy:%f\n", vars->incy);
 	if (vars->dx == 0)
 		ft_draw_line_y(vars);
 	else if (vars->dy == 0)
@@ -46,11 +50,11 @@ int	ft_draw_line_bresenham(t_vars *vars)
 	else
 		ft_draw_vertical(vars);
 	// printf("angle: %f\n", vars->angle);
-	// printf("x0:%f\n", vars->ray_x0);
-	// printf("x1:%f\n", vars->ray_x1);
-	// printf("y0:%f\n", vars->ray_y0);
-	// printf("y1:%f\n", vars->ray_y1);
-	// printf("\n");
+	printf("x0:%f\n", vars->ray_x0);
+	printf("x1:%f\n", vars->ray_x1);
+	printf("y0:%f\n", vars->ray_y0);
+	printf("y1:%f\n", vars->ray_y1);
+	printf("\n");
 	return (0);
 }
 

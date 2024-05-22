@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/22 15:44:10 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/22 16:42:19 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,13 +183,17 @@ void	draw_grid(t_vars *vars)
 }
 void move_forward(t_vars *vars, double speed)
 {
-	printf("angle : %f\n", vars->angle);
-	double radian_angle = vars->angle * PI / 180.0;
+	// printf("angle : %f\n", vars->angle);
+	double radian_angle = vars->angle * (PI / 180.0);
 	double move_step_x = sin(radian_angle) * speed;
 	double move_step_y = -cos(radian_angle) * speed;
+	// printf("step_x : %f\n", move_step_x);
+	// printf("step_y : %f\n", move_step_y);
 
 	vars->play_x += move_step_x;
+	// printf("play_x : %f\n", vars->play_x);
 	vars->play_y += move_step_y;
+	// printf("play_y : %f\n", vars->play_y);
 
 	if(check_walls(vars) == 1 || check_walls2(vars) == 1)
 	{
