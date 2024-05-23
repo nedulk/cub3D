@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:44 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/20 19:00:36 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/23 14:55:44 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	redraw_grid(t_vars *vars)
 	int	y;
 	
 	i = 0;
+	vars->y = 0;
 	while (vars->map[i])
 	{
 		y = 0;
@@ -61,4 +62,32 @@ void	redraw_grid(t_vars *vars)
 		i++;
 	}
 	redraw_player(vars);
+}
+
+void	redraw_grid_wo_p(t_vars *vars)
+{
+	int	i;
+	int	y;
+	
+	i = 0;
+	vars->y = 0;
+	while (vars->map[i])
+	{
+		y = 0;
+		vars->x = 0;
+		vars->y0 = vars->y;
+		while (vars->map[i][y])
+		{
+			if (vars->map[i][y] == '1')
+				draw_wall_tile(vars);
+			else if(vars->map[i][y] != '1')
+			{
+				draw_floor_tile(vars);
+				vars->y = vars->y0;
+			}
+			y++;
+		}
+		vars->y = vars->y + EDGE;
+		i++;
+	}
 }

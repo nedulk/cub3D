@@ -6,11 +6,75 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/22 16:42:19 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/23 15:28:30 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	check_SO(t_vars *vars, int x_map, int y_map, double i, double y)
+{
+	int		test_xmap = x_map;
+	int		test_ymap = y_map;
+
+	if ((i += vars->incx) < 0 || (i += vars->incx) > 1)
+	{
+		if ((y += vars->incy < 0) || (y += vars->incy > 1))
+		{
+			if(vars->map[test_ymap -1][test_xmap] == '1' && vars->map[test_ymap][test_xmap + 1] == '1')
+				return (1);
+		}
+	}
+	return (0);
+}
+int	check_NE(t_vars *vars, int x_map, int y_map, double i, double y)
+{
+	int		test_xmap = x_map;
+	int		test_ymap = y_map;
+
+	if ((i += vars->incx) < 0 || (i += vars->incx) > 1)
+	{
+		if ((y += vars->incy < 0) || (y += vars->incy > 1))
+		{
+			if(vars->map[test_ymap + 1][test_xmap] == '1' && vars->map[test_ymap][test_xmap - 1] == '1')
+				return (1);
+		}
+	}
+	return (0);
+}
+
+int	check_NO(t_vars *vars, int x_map, int y_map, double i, double y)
+{
+	int		test_xmap = x_map;
+	int		test_ymap = y_map;
+
+	if ((i += vars->incx) < 0 || (i += vars->incx) > 1)
+	{
+		if ((y += vars->incy < 0) || (y += vars->incy > 1))
+		{
+			if(vars->map[test_ymap + 1][test_xmap] == '1' && vars->map[test_ymap][test_xmap + 1] == '1')
+				return (1);
+		}
+	}
+	return (0);
+}
+
+
+int	check_SE(t_vars *vars, int x_map, int y_map, double i, double y)
+{
+	int		test_xmap = x_map;
+	int		test_ymap = y_map;
+
+	if ((i += vars->incx) < 0 || (i += vars->incx) > 1)
+	{
+		if ((y += vars->incy < 0) || (y += vars->incy > 1))
+		{
+			if(vars->map[test_ymap - 1][test_xmap] == '1' && vars->map[test_ymap][test_xmap - 1] == '1')
+				return (1);
+		}
+	}
+	return (0);
+}
 
 int	check_walls_path(t_vars *vars)
 {
@@ -40,13 +104,32 @@ int	check_walls_path(t_vars *vars)
 		x_map -= 1;
 	if(y_map > 0)
 		y_map -= 1;
-	// printf("path :y_map:%d\n", y_map);
-	// printf("path :x_map:%d\n", x_map);
+	if ((vars->incx < 0 && vars->incy < 0) && (x_map > 1 && y_map > 1))
+	{
+		if(check_NO(vars, x_map, y_map, i, y))
+			return(1);
+	}
+	if ((vars->incx > 0 && vars->incy < 0) && (x_map > 1 && y_map > 1))
+	{
+		if(check_NE(vars, x_map, y_map, i, y))
+			return(1);
+	}
+	if ((vars->incx < 0 && vars->incy > 0) && (x_map > 1 && y_map > 1))
+	{
+		if(check_SO(vars, x_map, y_map, i, y))
+			return(1);
+	}
+	if ((vars->incx > 0 && vars->incy > 0) && (x_map > 1 && y_map > 1))
+	{
+		if(check_SE(vars, x_map, y_map, i, y))
+			return(1);
+	}
+	// printf("path :y_map:%f\n", y);
+	// printf("path :x_map:%f\n", i);
 	vars->x_map = x_map;
 	vars->y_map = y_map;
 	if(vars->map[y_map][x_map] == '1')
 		return (1);
-
 	return (0);
 }
 
@@ -250,6 +333,7 @@ int	move(int keycode, t_vars *vars)
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 		&vars->line_length, &vars->endian);
 	redraw_grid(vars);
+	redraw_grid_wo_p(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	return (0);
 }

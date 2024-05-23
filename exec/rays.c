@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/22 16:48:10 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/23 14:45:57 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void draw_wall(t_vars *vars, int x, int wall_height)
 	int draw_end = centerY + wall_height;
 	if(draw_end >= HEIGHT)
 		draw_end = HEIGHT - 1;
-	int wall_color = 0x00FF0000;
+	int wall_color = 0x330066;
 	int j = draw_start;
 	while (j < draw_end)
 	{
@@ -67,13 +67,13 @@ void draw_wall(t_vars *vars, int x, int wall_height)
 	}
 	while (j <= HEIGHT)
 	{
-		my_mlx_pixel_put(vars, x, j, 0x00FF00); // link avec parsing
+		my_mlx_pixel_put(vars, x, j, 0x000033); // link avec parsing
 		j++;
 	}
 	j = draw_start;
 	while (j >= 0)
 	{
-		my_mlx_pixel_put(vars, x, j, 0x0000FF); // link avec parsing
+		my_mlx_pixel_put(vars, x, j, 0x663300); // link avec parsing
 		j--;
 	}
 }
@@ -84,9 +84,9 @@ void	draw_rays(t_vars *vars)
 	double	angle;
 	double	distance;
 	int	y;
-	int x = WIDTH / 5;
+	int x = 0;
 
-	y = 1200;
+	y = 1920;
 	i = 0;
 	angle = vars->angle - (y / 2);
 	while(i < y)
@@ -105,7 +105,7 @@ void	draw_rays(t_vars *vars)
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
 		int h = calculate_wall_height(vars, distance, ray_angle);
 		draw_wall(vars, x++, h);
-		vars->angle += 0.05;
+		vars->angle += 0.03;
 		while (vars->angle < 0)
 			vars->angle += 360.0;
 		while (vars->angle >= 360)
