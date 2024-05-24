@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/24 11:17:32 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:30:46 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	check_SO(t_vars *vars, int x_map, int y_map, double i, double y)
 	int		test_xmap = x_map;
 	int		test_ymap = y_map;
 
-	if ((i += vars->incx) < 0 || (i += vars->incx) > 1)
+	if ((i += vars->incx) <= 0 || (i += vars->incx) >= 1)
 	{
-		if ((y += vars->incy < 0) || (y += vars->incy > 1))
+		if ((y += vars->incy <= 0) || (y += vars->incy >= 1))
 		{
 			if(vars->map[test_ymap -1][test_xmap] == '1' && vars->map[test_ymap][test_xmap + 1] == '1')
 				return (1);
@@ -32,9 +32,9 @@ int	check_NE(t_vars *vars, int x_map, int y_map, double i, double y)
 	int		test_xmap = x_map;
 	int		test_ymap = y_map;
 
-	if ((i += vars->incx) < 0 || (i += vars->incx) > 1)
+	if ((i += vars->incx) <= 0 || (i += vars->incx) >= 1)
 	{
-		if ((y += vars->incy < 0) || (y += vars->incy > 1))
+		if ((y += vars->incy <= 0) || (y += vars->incy >= 1))
 		{
 			if(vars->map[test_ymap + 1][test_xmap] == '1' && vars->map[test_ymap][test_xmap - 1] == '1')
 				return (1);
@@ -48,9 +48,9 @@ int	check_NO(t_vars *vars, int x_map, int y_map, double i, double y)
 	int		test_xmap = x_map;
 	int		test_ymap = y_map;
 
-	if ((i += vars->incx) < 0 || (i += vars->incx) > 1)
+	if ((i += vars->incx) <= 0 || (i += vars->incx) >= 1)
 	{
-		if ((y += vars->incy < 0) || (y += vars->incy > 1))
+		if ((y += vars->incy <= 0) || (y += vars->incy >= 1))
 		{
 			if(vars->map[test_ymap + 1][test_xmap] == '1' && vars->map[test_ymap][test_xmap + 1] == '1')
 				return (1);
@@ -65,9 +65,9 @@ int	check_SE(t_vars *vars, int x_map, int y_map, double i, double y)
 	int		test_xmap = x_map;
 	int		test_ymap = y_map;
 
-	if ((i += vars->incx) < 0 || (i += vars->incx) > 1)
+	if ((i += vars->incx) <= 0 || (i += vars->incx) >= 1)
 	{
-		if ((y += vars->incy < 0) || (y += vars->incy > 1))
+		if ((y += vars->incy <= 0) || (y += vars->incy >= 1))
 		{
 			if(vars->map[test_ymap - 1][test_xmap] == '1' && vars->map[test_ymap][test_xmap - 1] == '1')
 				return (1);
@@ -104,22 +104,22 @@ int	check_walls_path(t_vars *vars)
 		x_map -= 1;
 	if(y_map > 0)
 		y_map -= 1;
-	if ((vars->incx < 0 && vars->incy < 0) && (x_map > 1 && y_map > 1))
+	if ((vars->incx < 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
 	{
 		if(check_NO(vars, x_map, y_map, i, y))
 			return(1);
 	}
-	if ((vars->incx > 0 && vars->incy < 0) && (x_map > 1 && y_map > 1))
+	if ((vars->incx > 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
 	{
 		if(check_NE(vars, x_map, y_map, i, y))
 			return(1);
 	}
-	if ((vars->incx < 0 && vars->incy > 0) && (x_map > 1 && y_map > 1))
+	if ((vars->incx < 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
 	{
 		if(check_SO(vars, x_map, y_map, i, y))
 			return(1);
 	}
-	if ((vars->incx > 0 && vars->incy > 0) && (x_map > 1 && y_map > 1))
+	if ((vars->incx > 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
 	{
 		if(check_SE(vars, x_map, y_map, i, y))
 			return(1);
@@ -318,13 +318,21 @@ void move_backward(t_vars *vars, double speed)
 
 int	move(int keycode, t_vars *vars)
 {
-	printf(RED"angle : %f\n"RESET, vars->angle);
+	// printf(RED"angle : %f\n"RESET, vars->angle);
 	if (keycode == XK_Left)
 		vars->angle -= 1;
 	if (keycode == XK_Right)
 		vars->angle += 1;
 	if (keycode == XK_w)
-		move_forward(vars, 1.0);
+	{
+		vars->play_y -= 1;
+		if(check_walls(vars) == 1 || check_walls2(vars) == 1 )
+		{
+			vars->play_y += 1;
+			return (1);
+		}
+	}
+		// move_forward(vars, 1.0);
 	if (keycode == XK_a)
 	{
 		vars->play_x -= 1;
@@ -335,7 +343,15 @@ int	move(int keycode, t_vars *vars)
 		}
 	}
 	if (keycode == XK_s)
-		move_backward(vars, 1.0);
+	{
+		vars->play_y += 1;
+		if(check_walls(vars) == 1 || check_walls2(vars) == 1)
+		{
+			vars->play_y -= 1;
+			return (1);
+		}
+	}
+		// move_backward(vars, 1.0);
 	if (keycode == XK_d)
 	{
 		vars->play_x += 1;

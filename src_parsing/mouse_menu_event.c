@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_menu_event.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:47:29 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/22 16:05:36 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/24 13:27:36 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ void	go_in_game(t_vars *vars)
 	vars->play_selec = NULL;
 	mlx_destroy_image(vars->mlx, vars->title);
 	vars->map[0] = ft_strdup("111111111");
-	vars->map[1] = ft_strdup("100001001");
-	vars->map[2] = ft_strdup("1000001011111");
-	vars->map[3] = ft_strdup("1001000000001");
+	vars->map[1] = ft_strdup("100101011");
+	vars->map[2] = ft_strdup("1010001011111");
+	vars->map[3] = ft_strdup("1001000100001");
 	vars->map[4] = ft_strdup("1010000011111");
 	vars->map[5] = ft_strdup("1001000N1");
-	vars->map[6] = ft_strdup("100000101");
+	vars->map[6] = ft_strdup("101000101");
 	vars->map[7] = ft_strdup("111111111");
 	vars->map[8] = NULL;
 	exec(vars);
