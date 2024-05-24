@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/23 15:28:30 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/24 09:55:51 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,17 +266,28 @@ void	draw_grid(t_vars *vars)
 }
 void move_forward(t_vars *vars, double speed)
 {
-	// printf("angle : %f\n", vars->angle);
 	double radian_angle = vars->angle * (PI / 180.0);
 	double move_step_x = sin(radian_angle) * speed;
 	double move_step_y = -cos(radian_angle) * speed;
-	// printf("step_x : %f\n", move_step_x);
-	// printf("step_y : %f\n", move_step_y);
 
 	vars->play_x += move_step_x;
-	// printf("play_x : %f\n", vars->play_x);
 	vars->play_y += move_step_y;
-	// printf("play_y : %f\n", vars->play_y);
+
+	if(check_walls(vars) == 1 || check_walls2(vars) == 1)
+	{
+		vars->play_x -= move_step_x;
+		vars->play_y -= move_step_y;
+	}
+}
+
+void move_backward(t_vars *vars, double speed)
+{
+	double radian_angle = vars->angle * (PI / 180.0);
+	double move_step_x = -sin(radian_angle) * speed;
+	double move_step_y = cos(radian_angle) * speed;
+
+	vars->play_x += move_step_x;
+	vars->play_y += move_step_y;
 
 	if(check_walls(vars) == 1 || check_walls2(vars) == 1)
 	{
@@ -292,9 +303,7 @@ int	move(int keycode, t_vars *vars)
 	if (keycode == XK_Right)
 		vars->angle += 1;
 	if (keycode == XK_w)
-	{
 		move_forward(vars, 1.0);
-	}
 	if (keycode == XK_a)
 	{
 		vars->play_x -= 1;
@@ -305,14 +314,7 @@ int	move(int keycode, t_vars *vars)
 		}
 	}
 	if (keycode == XK_s)
-	{
-		vars->play_y += 1;
-		if(check_walls(vars) == 1 || check_walls2(vars) == 1)
-		{
-			vars->play_y -= 1;
-			return (1);
-		}
-	}
+		move_backward(vars, 1.0);
 	if (keycode == XK_d)
 	{
 		vars->play_x += 1;
