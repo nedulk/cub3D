@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/23 14:45:57 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/24 11:09:28 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	draw_rays(t_vars *vars)
 
 	y = 1920;
 	i = 0;
-	angle = vars->angle - (y / 2);
+	angle = vars->angle - (FOV / 2);
 	while(i < y)
 	{
 		vars->ray_y = vars->ray_y0;
@@ -112,6 +112,5 @@ void	draw_rays(t_vars *vars)
 			vars->angle -= 360.0;
 		i++;
 	}
-	vars->angle = angle + (y * 0.5);
-	// printf("%f", vars->angle);
+	vars->angle = angle + (FOV / 2);
 }

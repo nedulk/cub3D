@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/24 09:55:51 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:17:32 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -265,8 +265,18 @@ void	draw_grid(t_vars *vars)
 	}
 }
 void move_forward(t_vars *vars, double speed)
-{
-	double radian_angle = vars->angle * (PI / 180.0);
+	{
+	double true_angle = vars->angle - 28.8;
+
+	if (true_angle < 0)
+	{
+		true_angle += 360;
+	}
+	if (true_angle >= 360)
+	{
+		true_angle -= 360;
+	}	
+	double radian_angle = true_angle * (PI / 180.0);
 	double move_step_x = sin(radian_angle) * speed;
 	double move_step_y = -cos(radian_angle) * speed;
 
@@ -282,7 +292,17 @@ void move_forward(t_vars *vars, double speed)
 
 void move_backward(t_vars *vars, double speed)
 {
-	double radian_angle = vars->angle * (PI / 180.0);
+	double true_angle = vars->angle - 28.8;
+
+	if (true_angle < 0)
+	{
+		true_angle += 360;
+	}
+	if (true_angle >= 360)
+	{
+		true_angle -= 360;
+	}	
+	double radian_angle = true_angle * (PI / 180.0);
 	double move_step_x = -sin(radian_angle) * speed;
 	double move_step_y = cos(radian_angle) * speed;
 
@@ -298,6 +318,7 @@ void move_backward(t_vars *vars, double speed)
 
 int	move(int keycode, t_vars *vars)
 {
+	printf(RED"angle : %f\n"RESET, vars->angle);
 	if (keycode == XK_Left)
 		vars->angle -= 1;
 	if (keycode == XK_Right)
@@ -347,7 +368,7 @@ int	exec(t_vars *vars)
 
 	i = 0;
 	y = 0;
-	vars->angle = 270;
+	vars->angle = 90; // rajouter if selon orientation
 	vars->y = 0;
 	vars->y0 = vars->y;
 	vars->x_map = 0;
