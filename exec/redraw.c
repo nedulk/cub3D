@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:44 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/23 14:55:44 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/24 14:05:57 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	redraw_player(t_vars *vars)
 		vars->angle += 360.0;
 	while (vars->angle >= 360)
 		vars->angle -= 360.0;
-	// printf("%d", vars->angle);
 	// my_mlx_pixel_put(vars, vars->play_x, vars->play_y, 0x00FF0000);
 	// my_mlx_pixel_put(vars, vars->play_x + 1, vars->play_y, 0x00FF0000);
 	// my_mlx_pixel_put(vars, vars->play_x, vars->play_y + 1, 0x00FF0000);

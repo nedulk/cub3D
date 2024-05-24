@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/24 13:32:03 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/24 14:22:17 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ double calculate_wall_height(t_vars *vars, double distance, double ray_angle)
 	(void)vars;
 	
     double corrected_distance = distance * cos(((ray_angle * (PI / 180.0)) - (vars->angle * (PI / 180.0))) * PI / 180.0);
-    wall_height = (HEIGHT / corrected_distance) * 2;
+    wall_height = (HEIGHT / corrected_distance);
     // pas plus grand que la hauteur de l'écran
     if (wall_height > HEIGHT)
         wall_height = HEIGHT;
@@ -73,7 +73,7 @@ void draw_wall(t_vars *vars, int x, int wall_height)
 	j = draw_start;
 	while (j >= 0)
 	{
-		my_mlx_pixel_put(vars, x, j, 0x663300); // link avec parsing
+		my_mlx_pixel_put(vars, x, j, 0x000011); // link avec parsing
 		j--;
 	}
 }
@@ -88,7 +88,8 @@ void	draw_rays(t_vars *vars)
 
 	y = 1920;
 	i = 0;
-	angle = vars->angle - (FOV / 2);
+	angle = vars->angle;
+	vars->angle = vars->angle - (FOV * 0.03);
 	while(i < y)
 	{
 		vars->ray_y = vars->ray_y0;
@@ -112,5 +113,5 @@ void	draw_rays(t_vars *vars)
 			vars->angle -= 360.0;
 		i++;
 	}
-	vars->angle = angle + (FOV / 2);
+	// vars->angle = angle;
 }

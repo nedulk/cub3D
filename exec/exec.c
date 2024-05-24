@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/24 13:30:46 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/24 14:33:31 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	check_SO(t_vars *vars, int x_map, int y_map, double i, double y)
 	int		test_xmap = x_map;
 	int		test_ymap = y_map;
 
-	if ((i += vars->incx) <= 0 || (i += vars->incx) >= 1)
+	if ((i - 0.01) < 0)
 	{
-		if ((y += vars->incy <= 0) || (y += vars->incy >= 1))
+		if ((y + 0.01 > 1))
 		{
 			if(vars->map[test_ymap -1][test_xmap] == '1' && vars->map[test_ymap][test_xmap + 1] == '1')
 				return (1);
@@ -32,9 +32,9 @@ int	check_NE(t_vars *vars, int x_map, int y_map, double i, double y)
 	int		test_xmap = x_map;
 	int		test_ymap = y_map;
 
-	if ((i += vars->incx) <= 0 || (i += vars->incx) >= 1)
+	if ((i + 0.01) > 1)
 	{
-		if ((y += vars->incy <= 0) || (y += vars->incy >= 1))
+		if ((y - 0.01 < 0))
 		{
 			if(vars->map[test_ymap + 1][test_xmap] == '1' && vars->map[test_ymap][test_xmap - 1] == '1')
 				return (1);
@@ -48,9 +48,9 @@ int	check_NO(t_vars *vars, int x_map, int y_map, double i, double y)
 	int		test_xmap = x_map;
 	int		test_ymap = y_map;
 
-	if ((i += vars->incx) <= 0 || (i += vars->incx) >= 1)
+	if ((i - 0.01) < 0)
 	{
-		if ((y += vars->incy <= 0) || (y += vars->incy >= 1))
+		if ((y - 0.01 < 0))
 		{
 			if(vars->map[test_ymap + 1][test_xmap] == '1' && vars->map[test_ymap][test_xmap + 1] == '1')
 				return (1);
@@ -65,9 +65,9 @@ int	check_SE(t_vars *vars, int x_map, int y_map, double i, double y)
 	int		test_xmap = x_map;
 	int		test_ymap = y_map;
 
-	if ((i += vars->incx) <= 0 || (i += vars->incx) >= 1)
+	if ((i + 0.01) >= 1)
 	{
-		if ((y += vars->incy <= 0) || (y += vars->incy >= 1))
+		if ((y + 0.01 >= 1))
 		{
 			if(vars->map[test_ymap - 1][test_xmap] == '1' && vars->map[test_ymap][test_xmap - 1] == '1')
 				return (1);
