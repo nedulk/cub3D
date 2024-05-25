@@ -39,6 +39,7 @@
 # define Y   "\x1B[33m"
 # define RESET "\x1B[0m"
 
+
 typedef struct s_vars {
     void    *mlx;
     void    *win;
@@ -57,6 +58,7 @@ typedef struct s_vars {
 ///////////PARISNG HANDLE////////////////////
 
     char **texture;
+	int **texture_w;
     int        line_map;
     int        no;
     int        so;
@@ -69,6 +71,8 @@ typedef struct s_vars {
     void    *title;
     void    *you_win;
     char    **map;
+	int		celing_color;
+	int		floor_color;
     char    *line;
     int        width;
     int        height;

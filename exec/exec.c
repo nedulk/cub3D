@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/24 14:33:31 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/25 13:43:49 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,11 +251,13 @@ void	draw_grid(t_vars *vars)
 		{
 			if (vars->map[i][y] == '1')
 				draw_wall_tile(vars);
-			else if(vars->map[i][y] != '1')
+			else if(vars->map[i][y] == '0')
 			{
 				draw_floor_tile(vars);
 				vars->y = vars->y0;
 			}
+			else if (vars->map[i][y] == ' ')
+				vars->x += EDGE;
 			if(vars->map[i][y] == 'N')
 				draw_player(vars);
 			y++;

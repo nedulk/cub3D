@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redraw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:44 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/24 14:05:57 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/25 13:43:40 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ void	redraw_grid(t_vars *vars)
 		{
 			if (vars->map[i][y] == '1')
 				draw_wall_tile(vars);
-			else if(vars->map[i][y] != '1')
+			else if(vars->map[i][y] == '0')
 			{
 				draw_floor_tile(vars);
 				vars->y = vars->y0;
 			}
+			else if (vars->map[i][y] == ' ')
+				vars->x += EDGE;
 			y++;
 		}
 		vars->y = vars->y + EDGE;
@@ -79,11 +81,13 @@ void	redraw_grid_wo_p(t_vars *vars)
 		{
 			if (vars->map[i][y] == '1')
 				draw_wall_tile(vars);
-			else if(vars->map[i][y] != '1')
+			else if(vars->map[i][y] == '0')
 			{
 				draw_floor_tile(vars);
 				vars->y = vars->y0;
 			}
+			else if (vars->map[i][y] == ' ')
+				vars->x += EDGE;
 			y++;
 		}
 		vars->y = vars->y + EDGE;

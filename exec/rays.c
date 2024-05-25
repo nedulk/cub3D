@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/24 14:22:17 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/25 13:11:09 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,30 @@ void draw_wall(t_vars *vars, int x, int wall_height)
 	int draw_end = centerY + wall_height;
 	if(draw_end >= HEIGHT)
 		draw_end = HEIGHT - 1;
-	int wall_color = 0x330066;
+	// int wall_color = 0x330066;
 	int j = draw_start;
+	int tex_height = 64; // la hauteur de la texture
+	int line_height = draw_end - draw_start; // la hauteur du mur à l'écran
+
 	while (j < draw_end)
 	{
-		my_mlx_pixel_put(vars, x, j, wall_color);
+		int tex_y = ((j - draw_start) * tex_height) / line_height;
+
+		my_mlx_pixel_put(vars, x, j, vars->texture_w[tex_y % 64][x % 64]);
 		j++;
 	}
 	while (j <= HEIGHT)
 	{
-		my_mlx_pixel_put(vars, x, j, 0x000033); // link avec parsing
+		my_mlx_pixel_put(vars, x, j, vars->floor_color); // link avec parsing
 		j++;
 	}
 	j = draw_start;
 	while (j >= 0)
 	{
-		my_mlx_pixel_put(vars, x, j, 0x000011); // link avec parsing
+		my_mlx_pixel_put(vars, x, j, vars->celing_color); // link avec parsing
 		j--;
 	}
-}
+	}
 
 void	draw_rays(t_vars *vars)
 {

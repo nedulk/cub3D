@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/20 16:00:11 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/24 17:51:09 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	load_img(t_vars *vars)
 {
+	///MENU
 	vars->play_click = mlx_xpm_file_to_image(vars->mlx,
 			"./img/play.xpm", &vars->width, &vars->height);
 	vars->play_selec = mlx_xpm_file_to_image(vars->mlx,
@@ -22,6 +23,43 @@ void	load_img(t_vars *vars)
 			"./img/title.xpm", &vars->width, &vars->height);
 	vars->you_win = mlx_xpm_file_to_image(vars->mlx,
 			"./img/win.xpm", &vars->width, &vars->height);
+	
+	///GAME TEXTURES
+	void	*img;
+	char	*img_data;
+	int		y;
+	int		x;
+	int		width;
+	int		height;
+	int		bits_per_pixel = 32;
+	int 	endian = 1;
+	int		size_line = 128 * (32 / 8);
+	int		index;
+	
+	img = mlx_xpm_file_to_image(vars->mlx,
+			"./img/texture.xpm", &width, &height);
+	
+	img_data = mlx_get_data_addr(img, &bits_per_pixel, &size_line, &endian);
+	
+	vars->texture_w = malloc(height * sizeof(int*));
+	y = 0;
+	while(y < height)
+	{
+		vars->texture_w[y] = malloc(width * sizeof(int));
+		y++;
+	}
+	y = 0;
+	while(y < height)
+	{
+		x = 0;
+		while(x < width)
+		{
+			index = (y * size_line + x * (bits_per_pixel / 8));
+			vars->texture_w[y][x] = *(int*)(img_data + index);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	init_vars(t_vars *vars)
@@ -67,7 +105,7 @@ int	main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	t_vars	*vars;
-
+	
 	vars = malloc(sizeof(t_vars));
 	if (vars == NULL)
 	{
