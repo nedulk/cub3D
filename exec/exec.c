@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/25 15:50:48 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:47:54 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,17 +267,13 @@ void	draw_grid(t_vars *vars)
 	}
 }
 void move_forward(t_vars *vars, double speed)
-	{
-	double true_angle = vars->angle - 28.8;
+{
+	double true_angle = vars->angle - ((FOV / 2) * PI / 180);
 
 	if (true_angle < 0)
-	{
 		true_angle += 360;
-	}
 	if (true_angle >= 360)
-	{
 		true_angle -= 360;
-	}	
 	double radian_angle = true_angle * (PI / 180.0);
 	double move_step_x = sin(radian_angle) * speed;
 	double move_step_y = -cos(radian_angle) * speed;
@@ -294,16 +290,12 @@ void move_forward(t_vars *vars, double speed)
 
 void move_backward(t_vars *vars, double speed)
 {
-	double true_angle = vars->angle - 28.8;
+	double true_angle = vars->angle - ((FOV * 0.8) * PI / 180);
 
 	if (true_angle < 0)
-	{
 		true_angle += 360;
-	}
 	if (true_angle >= 360)
-	{
 		true_angle -= 360;
-	}	
 	double radian_angle = true_angle * (PI / 180.0);
 	double move_step_x = -sin(radian_angle) * speed;
 	double move_step_y = cos(radian_angle) * speed;
@@ -326,15 +318,15 @@ int	move(int keycode, t_vars *vars)
 	if (keycode == XK_Right)
 		vars->angle += 1;
 	if (keycode == XK_w)
-	{
-		vars->play_y -= 1;
-		if(check_walls(vars) == 1 || check_walls2(vars) == 1 )
-		{
-			vars->play_y += 1;
-			return (1);
-		}
-	}
-		// move_forward(vars, 1.0);
+		move_forward(vars, 1.0);
+	// {
+	// 	vars->play_y -= 1;
+	// 	if(check_walls(vars) == 1 || check_walls2(vars) == 1 )
+	// 	{
+	// 		vars->play_y += 1;
+	// 		return (1);
+	// 	}
+	// }
 	if (keycode == XK_a)
 	{
 		vars->play_x -= 1;

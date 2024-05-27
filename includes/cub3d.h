@@ -157,6 +157,9 @@ void	ft_draw_vertical(t_vars *vars);
 int		ft_draw_line_bresenham(t_vars *vars);
 void	draw_rays(t_vars *vars);
 void	redraw_grid_wo_p(t_vars *vars);
+void	rotation_matrix(t_vars *vars);
+double	ft_absolute_number(double value);
+double	ft_sign(double value);
 
 
 ////// EXEC //////////////////

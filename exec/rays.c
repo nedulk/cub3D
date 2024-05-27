@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/27 13:46:18 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/27 13:49:05 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,24 +89,22 @@ void draw_wall(t_vars *vars, int x, int wall_height)
 
 void	draw_rays(t_vars *vars)
 {
-	int	i;
 	double	angle;
 	double	distance = 0;
 	int	y;
-	int h =0;
+	int	rays_number = 100;
 	int x = 0;
 
-	y = 1920;
-	i = 0;
+	y = 1919;
 	angle = vars->angle;
-	vars->angle = vars->angle - (FOV * 0.03);
-	while(i < y)
+	vars->angle -= (FOV * PI / 180) / 2;
+	while(x < y)
 	{
-		vars->ray_y = vars->ray_y0;
-		vars->ray_x = vars->ray_x0;
-		double ray_angle = vars->angle + i;
+		double ray_angle = vars->angle;
 		vars->ray_x0 = vars->play_x;
 		vars->ray_y0 = vars->play_y;
+		vars->ray_y = vars->ray_y0;
+		vars->ray_x = vars->ray_x0;
 		vars->ray_x1 = cos(vars->angle * PI / 180);
 		vars->ray_y1 = sin(vars->angle * PI / 180);
 		rotation_matrix(vars);
@@ -114,14 +112,21 @@ void	draw_rays(t_vars *vars)
 		vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
 		ft_draw_line_bresenham(vars);
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
-		h = calculate_wall_height(vars, distance, ray_angle);
-		draw_wall(vars, x++, h);
-		vars->angle += 0.03;
-		while (vars->angle < 0)
+		int h = calculate_wall_height(vars, distance, ray_angle);
+		int column_start = (x * WIDTH) / rays_number;
+        int column_end = ((x + 1) * WIDTH) / rays_number;
+        int i = column_start;
+        while(i < column_end)
+        {
+			draw_wall(vars, x, h);
+			i++;
+			x++;
+		}
+		vars->angle += (FOV * PI / 180) / rays_number;
+		if (vars->angle < 0)
 			vars->angle += 360.0;
-		while (vars->angle >= 360)
+		if (vars->angle >= 360)
 			vars->angle -= 360.0;
-		i++;
 	}
-	// vars->angle = angle;
+	vars->angle = angle;
 }
