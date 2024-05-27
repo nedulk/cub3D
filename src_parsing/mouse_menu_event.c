@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:47:29 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/25 13:33:58 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/25 13:53:11 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,21 +71,6 @@ void	go_in_game(t_vars *vars)
 	mlx_destroy_image(vars->mlx, vars->play_selec);
 	vars->play_selec = NULL;
 	mlx_destroy_image(vars->mlx, vars->title);
-	int i =0;
-	while (vars->map[i])
-	{
-		printf("%s\n", vars->map[i]);
-		i++;
-	}
-	// vars->map[0] = ft_strdup("111111111");
-	// vars->map[1] = ft_strdup("100101011");
-	// vars->map[2] = ft_strdup("1010001011111");
-	// vars->map[3] = ft_strdup("1001000100001");
-	// vars->map[4] = ft_strdup("1010000011111");
-	// vars->map[5] = ft_strdup("1001000N1");
-	// vars->map[6] = ft_strdup("101000101");
-	// vars->map[7] = ft_strdup("111111111");
-	// vars->map[8] = NULL;
 	exec(vars);
 	
 	//////////////////////

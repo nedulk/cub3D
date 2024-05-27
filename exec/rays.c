@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/25 13:11:09 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/25 17:02:58 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ double calculate_wall_height(t_vars *vars, double distance, double ray_angle)
 	(void)vars;
 	
     double corrected_distance = distance * cos(((ray_angle * (PI / 180.0)) - (vars->angle * (PI / 180.0))) * PI / 180.0);
-    wall_height = (HEIGHT / corrected_distance);
+    wall_height = (HEIGHT / corrected_distance) * 5;
     // pas plus grand que la hauteur de l'écran
     if (wall_height > HEIGHT)
         wall_height = HEIGHT;
@@ -58,37 +58,42 @@ void draw_wall(t_vars *vars, int x, int wall_height)
 	int draw_end = centerY + wall_height;
 	if(draw_end >= HEIGHT)
 		draw_end = HEIGHT - 1;
-	// int wall_color = 0x330066;
 	int j = draw_start;
-	int tex_height = 64; // la hauteur de la texture
+	int tex_height = 128; // la hauteur de la texture
 	int line_height = draw_end - draw_start; // la hauteur du mur à l'écran
 
+	check_walls_ray(vars);
+	// printf("vars->pos_x = %f\n", vars->pos_x);
 	while (j < draw_end)
 	{
 		int tex_y = ((j - draw_start) * tex_height) / line_height;
 
-		my_mlx_pixel_put(vars, x, j, vars->texture_w[tex_y % 64][x % 64]);
+		int po;
+
+		po = vars->pos_x * 128;
+		my_mlx_pixel_put(vars, x, j, vars->texture_w[tex_y % 128][po]);
 		j++;
 	}
 	while (j <= HEIGHT)
 	{
-		my_mlx_pixel_put(vars, x, j, vars->floor_color); // link avec parsing
+		my_mlx_pixel_put(vars, x, j, vars->floor_color);
 		j++;
 	}
 	j = draw_start;
 	while (j >= 0)
 	{
-		my_mlx_pixel_put(vars, x, j, vars->celing_color); // link avec parsing
+		my_mlx_pixel_put(vars, x, j, vars->celing_color);
 		j--;
 	}
-	}
+}
 
 void	draw_rays(t_vars *vars)
 {
 	int	i;
 	double	angle;
-	double	distance;
+	double	distance = 0;
 	int	y;
+	int h =0;
 	int x = 0;
 
 	y = 1920;
@@ -107,9 +112,9 @@ void	draw_rays(t_vars *vars)
 		rotation_matrix(vars);
 		vars->ray_x1 = vars->ray_x0 + vars->rotate_x1;
 		vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
-		ft_draw_line_bresenham(vars);
+		ft_draw_line_bresenham(vars, distance);
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
-		int h = calculate_wall_height(vars, distance, ray_angle);
+		h = calculate_wall_height(vars, distance, ray_angle);
 		draw_wall(vars, x++, h);
 		vars->angle += 0.03;
 		while (vars->angle < 0)

@@ -21,7 +21,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define EDGE 20
+# define EDGE 40
 # define FOV 1920
 # define PI 3.14159265
 
@@ -59,6 +59,8 @@ typedef struct s_vars {
 
     char **texture;
 	int **texture_w;
+	double	pos_x;
+	double	pos_y;
     int        line_map;
     int        no;
     int        so;
@@ -152,7 +154,7 @@ void	ft_draw_line_x(t_vars *vars);
 void	ft_draw_line_y(t_vars *vars);
 void	ft_draw_horizontal(t_vars *vars);
 void	ft_draw_vertical(t_vars *vars);
-int		ft_draw_line_bresenham(t_vars *vars);
+int		ft_draw_line_bresenham(t_vars *vars, double distance);
 void	draw_rays(t_vars *vars);
 void	redraw_grid_wo_p(t_vars *vars);
 
