@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/25 13:43:49 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:21:48 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,17 +267,13 @@ void	draw_grid(t_vars *vars)
 	}
 }
 void move_forward(t_vars *vars, double speed)
-	{
-	double true_angle = vars->angle - 28.8;
+{
+	double true_angle = vars->angle - ((FOV * 0.8) * PI / 180);
 
 	if (true_angle < 0)
-	{
 		true_angle += 360;
-	}
 	if (true_angle >= 360)
-	{
 		true_angle -= 360;
-	}	
 	double radian_angle = true_angle * (PI / 180.0);
 	double move_step_x = sin(radian_angle) * speed;
 	double move_step_y = -cos(radian_angle) * speed;
@@ -294,16 +290,12 @@ void move_forward(t_vars *vars, double speed)
 
 void move_backward(t_vars *vars, double speed)
 {
-	double true_angle = vars->angle - 28.8;
+	double true_angle = vars->angle - ((FOV * 0.8) * PI / 180);
 
 	if (true_angle < 0)
-	{
 		true_angle += 360;
-	}
 	if (true_angle >= 360)
-	{
 		true_angle -= 360;
-	}	
 	double radian_angle = true_angle * (PI / 180.0);
 	double move_step_x = -sin(radian_angle) * speed;
 	double move_step_y = cos(radian_angle) * speed;

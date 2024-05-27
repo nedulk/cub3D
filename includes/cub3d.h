@@ -22,7 +22,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define EDGE 20
-# define FOV 1920
+# define FOV 1200
 # define PI 3.14159265
 
 # define RESET   "\x1B[0m"
@@ -155,6 +155,9 @@ void	ft_draw_vertical(t_vars *vars);
 int		ft_draw_line_bresenham(t_vars *vars);
 void	draw_rays(t_vars *vars);
 void	redraw_grid_wo_p(t_vars *vars);
+void	rotation_matrix(t_vars *vars);
+double	ft_absolute_number(double value);
+double	ft_sign(double value);
 
 
 ////// EXEC //////////////////
