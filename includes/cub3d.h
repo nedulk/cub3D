@@ -25,6 +25,11 @@
 # define FOV 1920
 # define PI 3.14159265
 
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
+
 # define RESET   "\x1B[0m"
 # define RED     "\x1B[31m"
 # define GREEN   "\x1B[32m"
@@ -58,7 +63,10 @@ typedef struct s_vars {
 ///////////PARISNG HANDLE////////////////////
 
     char **texture;
-	int **texture_w;
+	int **texture_N;
+	int **texture_S;
+	int **texture_E;
+	int **texture_W;
 	double	pos_x;
 	double	pos_y;
     int        line_map;

@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/27 13:49:05 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/27 18:26:51 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ double calculate_wall_height(t_vars *vars, double distance, double ray_angle)
 	(void)vars;
 	
     double corrected_distance = distance * cos(((ray_angle * (PI / 180.0)) - (vars->angle * (PI / 180.0))) * PI / 180.0);
-    wall_height = (HEIGHT / corrected_distance) * 5;
+    wall_height = (HEIGHT / corrected_distance) * 20;
     // pas plus grand que la hauteur de l'écran
     if (wall_height > HEIGHT)
         wall_height = HEIGHT;
@@ -62,17 +62,58 @@ void draw_wall(t_vars *vars, int x, int wall_height)
 	int tex_height = 128; // la hauteur de la texture
 	int line_height = draw_end - draw_start; // la hauteur du mur à l'écran
 
-	check_walls_ray(vars);
-	// printf("vars->pos_x = %f\n", vars->pos_x);
-	while (j < draw_end)
+	int direction = check_walls_ray(vars);
+	if (direction == NORTH)
 	{
-		int tex_y = ((j - draw_start) * tex_height) / line_height;
+		while (j < draw_end)
+		{
+			int tex_y = ((j - draw_start) * tex_height) / line_height;
 
-		int po;
+			int po;
 
-		po = vars->pos_x * 128;
-		my_mlx_pixel_put(vars, x, j, vars->texture_w[tex_y % 128][po]);
-		j++;
+			po = vars->pos_x * 128;
+			my_mlx_pixel_put(vars, x, j, vars->texture_N[tex_y][po]);
+			j++;
+		}
+	}
+	if (direction == EAST)
+	{
+		while (j < draw_end)
+		{
+			int tex_y = ((j - draw_start) * tex_height) / line_height;
+
+			int po;
+
+			po = vars->pos_x * 128;
+			my_mlx_pixel_put(vars, x, j, vars->texture_E[tex_y][po]);
+			j++;
+		}
+	}
+	if (direction == SOUTH)
+	{
+		while (j < draw_end)
+		{
+			int tex_y = ((j - draw_start) * tex_height) / line_height;
+
+			int po;
+
+			po = vars->pos_x * 128;
+			my_mlx_pixel_put(vars, x, j, vars->texture_S[tex_y][po]);
+			j++;
+		}
+	}
+	if (direction == WEST)
+	{
+		while (j < draw_end)
+		{
+			int tex_y = ((j - draw_start) * tex_height) / line_height;
+
+			int po;
+
+			po = vars->pos_x * 128;
+			my_mlx_pixel_put(vars, x, j, vars->texture_W[tex_y][po]);
+			j++;
+		}
 	}
 	while (j <= HEIGHT)
 	{
@@ -100,13 +141,14 @@ void	draw_rays(t_vars *vars)
 	vars->angle -= (FOV * PI / 180) / 2;
 	while(x < y)
 	{
+		
 		double ray_angle = vars->angle;
 		vars->ray_x0 = vars->play_x;
 		vars->ray_y0 = vars->play_y;
 		vars->ray_y = vars->ray_y0;
 		vars->ray_x = vars->ray_x0;
-		vars->ray_x1 = cos(vars->angle * PI / 180);
-		vars->ray_y1 = sin(vars->angle * PI / 180);
+		vars->ray_x1 = cos((vars->angle * PI) / 180) + vars->ray_x0;
+		vars->ray_y1 = sin((vars->angle * PI) / 180) + vars->ray_y0;
 		rotation_matrix(vars);
 		vars->ray_x1 = vars->ray_x0 + vars->rotate_x1;
 		vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;

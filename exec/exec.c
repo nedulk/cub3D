@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/27 14:09:50 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/27 19:21:38 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,9 +163,18 @@ int	check_walls_ray(t_vars *vars)
 		y_map -=1;
 	vars->pos_x = i;
 	vars->pos_y = y;
-	if(vars->map[y_map][x_map] == '1')
-		return (1);
-	return (0);
+    if(vars->map[y_map][x_map] == '1')
+    {
+		if (vars->ray_x0 < vars->ray_x1)
+			return (WEST);
+		else if (vars->ray_x0 > vars->ray_x1)
+			return (EAST);
+		else if (vars->ray_y0 < vars->ray_y1)
+			return (SOUTH);
+		else if (vars->ray_y0 >= vars->ray_y1)
+			return (NORTH);
+    }
+    return (0);
 }
 
 int	check_walls2(t_vars *vars)
@@ -383,7 +392,7 @@ int	exec(t_vars *vars)
 
 	i = 0;
 	y = 0;
-	vars->angle = 90; // rajouter if selon orientation
+	vars->angle = 0; // rajouter if selon orientation
 	vars->y = 0;
 	vars->y0 = vars->y;
 	vars->x_map = 0;
