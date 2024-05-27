@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/27 13:47:54 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/27 14:09:50 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,12 @@ void	draw_grid(t_vars *vars)
 			else if (vars->map[i][y] == ' ')
 				vars->x += EDGE;
 			if(vars->map[i][y] == 'N')
+			{
 				draw_player(vars);
+				vars->map[i][y] = '0';
+				vars->y = vars->y0;
+				vars->x += EDGE;
+			}
 			y++;
 		}
 		vars->y = vars->y + EDGE;
