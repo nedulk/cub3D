@@ -154,7 +154,7 @@ void	ft_draw_line_x(t_vars *vars);
 void	ft_draw_line_y(t_vars *vars);
 void	ft_draw_horizontal(t_vars *vars);
 void	ft_draw_vertical(t_vars *vars);
-int		ft_draw_line_bresenham(t_vars *vars, double distance);
+int		ft_draw_line_bresenham(t_vars *vars);
 void	draw_rays(t_vars *vars);
 void	redraw_grid_wo_p(t_vars *vars);
 
