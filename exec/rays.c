@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/27 11:22:56 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/27 11:41:47 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ double calculate_wall_height(t_vars *vars, double distance, double ray_angle)
 	(void)vars;
 	
     double corrected_distance = distance * cos(((ray_angle * (PI / 180.0)) - (vars->angle * (PI / 180.0))) * PI / 180.0);
-    wall_height = (HEIGHT / corrected_distance) * 15;
+    wall_height = (HEIGHT / corrected_distance) * 5;
     // pas plus grand que la hauteur de l'écran
     if (wall_height > HEIGHT)
         wall_height = HEIGHT;
@@ -88,19 +88,19 @@ void	draw_rays(t_vars *vars)
 	double	angle;
 	double	distance;
 	int	y;
-	int	rays_number = 200;
+	int	rays_number = 100;
 	int x = 0;
 
-	y = 1920;
+	y = 1919;
 	angle = vars->angle;
 	vars->angle -= (FOV * PI / 180) / 2;
 	while(x < y)
 	{
-		vars->ray_y = vars->ray_y0;
-		vars->ray_x = vars->ray_x0;
 		double ray_angle = vars->angle;
 		vars->ray_x0 = vars->play_x;
 		vars->ray_y0 = vars->play_y;
+		vars->ray_y = vars->ray_y0;
+		vars->ray_x = vars->ray_x0;
 		vars->ray_x1 = cos(vars->angle * PI / 180);
 		vars->ray_y1 = sin(vars->angle * PI / 180);
 		rotation_matrix(vars);

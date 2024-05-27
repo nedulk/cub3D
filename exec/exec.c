@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/27 11:21:48 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/27 11:32:45 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,7 +268,7 @@ void	draw_grid(t_vars *vars)
 }
 void move_forward(t_vars *vars, double speed)
 {
-	double true_angle = vars->angle - ((FOV * 0.8) * PI / 180);
+	double true_angle = vars->angle - ((FOV / 2) * PI / 180);
 
 	if (true_angle < 0)
 		true_angle += 360;
@@ -318,15 +318,15 @@ int	move(int keycode, t_vars *vars)
 	if (keycode == XK_Right)
 		vars->angle += 1;
 	if (keycode == XK_w)
-	{
-		vars->play_y -= 1;
-		if(check_walls(vars) == 1 || check_walls2(vars) == 1 )
-		{
-			vars->play_y += 1;
-			return (1);
-		}
-	}
-		// move_forward(vars, 1.0);
+		move_forward(vars, 1.0);
+	// {
+	// 	vars->play_y -= 1;
+	// 	if(check_walls(vars) == 1 || check_walls2(vars) == 1 )
+	// 	{
+	// 		vars->play_y += 1;
+	// 		return (1);
+	// 	}
+	// }
 	if (keycode == XK_a)
 	{
 		vars->play_x -= 1;
