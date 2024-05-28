@@ -143,17 +143,17 @@ void	draw_rays(t_vars *vars)
 	angle_step = 0.3125;
 	printf("angle_step: %f \n", angle_step);
 	printf("angle_total: %f \n", angle_step * rays_number);
-	vars->angle -= 30;
+	vars->angle -= 60;
 	if (vars->angle < 0)
 		vars->angle += 360.0;
 	if (vars->angle >= 360)
 		vars->angle -= 360.0;
 	printf("angle: %f \n", vars->angle);
 	// angle = vars->angle;
-	column_start = x * (WIDTH / rays_number);
+	column_start = 0;
 	while(x < rays_number)
 	{
-		double ray_angle = vars->angle + (x * angle_step);
+		// double ray_angle = vars->angle + (x * angle_step);
 		vars->ray_x0 = vars->play_x;
 		vars->ray_y0 = vars->play_y;
 		vars->ray_y = vars->ray_y0;
@@ -165,7 +165,7 @@ void	draw_rays(t_vars *vars)
 		vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
 		ft_draw_line_bresenham(vars);
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
-		int h = calculate_wall_height(vars, distance, ray_angle);
+		int h = calculate_wall_height(vars, distance, vars->angle);
         column_end = (x + 1) * (WIDTH / rays_number);
         while(column_start < column_end)
         {
@@ -179,7 +179,7 @@ void	draw_rays(t_vars *vars)
 		if (vars->angle >= 360)
 			vars->angle -= 360.0;
 	}
-	vars->angle -= 30;
+	// vars->angle -= 60;
 	if (vars->angle < 0)
 		vars->angle += 360.0;
 	if (vars->angle >= 360)
