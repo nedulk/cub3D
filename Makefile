@@ -6,7 +6,7 @@
 #    By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/05/24 18:46:46 by kprigent         ###   ########.fr        #
+#    Updated: 2024/05/28 19:07:15 by kprigent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ MAIN_SRCS = src_parsing/main.c \
 			exec/redraw.c\
 			exec/bresenham.c\
 			exec/rays.c\
+			exec/draw_wall.c\
 			
 
 

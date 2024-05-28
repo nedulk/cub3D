@@ -100,7 +100,14 @@ typedef struct s_vars {
     int        p_x;
     int        map_x;
     int        map_y;
-///////////////////////////
+
+////DRAW WALL//////////
+	double wall_hit_x;
+	double wall_hit_y;
+
+////////////////////
+	float rays_number;
+	float 	  draw;
     float        play_x;
     float        play_y;
 	int				bits_per_pixel;
@@ -175,6 +182,7 @@ int		exec(t_vars *vars);
 void	draw_player(t_vars *vars);
 void	draw_floor_tile(t_vars *vars);
 void	draw_wall_tile(t_vars *vars);
+void 	draw_wall(t_vars *vars, int x, int wall_height);
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 void	draw_rays(t_vars *vars);
 int		check_walls2(t_vars *vars);

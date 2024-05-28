@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/27 19:21:38 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/28 19:06:45 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,10 +129,26 @@ int	check_walls_path(t_vars *vars)
 	vars->x_map = x_map;
 	vars->y_map = y_map;
 	if(vars->map[y_map][x_map] == '1')
+	{
+		vars->wall_hit_x = vars->ray_x;
+		vars->wall_hit_y = vars->ray_y;
 		return (1);
+	}
 	return (0);
 }
 
+int	check_px_wall(t_vars *vars, float x, float y)
+{
+    int		x_map;
+    int		y_map;
+    
+    x_map = (int)(x / EDGE);
+    y_map = (int)(y / EDGE);
+
+    if(vars->map[y_map][x_map] == '1')
+        return (1);
+    return (0);
+}
 int	check_walls_ray(t_vars *vars)
 {
 	float	i;
@@ -144,7 +160,7 @@ int	check_walls_ray(t_vars *vars)
 	y_map = 0;
 	i = 0;
 	while(i <= vars->ray_x)
-	{
+	{  
 		i += EDGE;
 		x_map++;
 	}
@@ -165,13 +181,17 @@ int	check_walls_ray(t_vars *vars)
 	vars->pos_y = y;
     if(vars->map[y_map][x_map] == '1')
     {
-		if (vars->ray_x0 < vars->ray_x1)
+		// printf(GREEN"play_x:%f\n"RESET, vars->play_x);
+		// printf(GREEN"play_y:%f\n"RESET, vars->play_y);
+		// printf(YELLOW"x1:%f\n"RESET, vars->wall_hit_x);
+		// printf(YELLOW"y1:%f\n"RESET, vars->wall_hit_y);
+		if (vars->play_x < vars->wall_hit_x && check_px_wall(vars, vars->wall_hit_x - 1, vars->wall_hit_y) == 0)
 			return (WEST);
-		else if (vars->ray_x0 > vars->ray_x1)
+		else if (vars->play_x > vars->wall_hit_x && check_px_wall(vars, vars->wall_hit_x + 1, vars->wall_hit_y) == 0)
 			return (EAST);
-		else if (vars->ray_y0 < vars->ray_y1)
+		else if (vars->play_y < vars->wall_hit_y && check_px_wall(vars, vars->wall_hit_x, vars->wall_hit_y - 1) == 0)
 			return (SOUTH);
-		else if (vars->ray_y0 >= vars->ray_y1)
+		else if (vars->play_y > vars->wall_hit_y && check_px_wall(vars, vars->wall_hit_x, vars->wall_hit_y + 1) == 0)
 			return (NORTH);
     }
     return (0);
@@ -289,8 +309,8 @@ void move_forward(t_vars *vars, double speed)
 	if (true_angle >= 360)
 		true_angle -= 360;
 	double radian_angle = true_angle * (PI / 180.0);
-	double move_step_x = sin(radian_angle) * speed;
-	double move_step_y = -cos(radian_angle) * speed;
+	double move_step_x = -sin(radian_angle) * speed;
+    double move_step_y = cos(radian_angle) * speed;
 
 	vars->play_x += move_step_x;
 	vars->play_y += move_step_y;
@@ -326,6 +346,7 @@ void move_backward(t_vars *vars, double speed)
 
 int	move(int keycode, t_vars *vars)
 {
+	
 	// printf(RED"angle : %f\n"RESET, vars->angle);
 	if (keycode == XK_Left)
 		vars->angle -= 1;
