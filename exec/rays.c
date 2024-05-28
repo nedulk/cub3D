@@ -130,45 +130,60 @@ void draw_wall(t_vars *vars, int x, int wall_height)
 
 void	draw_rays(t_vars *vars)
 {
-	double	angle;
+	double	angle_step;
 	double	distance = 0;
-	int	y;
-	int	rays_number = 100;
-	int x = 0;
+	// int	y;
+	int	rays_number = 192;
+	float x = 0;
+	float column_end;
+	float column_start;
+	// double angle;
 
-	y = 1919;
-	angle = vars->angle;
-	vars->angle -= (FOV * PI / 180) / 2;
-	while(x < y)
+	// y = 1919;
+	angle_step = 0.3125;
+	printf("angle_step: %f \n", angle_step);
+	printf("angle_total: %f \n", angle_step * rays_number);
+	vars->angle -= 30;
+	if (vars->angle < 0)
+		vars->angle += 360.0;
+	if (vars->angle >= 360)
+		vars->angle -= 360.0;
+	printf("angle: %f \n", vars->angle);
+	// angle = vars->angle;
+	column_start = x * (WIDTH / rays_number);
+	while(x < rays_number)
 	{
-		
-		double ray_angle = vars->angle;
+		double ray_angle = vars->angle + (x * angle_step);
 		vars->ray_x0 = vars->play_x;
 		vars->ray_y0 = vars->play_y;
 		vars->ray_y = vars->ray_y0;
 		vars->ray_x = vars->ray_x0;
 		vars->ray_x1 = cos((vars->angle * PI) / 180) + vars->ray_x0;
-		vars->ray_y1 = sin((vars->angle * PI) / 180) + vars->ray_y0;
+		vars->ray_y1 = sin((vars->angle * PI) / 180) + vars->ray_x0;
 		rotation_matrix(vars);
 		vars->ray_x1 = vars->ray_x0 + vars->rotate_x1;
 		vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
 		ft_draw_line_bresenham(vars);
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
 		int h = calculate_wall_height(vars, distance, ray_angle);
-		int column_start = (x * WIDTH) / rays_number;
-        int column_end = ((x + 1) * WIDTH) / rays_number;
-        int i = column_start;
-        while(i < column_end)
+        column_end = (x + 1) * (WIDTH / rays_number);
+        while(column_start < column_end)
         {
-			draw_wall(vars, x, h);
-			i++;
-			x++;
+			draw_wall(vars, column_start, h);
+			column_start++;
 		}
-		vars->angle += (FOV * PI / 180) / rays_number;
+		x++;
+		vars->angle += angle_step;
 		if (vars->angle < 0)
 			vars->angle += 360.0;
 		if (vars->angle >= 360)
 			vars->angle -= 360.0;
 	}
-	vars->angle = angle;
+	vars->angle -= 30;
+	if (vars->angle < 0)
+		vars->angle += 360.0;
+	if (vars->angle >= 360)
+		vars->angle -= 360.0;
+	printf("inc x: %f \n", x);
+	printf("angle: %f \n", vars->angle);
 }
