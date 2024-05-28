@@ -29,12 +29,14 @@ double	ft_sign(double value)
 	return (i);
 }
 
-int	ft_draw_line_bresenham(t_vars *vars)
-{	
+int	ft_draw_line_bresenham(t_vars *vars, double distance)
+{
+	(void)distance;
 	vars->dx = ft_absolute_number(vars->ray_x1 - vars->ray_x0);
 	vars->incx = ft_sign(vars->ray_x1 - vars->ray_x0);
 	vars->dy = ft_absolute_number(vars->ray_y1 - vars->ray_y0);
 	vars->incy = ft_sign(vars->ray_y1 - vars->ray_y0);
+	// printf("distance : %f", distance);
 	vars->incx /= 5;
 	vars->incy /= 5;
 	vars->ray_y = vars->ray_y0;
@@ -68,7 +70,7 @@ void	ft_draw_line_x(t_vars *vars)
 		// if(vars->draw == 1)
 		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
 		// else
-		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
+			// my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		vars->ray_x += vars->incx;
 	}
 }
@@ -82,7 +84,7 @@ void	ft_draw_line_y(t_vars *vars)
 		// if(vars->draw == 1)
 		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
 		// else
-		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
+			// my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		vars->ray_y += vars->incy;
 	}
 }
@@ -103,7 +105,7 @@ void	ft_draw_horizontal(t_vars *vars)
 		// if(vars->draw == 0)
 		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
 		// else
-		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
+			// my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		error += slope;
 		if (error >= 0)
 		{
@@ -130,7 +132,7 @@ void	ft_draw_vertical(t_vars *vars)
 		// if(vars->draw == 1)
 		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
 		// else
-		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
+			// my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		error += slope;
 		if (error >= 0)
 		{

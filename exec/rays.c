@@ -53,14 +53,14 @@ void	draw_rays(t_vars *vars)
 	double	angle_step;
 	double	distance = 0;
 	// int	y;
-	vars->rays_number = 192;
+	vars->rays_number = 250.0;
 	// float x = 0;
 	float column_end;
 	float column_start;
 	// double angle;
 
 	// y = 1919;
-	angle_step = 0.3125;
+	angle_step = 60 / vars->rays_number;
 	vars->angle -= 60;
 	if (vars->angle < 0)
 		vars->angle += 360.0;
@@ -83,7 +83,7 @@ void	draw_rays(t_vars *vars)
 		//nouvelle position pour angle du rayon
 		vars->ray_x1 = vars->ray_x0 + vars->rotate_x1;
 		vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
-		ft_draw_line_bresenham(vars);
+		ft_draw_line_bresenham(vars, distance);
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
 		int h = calculate_wall_height(vars, distance, vars->angle);
         column_end = (vars->draw + 1) * (WIDTH / vars->rays_number);
