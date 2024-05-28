@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redraw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:44 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/25 13:43:40 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/29 00:11:55 by kleden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 void	redraw_player(t_vars *vars)
 {
-	int	i;
-	
-	i = 2;
 	if(check_walls(vars) == 1)
 		return ;
 	if(check_walls2(vars) == 1)

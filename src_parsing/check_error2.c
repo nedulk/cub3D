@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 13:55:38 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/15 15:04:59 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/29 00:14:50 by kleden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ int	check_epc(t_vars *vars)
 		i = 0;
 		a++;
 	}
-	// if (vars->e == 1 && vars->p == 1 && vars->c >= 1)
-	// 	return (1);
-	// ft_printf("Error\nMissing element(s) or to much P/E\n");
 	return (0);
 }
 
@@ -71,7 +68,7 @@ void	find_a_way(t_vars *vars, int x, int y)
 	if (vars->map[y][x] != 'C' && vars->map[y][x] != 'P'
 		&& vars->map[y][x] != 'E' && vars->map[y][x] != '0')
 	{
-		ft_printf("Error\n Wrong caracter found\n");
+		printf("Error\n Wrong caracter found\n");
 		vars->wrong += 1;
 	}
 	vars->map[y][x] = 'V';

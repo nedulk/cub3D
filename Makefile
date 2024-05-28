@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+         #
+#    By: kleden <kleden@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/05/28 19:07:15 by kprigent         ###   ########.fr        #
+#    Updated: 2024/05/29 00:10:35 by kleden           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,6 @@ MAIN_SRCS = src_parsing/main.c \
 			src_parsing/parsing.c \
 			src_parsing/parsing_param.c \
 			src_parsing/parsing_valid.c \
-			libft/ft_printf.c \
 			libft/ft_strdup.c \
 			libft/ft_putcharp.c \
 			libft/ft_putnbr_base.c \

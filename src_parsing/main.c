@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/27 18:33:36 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/29 00:14:27 by kleden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	main(int argc, char **argv)
 	vars = malloc(sizeof(t_vars));
 	if (vars == NULL)
 	{
-		ft_printf("Error\nMalloc failure\n");
+		printf("Error\nMalloc failure\n");
 		return (0);
 	}
 	init_vars(vars);

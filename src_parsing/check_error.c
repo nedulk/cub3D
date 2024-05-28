@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:43:32 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/20 15:23:55 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/29 00:14:05 by kleden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,9 +151,7 @@ void	map_to_chart(t_vars *vars, int fd)
 int	stock_map(char *map, t_vars *vars)
 {
 	int	fd;
-	int	a;
 
-	a = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 	{
@@ -164,7 +162,7 @@ int	stock_map(char *map, t_vars *vars)
 	vars->map = malloc(sizeof(char *) * (nb_line(fd) + 1));
 	if (vars->map == NULL)
 	{
-		ft_printf(RED"Error\n Can't upload map\n" RESET);
+		printf(RED"Error\n Can't upload map\n" RESET);
 		return (1);
 	}
 	close(fd);

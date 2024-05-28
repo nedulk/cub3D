@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:47:54 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/28 19:13:11 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/29 00:12:25 by kleden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ double	ft_sign(double value)
 	return (i);
 }
 
-int	ft_draw_line_bresenham(t_vars *vars, double distance)
+int	ft_draw_line_bresenham(t_vars *vars)
 {
-	(void)distance;
 	vars->dx = ft_absolute_number(vars->ray_x1 - vars->ray_x0);
 	vars->incx = ft_sign(vars->ray_x1 - vars->ray_x0);
 	vars->dy = ft_absolute_number(vars->ray_y1 - vars->ray_y0);
