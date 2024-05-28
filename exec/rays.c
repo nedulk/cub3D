@@ -6,7 +6,7 @@
 /*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 00:12:40 by kleden           ###   ########.fr       */
+/*   Updated: 2024/05/29 01:11:37 by kleden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	draw_rays(t_vars *vars)
 	double	angle_step;
 	double	distance = 0;
 	// int	y;
-	vars->rays_number = 250.0;
+	vars->rays_number = 1000.0;
 	// float x = 0;
 	float column_end;
 	float column_start;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/28 19:19:21 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/29 01:17:49 by kleden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void draw_wall(t_vars *vars, int x, int wall_height)
 
 			int po;
 
-			po = vars->pos_x * 128;
+			po = vars->pos_y * 128;
 			my_mlx_pixel_put(vars, x, j, vars->texture_E[tex_y][po]);
 			j++;
 		}
@@ -74,7 +74,7 @@ void draw_wall(t_vars *vars, int x, int wall_height)
 
 			int po;
 
-			po = vars->pos_x * 128;
+			po = vars->pos_y * 128;
 			my_mlx_pixel_put(vars, x, j, vars->texture_W[tex_y][po]);
 			j++;
 		}

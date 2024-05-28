@@ -6,7 +6,7 @@
 /*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:47:54 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 00:12:25 by kleden           ###   ########.fr       */
+/*   Updated: 2024/05/29 00:24:46 by kleden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	ft_draw_line_x(t_vars *vars)
 	{
 		if(check_walls_path(vars) == 1)
 			break ;
-		// if(vars->draw == 1)
-		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
-		// else
-			// my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
+		if(vars->draw == 1)
+			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
+		else
+			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		vars->ray_x += vars->incx;
 	}
 }
@@ -80,10 +80,10 @@ void	ft_draw_line_y(t_vars *vars)
 	{
 		if(check_walls_path(vars) == 1)
 			break ;
-		// if(vars->draw == 1)
-		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
-		// else
-			// my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
+		if(vars->draw == 1)
+			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
+		else
+			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		vars->ray_y += vars->incy;
 	}
 }
@@ -101,10 +101,10 @@ void	ft_draw_horizontal(t_vars *vars)
 	{
 		if(check_walls_path(vars) == 1)
 			break ;
-		// if(vars->draw == 0)
-		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
-		// else
-			// my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
+		if(vars->draw == 0)
+			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
+		else
+			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		error += slope;
 		if (error >= 0)
 		{
@@ -128,10 +128,10 @@ void	ft_draw_vertical(t_vars *vars)
 	{
 		if(check_walls_path(vars) == 1)
 			break ;
-		// if(vars->draw == 1)
-		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
-		// else
-			// my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
+		if(vars->draw == 1)
+			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
+		else
+			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		error += slope;
 		if (error >= 0)
 		{
