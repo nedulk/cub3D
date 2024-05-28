@@ -76,8 +76,8 @@ void	draw_rays(t_vars *vars)
 		vars->ray_y0 = vars->play_y;
 		
 		//angle du rayon pour determiner la direction du rayon
-		vars->ray_x1 = cos((vars->angle * PI) / 180) + vars->ray_x0;
-		vars->ray_y1 = sin((vars->angle * PI) / 180) + vars->ray_x0;
+		vars->ray_x1 = cos((vars->angle * PI) / 180);
+		vars->ray_y1 = sin((vars->angle * PI) / 180);
 		rotation_matrix(vars);
 		
 		//nouvelle position pour angle du rayon
