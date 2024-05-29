@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 16:34:37 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:27:31 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,7 +295,7 @@ void	draw_grid(t_vars *vars)
 }
 void move_forward(t_vars *vars, double speed)
 {
-	double true_angle = vars->angle - ((FOV / 2) * PI / 180);
+	double true_angle = vars->angle - ((1920 / 2) * PI / 180);
 
 	if (true_angle < 0)
 		true_angle += 360;
@@ -317,7 +317,7 @@ void move_forward(t_vars *vars, double speed)
 
 void move_backward(t_vars *vars, double speed)
 {
-	double true_angle = vars->angle - ((FOV * 0.8) * PI / 180);
+	double true_angle = vars->angle - ((1920 * 0.8) * PI / 180);
 
 	if (true_angle < 0)
 		true_angle += 360;
@@ -411,6 +411,7 @@ int	exec(t_vars *vars)
 	draw_grid(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, move, vars);
+	// mlx_hook(vars->win, MotionNotify, PointerMotionMask, mouse_move, vars);
 	mlx_loop(vars->mlx);
 	return (0);	
 }

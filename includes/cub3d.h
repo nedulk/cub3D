@@ -22,8 +22,8 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define EDGE 40
-# define FOV 1920
 # define PI 3.14159265
+# define RESOLUTION 128
 
 # define NORTH 0
 # define SOUTH 1

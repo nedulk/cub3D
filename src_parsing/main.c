@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/29 00:14:27 by kleden           ###   ########.fr       */
+/*   Updated: 2024/05/29 19:27:51 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int **load_texture(t_vars *vars, char *texture_path)
 	char	*img_data;
 	int		y;
 	int		x;
-	int		width = 128;
-	int		height = 128;
+	int		width = RESOLUTION;
+	int		height = RESOLUTION;
 	int		bits_per_pixel = 32;
 	int 	endian = 1;
-	int		size_line = 128 * (32 / 8);
+	int		size_line = RESOLUTION * (32 / 8);
 	int		index;
 	int		**texture;
 
@@ -65,9 +65,9 @@ void	load_img(t_vars *vars)
 	
 	///GAME TEXTURES
 	vars->texture_N = load_texture(vars, "./img/texture_N.xpm");
-	vars->texture_W = load_texture(vars, "./img/texture_E.xpm");
+	vars->texture_W = load_texture(vars, "./img/texture_N.xpm");
 	vars->texture_S = load_texture(vars, "./img/texture_N.xpm");
-	vars->texture_E = load_texture(vars, "./img/texture_E.xpm");
+	vars->texture_E = load_texture(vars, "./img/texture_N.xpm");
 }
 
 void	init_vars(t_vars *vars)

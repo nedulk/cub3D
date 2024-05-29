@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/29 19:00:56 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:19:56 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 	if(draw_end >= HEIGHT)
 		draw_end = HEIGHT - 1;
 	int j = draw_start;
-	int tex_height = 128; // la hauteur de la texture
+	int tex_height = RESOLUTION; // la hauteur de la texture
 	int line_height = draw_end - draw_start; // la hauteur du mur à l'écran
 	
 	int direction = check_walls_ray(vars);
@@ -45,7 +45,7 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 
 			int po;
 
-			po = vars->pos_x * 128;
+			po = vars->pos_x * RESOLUTION;
 			my_mlx_pixel_put(vars, x, j, vars->texture_N[tex_y][po]);
 			j++;
 		}
@@ -67,7 +67,7 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 
 			int po;
 
-			po = vars->pos_y * 128;
+			po = vars->pos_y * RESOLUTION;
 			my_mlx_pixel_put(vars, x, j, vars->texture_E[tex_y][po]);
 			j++;
 		}
@@ -89,7 +89,7 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 
 			int po;
 
-			po = vars->pos_x * 128;
+			po = vars->pos_x * RESOLUTION;
 			my_mlx_pixel_put(vars, x, j, vars->texture_S[tex_y][po]);
 			j++;
 		}
@@ -111,7 +111,7 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 
 			int po;
 
-			po = vars->pos_y * 128;
+			po = vars->pos_y * RESOLUTION;
 			my_mlx_pixel_put(vars, x, j, vars->texture_W[tex_y][po]);
 			j++;
 		}

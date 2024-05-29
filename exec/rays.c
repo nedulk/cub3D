@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 19:05:56 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/29 20:14:19 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	draw_rays(t_vars *vars)
 	double	angle_step;
 	double	distance = 0;
 	// int	y;
-	vars->rays_number = 1920.0;
+	vars->rays_number = 800.0;
 	// float x = 0;
 	float column_end;
 	float column_start;
