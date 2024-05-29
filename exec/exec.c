@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 00:11:02 by kleden           ###   ########.fr       */
+/*   Updated: 2024/05/29 14:35:30 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,28 +104,26 @@ int	check_walls_path(t_vars *vars)
 		x_map -= 1;
 	if(y_map > 0)
 		y_map -= 1;
-	if ((vars->incx < 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
-	{
-		if(check_NO(vars, x_map, y_map, i, y))
-			return(1);
-	}
-	if ((vars->incx > 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
-	{
-		if(check_NE(vars, x_map, y_map, i, y))
-			return(1);
-	}
-	if ((vars->incx < 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
-	{
-		if(check_SO(vars, x_map, y_map, i, y))
-			return(1);
-	}
-	if ((vars->incx > 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
-	{
-		if(check_SE(vars, x_map, y_map, i, y))
-			return(1);
-	}
-	// printf("path :y_map:%f\n", y);
-	// printf("path :x_map:%f\n", i);
+	// if ((vars->incx < 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
+	// {
+	// 	if(check_NO(vars, x_map, y_map, i, y))
+	// 		return(1);
+	// }
+	// if ((vars->incx > 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
+	// {
+	// 	if(check_NE(vars, x_map, y_map, i, y))
+	// 		return(1);
+	// }
+	// if ((vars->incx < 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
+	// {
+	// 	if(check_SO(vars, x_map, y_map, i, y))
+	// 		return(1);
+	// }
+	// if ((vars->incx > 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
+	// {
+	// 	if(check_SE(vars, x_map, y_map, i, y))
+	// 		return(1);
+	// }
 	vars->x_map = x_map;
 	vars->y_map = y_map;
 	if(vars->map[y_map][x_map] == '1')
@@ -181,10 +179,6 @@ int	check_walls_ray(t_vars *vars)
 	vars->pos_y = y;
     if(vars->map[y_map][x_map] == '1')
     {
-		// printf(GREEN"play_x:%f\n"RESET, vars->play_x);
-		// printf(GREEN"play_y:%f\n"RESET, vars->play_y);
-		// printf(YELLOW"x1:%f\n"RESET, vars->wall_hit_x);
-		// printf(YELLOW"y1:%f\n"RESET, vars->wall_hit_y);
 		if (vars->play_x < vars->wall_hit_x && check_px_wall(vars, vars->wall_hit_x - 1, vars->wall_hit_y) == 0)
 			return (WEST);
 		else if (vars->play_x > vars->wall_hit_x && check_px_wall(vars, vars->wall_hit_x + 1, vars->wall_hit_y) == 0)
@@ -347,7 +341,7 @@ void move_backward(t_vars *vars, double speed)
 int	move(int keycode, t_vars *vars)
 {
 	
-	// printf(RED"angle : %f\n"RESET, vars->angle);
+	printf(RED"angle : %f\n"RESET, vars->angle);
 	if (keycode == XK_Left)
 		vars->angle -= 1;
 	if (keycode == XK_Right)
@@ -408,7 +402,7 @@ int	move(int keycode, t_vars *vars)
 
 int	exec(t_vars *vars)
 {
-	vars->angle = 0; // rajouter if selon orientation
+	vars->angle = 90; // rajouter if selon orientation
 	vars->y = 0;
 	vars->y0 = vars->y;
 	vars->x_map = 0;

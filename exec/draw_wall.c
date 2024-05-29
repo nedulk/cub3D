@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/29 01:17:49 by kleden           ###   ########.fr       */
+/*   Updated: 2024/05/29 15:12:00 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ void draw_wall(t_vars *vars, int x, int wall_height)
 		my_mlx_pixel_put(vars, x, j, vars->floor_color);
 		j++;
 	}
-	j = draw_start;
-	while (j >= 0)
-	{
-		my_mlx_pixel_put(vars, x, j, vars->celing_color);
-		j--;
-	}
+	// j = draw_start;
+	// while (j >= 0)
+	// {
+	// 	my_mlx_pixel_put(vars, x, j, vars->celing_color);
+	// 	j--;
+	// }
 }

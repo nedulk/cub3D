@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 01:11:37 by kleden           ###   ########.fr       */
+/*   Updated: 2024/05/29 15:20:59 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ double calculate_wall_height(t_vars *vars, double distance, double ray_angle)
     double corrected_distance = distance * cos(((ray_angle * (PI / 180.0)) - (vars->angle * (PI / 180.0))) * PI / 180.0);
     wall_height = (HEIGHT / corrected_distance) * 20;
     // pas plus grand que la hauteur de l'écran
-    if (wall_height > HEIGHT)
-        wall_height = HEIGHT;
+    // if (wall_height > HEIGHT)
+    //     wall_height = HEIGHT;
     return (wall_height);
 }
 
@@ -53,7 +53,7 @@ void	draw_rays(t_vars *vars)
 	double	angle_step;
 	double	distance = 0;
 	// int	y;
-	vars->rays_number = 1000.0;
+	vars->rays_number = 250.0;
 	// float x = 0;
 	float column_end;
 	float column_start;
@@ -76,14 +76,17 @@ void	draw_rays(t_vars *vars)
 		vars->ray_y0 = vars->play_y;
 		
 		//angle du rayon pour determiner la direction du rayon
-		vars->ray_x1 = cos((vars->angle * PI) / 180);
-		vars->ray_y1 = sin((vars->angle * PI) / 180);
+		vars->ray_x1 = cos((vars->angle * PI) / 180) + vars->ray_x0;
+		vars->ray_y1 = sin((vars->angle * PI) / 180) + vars->ray_x0;
 		rotation_matrix(vars);
 		
 		//nouvelle position pour angle du rayon
 		vars->ray_x1 = vars->ray_x0 + vars->rotate_x1;
 		vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
 		ft_draw_line_bresenham(vars);
+		printf("x: %f\n", vars->wall_hit_x);
+		printf("y: %f\n", vars->wall_hit_y);
+		// exit(0);
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
 		int h = calculate_wall_height(vars, distance, vars->angle);
         column_end = (vars->draw + 1) * (WIDTH / vars->rays_number);
