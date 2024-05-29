@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 14:35:30 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:11:10 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,26 +104,26 @@ int	check_walls_path(t_vars *vars)
 		x_map -= 1;
 	if(y_map > 0)
 		y_map -= 1;
-	// if ((vars->incx < 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
-	// {
-	// 	if(check_NO(vars, x_map, y_map, i, y))
-	// 		return(1);
-	// }
-	// if ((vars->incx > 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
-	// {
-	// 	if(check_NE(vars, x_map, y_map, i, y))
-	// 		return(1);
-	// }
-	// if ((vars->incx < 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
-	// {
-	// 	if(check_SO(vars, x_map, y_map, i, y))
-	// 		return(1);
-	// }
-	// if ((vars->incx > 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
-	// {
-	// 	if(check_SE(vars, x_map, y_map, i, y))
-	// 		return(1);
-	// }
+	if ((vars->incx < 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
+	{
+		if(check_NO(vars, x_map, y_map, i, y))
+			return(1);
+	}
+	if ((vars->incx > 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
+	{
+		if(check_NE(vars, x_map, y_map, i, y))
+			return(1);
+	}
+	if ((vars->incx < 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
+	{
+		if(check_SO(vars, x_map, y_map, i, y))
+			return(1);
+	}
+	if ((vars->incx > 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
+	{
+		if(check_SE(vars, x_map, y_map, i, y))
+			return(1);
+	}
 	vars->x_map = x_map;
 	vars->y_map = y_map;
 	if(vars->map[y_map][x_map] == '1')
@@ -347,15 +347,15 @@ int	move(int keycode, t_vars *vars)
 	if (keycode == XK_Right)
 		vars->angle += 1;
 	if (keycode == XK_w)
-		move_forward(vars, 1.0);
-	// {
-	// 	vars->play_y -= 1;
-	// 	if(check_walls(vars) == 1 || check_walls2(vars) == 1 )
-	// 	{
-	// 		vars->play_y += 1;
-	// 		return (1);
-	// 	}
-	// }
+		// move_forward(vars, 1.0);
+	{
+		vars->play_y -= 1;
+		if(check_walls(vars) == 1 || check_walls2(vars) == 1 )
+		{
+			vars->play_y += 1;
+			return (1);
+		}
+	}
 	if (keycode == XK_a)
 	{
 		vars->play_x -= 1;
