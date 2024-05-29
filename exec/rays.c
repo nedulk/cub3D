@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 16:01:51 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/29 16:22:34 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void rotation_matrix(t_vars *vars)
 	sin_a = sin(radian);
 	dx = 1;
 	dy = 1;
-	printf("dx : %f\n", dx);
-	printf("dy : %f\n", dy);
+	// printf("dx : %f\n", dx);
+	// printf("dy : %f\n", dy);
 	vars->rotate_x1 = (dx * cos_a) - (dy * sin_a);
 	vars->rotate_y1 =(dx * sin_a) + (dy * cos_a);
 }
