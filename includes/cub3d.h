@@ -182,7 +182,7 @@ int		exec(t_vars *vars);
 void	draw_player(t_vars *vars);
 void	draw_floor_tile(t_vars *vars);
 void	draw_wall_tile(t_vars *vars);
-void 	draw_wall(t_vars *vars, int x, int wall_height);
+void 	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall);
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 void	draw_rays(t_vars *vars);
 int		check_walls2(t_vars *vars);

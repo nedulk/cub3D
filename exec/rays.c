@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 16:22:34 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/29 17:00:28 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void rotation_matrix(t_vars *vars)
 	sin_a = sin(radian);
 	dx = 1;
 	dy = 1;
-	// printf("dx : %f\n", dx);
-	// printf("dy : %f\n", dy);
+
 	vars->rotate_x1 = (dx * cos_a) - (dy * sin_a);
 	vars->rotate_y1 =(dx * sin_a) + (dy * cos_a);
 }
@@ -43,10 +42,7 @@ double calculate_wall_height(t_vars *vars, double distance, double ray_angle)
 	(void)vars;
 	
     double corrected_distance = distance * cos((ray_angle - vars->angle) * (PI / 180.0));
-    wall_height = (HEIGHT / corrected_distance) * 10;
-    // pas plus grand que la hauteur de l'écran
-    // if (wall_height > HEIGHT)
-    //     wall_height = HEIGHT;
+    wall_height = (HEIGHT/ corrected_distance) * 20;
     return (wall_height);
 }
 
@@ -103,7 +99,7 @@ void	draw_rays(t_vars *vars)
         column_end = (vars->draw + 1) * (WIDTH / vars->rays_number);
         while(column_start < column_end)
         {
-			draw_wall(vars, column_start, h);
+			draw_wall(vars, column_start, h, distance);
 			column_start++;
 		}
 		vars->draw++;

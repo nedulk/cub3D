@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 16:28:50 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/29 16:34:37 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,9 +142,6 @@ int	check_px_wall(t_vars *vars, float x, float y)
     
     x_map = (int)(x / EDGE);
     y_map = (int)(y / EDGE);
-
-	printf("x_map : %d\n", x_map);
-	printf("y_map : %d\n", y_map);
     if(vars->map[y_map][x_map] == '1')
         return (1);
     return (0);
@@ -179,10 +176,6 @@ int	check_walls_ray(t_vars *vars)
 		y_map -=1;
 	vars->pos_x = i;
 	vars->pos_y = y;
-	printf("play_x :%f\n",vars->play_x);
-	printf("wh_x :%f\n",vars->wall_hit_x);
-	printf("y_map %d \n",y_map);
-	printf("x_map %d \n",x_map);
     if(vars->map[y_map][x_map] == '1')
     {
 		if (vars->play_x < vars->wall_hit_x && check_px_wall(vars, vars->wall_hit_x - 1, vars->wall_hit_y) == 0)
@@ -346,8 +339,6 @@ void move_backward(t_vars *vars, double speed)
 
 int	move(int keycode, t_vars *vars)
 {
-	
-	printf(RED"angle : %f\n"RESET, vars->angle);
 	if (keycode == XK_Left)
 		vars->angle -= 1;
 	if (keycode == XK_Right)
