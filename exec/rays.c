@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 20:14:19 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:46:54 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void rotation_matrix(t_vars *vars)
 	radian = 0;
 	cos_a = 0;
 	sin_a = 0;
-	dx = 0;
-	dy = 0;
+	dx = vars->ray_x1 - vars->ray_x0;
+	dy = vars->ray_y1 - vars->ray_y0;
 	radian = vars->angle *  (PI / 180);
 	cos_a = cos(radian);
 	sin_a = sin(radian);
-	dx = 1;
-	dy = 1;
+	dx = vars->ray_x1 - vars->ray_x0;
+	dy = vars->ray_y1 - vars->ray_y0;
 
 	vars->rotate_x1 = (dx * cos_a) - (dy * sin_a);
 	vars->rotate_y1 =(dx * sin_a) + (dy * cos_a);
@@ -66,6 +66,7 @@ void	draw_rays(t_vars *vars)
 		vars->angle -= 360.0;
 	// angle = vars->angle;
 	column_start = 0;
+	printf("angle : %f\n", vars->angle);
 	vars->draw = 0;
 	while(vars->draw < vars->rays_number)
 	{

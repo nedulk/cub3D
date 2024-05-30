@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/30 16:35:57 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:42:04 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -431,7 +431,7 @@ int	mouse_move(int x, int y, t_vars *vars)
 
 int	exec(t_vars *vars)
 {
-	vars->angle = 90; // rajouter if selon orientation
+	vars->angle = 0; // rajouter if selon orientation
 	vars->y = 0;
 	vars->y0 = vars->y;
 	vars->x_map = 0;
