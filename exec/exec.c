@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 20:27:31 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:35:57 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,17 +109,17 @@ int	check_walls_path(t_vars *vars)
 		if(check_NO(vars, x_map, y_map, i, y))
 			return(1);
 	}
-	if ((vars->incx > 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
+	else if ((vars->incx > 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
 	{
 		if(check_NE(vars, x_map, y_map, i, y))
 			return(1);
 	}
-	if ((vars->incx < 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
+	else if ((vars->incx < 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
 	{
 		if(check_SO(vars, x_map, y_map, i, y))
 			return(1);
 	}
-	if ((vars->incx > 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
+	else if ((vars->incx > 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
 	{
 		if(check_SE(vars, x_map, y_map, i, y))
 			return(1);
@@ -180,11 +180,11 @@ int	check_walls_ray(t_vars *vars)
     {
 		if (vars->play_x < vars->wall_hit_x && check_px_wall(vars, vars->wall_hit_x - 1, vars->wall_hit_y) == 0)
 			return (WEST);
-		if (vars->play_x > vars->wall_hit_x && check_px_wall(vars, vars->wall_hit_x + 1, vars->wall_hit_y) == 0)
+		else if (vars->play_x > vars->wall_hit_x && check_px_wall(vars, vars->wall_hit_x + 1, vars->wall_hit_y) == 0)
 			return (EAST);
-		if (vars->play_y < vars->wall_hit_y && check_px_wall(vars, vars->wall_hit_x, vars->wall_hit_y - 1) == 0)
+		else if (vars->play_y < vars->wall_hit_y && check_px_wall(vars, vars->wall_hit_x, vars->wall_hit_y - 1) == 0)
 			return (SOUTH);
-		if (vars->play_y > vars->wall_hit_y && check_px_wall(vars, vars->wall_hit_x, vars->wall_hit_y + 1) == 0)
+		else if (vars->play_y > vars->wall_hit_y && check_px_wall(vars, vars->wall_hit_x, vars->wall_hit_y + 1) == 0)
 			return (NORTH);
     }
     return (0);
@@ -272,10 +272,14 @@ void	draw_grid(t_vars *vars)
 		while (vars->map[i][y])
 		{
 			if (vars->map[i][y] == '1')
-				draw_wall_tile(vars);
+			{
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->wall, vars->x, vars->y);
+				vars->x += EDGE;
+			}
 			else if(vars->map[i][y] == '0')
 			{
-				draw_floor_tile(vars);
+				// draw_floor_tile(vars);
+				vars->x += EDGE;
 				vars->y = vars->y0;
 			}
 			else if (vars->map[i][y] == ' ')
@@ -289,7 +293,7 @@ void	draw_grid(t_vars *vars)
 			}
 			y++;
 		}
-		vars->y = vars->y + EDGE;
+		vars->y += EDGE;
 		i++;
 	}
 }
@@ -339,10 +343,6 @@ void move_backward(t_vars *vars, double speed)
 
 int	move(int keycode, t_vars *vars)
 {
-	if (keycode == XK_Left)
-		vars->angle -= 1;
-	if (keycode == XK_Right)
-		vars->angle += 1;
 	if (keycode == XK_w)
 		// move_forward(vars, 1.0);
 	{
@@ -353,7 +353,7 @@ int	move(int keycode, t_vars *vars)
 			return (1);
 		}
 	}
-	if (keycode == XK_a)
+	else if (keycode == XK_a)
 	{
 		vars->play_x -= 1;
 		if(check_walls(vars) == 1 || check_walls2(vars) == 1 )
@@ -362,7 +362,7 @@ int	move(int keycode, t_vars *vars)
 			return (1);
 		}
 	}
-	if (keycode == XK_s)
+	else if (keycode == XK_s)
 	{
 		vars->play_y += 1;
 		if(check_walls(vars) == 1 || check_walls2(vars) == 1)
@@ -372,7 +372,7 @@ int	move(int keycode, t_vars *vars)
 		}
 	}
 		// move_backward(vars, 1.0);
-	if (keycode == XK_d)
+	else if (keycode == XK_d)
 	{
 		vars->play_x += 1;
 		if(check_walls(vars) == 1 || check_walls2(vars) == 1)
@@ -381,7 +381,7 @@ int	move(int keycode, t_vars *vars)
 			return (1);
 		}
 	}
-	if (keycode == XK_Escape)
+	else if (keycode == XK_Escape)
 		exit(0);
 	vars->y = 0;
 	vars->y0 = vars->y;
@@ -391,9 +391,41 @@ int	move(int keycode, t_vars *vars)
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 		&vars->line_length, &vars->endian);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	redraw_grid(vars);
 	redraw_grid_wo_p(vars);
+	return (0);
+}
+
+int	mouse_move(int x, int y, t_vars *vars)
+{
+	(void)y;
+	static int	first_x = 0;
+	static int	last_x = 0;
+	int delta;
+
+	last_x = first_x;
+	first_x = x;
+	delta = first_x - last_x;
+
+	if (delta > 0)
+		vars->angle += delta / 2;
+	else if (delta < 0)
+	{
+		delta = -delta;
+		vars->angle -= delta / 2;
+	}
+	vars->y = 0;
+	vars->y0 = vars->y;
+	vars->x = 0;
+	vars->x0 = vars->x;
+	mlx_destroy_image(vars->mlx, vars->img);
+	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
+	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
+		&vars->line_length, &vars->endian);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+	redraw_grid(vars);
+	redraw_grid_wo_p(vars);
 	return (0);
 }
 
@@ -408,10 +440,10 @@ int	exec(t_vars *vars)
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 			&vars->line_length, &vars->endian);
-	draw_grid(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+	draw_grid(vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, move, vars);
-	// mlx_hook(vars->win, MotionNotify, PointerMotionMask, mouse_move, vars);
+	mlx_hook(vars->win, MotionNotify, PointerMotionMask, mouse_move, vars);
 	mlx_loop(vars->mlx);
 	return (0);	
 }

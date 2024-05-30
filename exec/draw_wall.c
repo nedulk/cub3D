@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/29 19:19:56 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:37:36 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 			j++;
 		}
 	}
-	if (direction == EAST)
+	else if (direction == EAST)
 	{
 		while (j < draw_end)
 		{
@@ -72,7 +72,7 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 			j++;
 		}
 	}
-	if (direction == SOUTH)
+	else if (direction == SOUTH)
 	{
 		while (j < draw_end)
 		{
@@ -94,7 +94,7 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 			j++;
 		}
 	}
-	if (direction == WEST)
+	else if (direction == WEST)
 	{
 		while (j < draw_end)
 		{
@@ -116,11 +116,11 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 			j++;
 		}
 	}
-	while (j <= HEIGHT)
-	{
-		my_mlx_pixel_put(vars, x, j, vars->floor_color);
-		j++;
-	}
+	// while (j <= HEIGHT)
+	// {
+	// 	my_mlx_pixel_put(vars, x, j, vars->floor_color);
+	// 	j++;
+	// }
 	// j = draw_start;
 	// while (j >= 0)
 	// {

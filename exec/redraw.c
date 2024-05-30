@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redraw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:44 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 00:11:55 by kleden           ###   ########.fr       */
+/*   Updated: 2024/05/30 16:32:45 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,21 @@ void	redraw_grid(t_vars *vars)
 		while (vars->map[i][y])
 		{
 			if (vars->map[i][y] == '1')
-				draw_wall_tile(vars);
+			{
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->wall, vars->x, vars->y);
+				vars->x += EDGE;
+			}
 			else if(vars->map[i][y] == '0')
 			{
-				draw_floor_tile(vars);
+				vars->x += EDGE;
+				// draw_floor_tile(vars);
 				vars->y = vars->y0;
 			}
 			else if (vars->map[i][y] == ' ')
 				vars->x += EDGE;
 			y++;
 		}
-		vars->y = vars->y + EDGE;
+		vars->y += EDGE;
 		i++;
 	}
 	redraw_player(vars);
@@ -77,17 +81,21 @@ void	redraw_grid_wo_p(t_vars *vars)
 		while (vars->map[i][y])
 		{
 			if (vars->map[i][y] == '1')
-				draw_wall_tile(vars);
+			{	
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->wall, vars->x, vars->y);
+				vars->x += EDGE;
+			}
 			else if(vars->map[i][y] == '0')
 			{
-				draw_floor_tile(vars);
+				vars->x += EDGE;
+				// draw_floor_tile(vars);
 				vars->y = vars->y0;
 			}
 			else if (vars->map[i][y] == ' ')
 				vars->x += EDGE;
 			y++;
 		}
-		vars->y = vars->y + EDGE;
+		vars->y += EDGE;
 		i++;
 	}
 }

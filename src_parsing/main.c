@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/29 19:27:51 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:42:21 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,32 @@ int **load_texture(t_vars *vars, char *texture_path)
 	return (texture);
 }
 
+void	*create_img(void *mlx, int edge, int color)
+{
+    void	*img;
+    char	*data;
+    int		bits_per_pixel;
+    int		line_length;
+    int		endian;
+    int		y;
+    int		x;
+
+    img = mlx_new_image(mlx, edge, edge);
+    data = mlx_get_data_addr(img, &bits_per_pixel, &line_length, &endian);
+
+    y = -1;
+    while (++y < 40)
+    {
+        x = -1;
+        while (++x < 40)
+        {
+            int i = (y * line_length + x * (bits_per_pixel / 8));
+            *(unsigned int*)(data + i) = color;
+        }
+    }
+    return (img);
+}
+
 void	load_img(t_vars *vars)
 {
 	///MENU
@@ -65,9 +91,12 @@ void	load_img(t_vars *vars)
 	
 	///GAME TEXTURES
 	vars->texture_N = load_texture(vars, "./img/texture_N.xpm");
-	vars->texture_W = load_texture(vars, "./img/texture_N.xpm");
+	vars->texture_W = load_texture(vars, "./img/texture_E.xpm");
 	vars->texture_S = load_texture(vars, "./img/texture_N.xpm");
-	vars->texture_E = load_texture(vars, "./img/texture_N.xpm");
+	vars->texture_E = load_texture(vars, "./img/texture_E.xpm");
+
+	///MINIMAP TEXTURES
+	vars->wall = create_img(vars->mlx, EDGE, 0x808080);
 }
 
 void	init_vars(t_vars *vars)
