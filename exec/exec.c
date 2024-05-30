@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/29 20:27:31 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:45:58 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -399,7 +399,7 @@ int	move(int keycode, t_vars *vars)
 
 int	exec(t_vars *vars)
 {
-	vars->angle = 90; // rajouter if selon orientation
+	vars->angle = 0; // rajouter if selon orientation
 	vars->y = 0;
 	vars->y0 = vars->y;
 	vars->x_map = 0;
