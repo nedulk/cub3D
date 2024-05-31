@@ -147,6 +147,8 @@ typedef struct s_vars {
 	int			zoom;
 	int			shift_x;
 	int			shift_y;
+	int			first_x;
+	int			last_x;
 	int			bool;
 	double long	cos;
 	double long	sin;

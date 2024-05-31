@@ -359,46 +359,22 @@ void move_left(t_vars *vars)
 	vars->angle += 120;
 }
 
+
+
 int	move(int keycode, t_vars *vars)
 {
+	if (keycode == XK_Left)
+		vars->angle -= 4;
+	if (keycode == XK_Right)
+		vars->angle += 4;
 	if (keycode == XK_w)
-		// move_forward(vars, 1.0);
-	{
-		vars->play_y -= 1;
-		if(check_walls(vars) == 1 || check_walls2(vars) == 1 )
-		{
-			vars->play_y += 1;
-			return (1);
-		}
-	}
+		move_forward(vars, 1.0);
 	else if (keycode == XK_a)
-	{
-		vars->play_x -= 1;
-		if(check_walls(vars) == 1 || check_walls2(vars) == 1 )
-		{
-			vars->play_x += 1;
-			return (1);
-		}
-	}
+		move_left(vars);
 	else if (keycode == XK_s)
-	{
-		vars->play_y += 1;
-		if(check_walls(vars) == 1 || check_walls2(vars) == 1)
-		{
-			vars->play_y -= 1;
-			return (1);
-		}
-	}
-		// move_backward(vars, 1.0);
+		move_backward(vars, 1.0);
 	else if (keycode == XK_d)
-	{
-		vars->play_x += 1;
-		if(check_walls(vars) == 1 || check_walls2(vars) == 1)
-		{
-			vars->play_x -= 1;
-			return (1);
-		}
-	}
+		move_right(vars);
 	else if (keycode == XK_Escape)
 		exit(0);
 	vars->y = 0;
@@ -419,33 +395,37 @@ int	move(int keycode, t_vars *vars)
 int	mouse_move(int x, int y, t_vars *vars)
 {
 	(void)y;
-	static int	first_x = 0;
-	static int	last_x = 0;
 	int delta;
 
-	last_x = first_x;
-	first_x = x;
-	delta = first_x - last_x;
+	// printf("first : %d\n", first_x);
+	// printf("last : %d\n", first_x);
 
-	if (delta > 0)
-		vars->angle += delta / 2;
-	else if (delta < 0)
+
+	if(vars->first_x < x - 5 || vars->first_x > x + 5)
 	{
-		delta = -delta;
-		vars->angle -= delta / 2;
+		vars->last_x = vars->first_x;
+		vars->first_x = x;
+		delta = vars->first_x - vars->last_x;
+		if (delta > 0 )
+			vars->angle += delta / 2;
+		else if (delta < 0)
+		{
+			delta = -delta;
+			vars->angle -= delta / 2;
+		}
+		vars->y = 0;
+		vars->y0 = vars->y;
+		vars->x = 0;
+		vars->x0 = vars->x;
+		mlx_destroy_image(vars->mlx, vars->img);
+		vars->img = mlx_new_image(vars->mlx, 1920, 1080);
+		vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
+			&vars->line_length, &vars->endian);
+		mlx_clear_window(vars->mlx, vars->win);
+		redraw_grid(vars);
+		redraw_grid_wo_p(vars);
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	}
-	vars->y = 0;
-	vars->y0 = vars->y;
-	vars->x = 0;
-	vars->x0 = vars->x;
-	mlx_destroy_image(vars->mlx, vars->img);
-	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
-	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
-		&vars->line_length, &vars->endian);
-	mlx_clear_window(vars->mlx, vars->win);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
-	redraw_grid(vars);
-	redraw_grid_wo_p(vars);
 	return (0);
 }
 
@@ -453,6 +433,8 @@ int	exec(t_vars *vars)
 {
 	vars->angle = 0; // rajouter if selon orientation
 	vars->y = 0;
+	vars->first_x = 0;
+	vars->last_x = 0;
 	vars->y0 = vars->y;
 	vars->x_map = 0;
 	vars->y_map = 0;
