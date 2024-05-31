@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:44 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/30 16:32:45 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:12:33 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,10 @@ void	redraw_grid(t_vars *vars)
 		while (vars->map[i][y])
 		{
 			if (vars->map[i][y] == '1')
-			{
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->wall, vars->x, vars->y);
-				vars->x += EDGE;
-			}
+				draw_wall_tile(vars);
 			else if(vars->map[i][y] == '0')
 			{
-				vars->x += EDGE;
-				// draw_floor_tile(vars);
+				draw_floor_tile(vars);
 				vars->y = vars->y0;
 			}
 			else if (vars->map[i][y] == ' ')
@@ -81,14 +77,10 @@ void	redraw_grid_wo_p(t_vars *vars)
 		while (vars->map[i][y])
 		{
 			if (vars->map[i][y] == '1')
-			{	
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->wall, vars->x, vars->y);
-				vars->x += EDGE;
-			}
+				draw_wall_tile(vars);
 			else if(vars->map[i][y] == '0')
 			{
-				vars->x += EDGE;
-				// draw_floor_tile(vars);
+				draw_floor_tile(vars);
 				vars->y = vars->y0;
 			}
 			else if (vars->map[i][y] == ' ')

@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:41:55 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/30 15:52:58 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:12:00 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,24 @@ void	draw_floor_tile(t_vars *vars)
 	}
 }
 
-// void	draw_wall_tile(t_vars *vars)
-// {
-// 	vars->x0 = vars->x;
-// 	vars->x1 = vars->x + EDGE;
-// 	vars->y = vars->y0;
-// 	vars->y1 = vars->y + EDGE;
-// 	while (vars->y < vars->y1)
-// 	{
-// 		vars->x = vars->x0;
-// 		while (vars->x < vars->x1)
-// 		{
-// 			my_mlx_pixel_put(vars, vars->x, vars->y, 0x00FFFFFF);
-// 			vars->x++;
-// 		}
-// 		vars->y++;
-// 	}
-// 	vars->y = vars->y0;
-// }
+void	draw_wall_tile(t_vars *vars)
+{
+	vars->x0 = vars->x;
+	vars->x1 = vars->x + EDGE;
+	vars->y = vars->y0;
+	vars->y1 = vars->y + EDGE;
+	while (vars->y < vars->y1)
+	{
+		vars->x = vars->x0;
+		while (vars->x < vars->x1)
+		{
+			my_mlx_pixel_put(vars, vars->x, vars->y, 0x00FFFFFF);
+			vars->x++;
+		}
+		vars->y++;
+	}
+	vars->y = vars->y0;
+}
 
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 {

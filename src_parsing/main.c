@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/30 15:42:21 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:19:01 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,32 @@ void	*create_img(void *mlx, int edge, int color)
     return (img);
 }
 
+void	*create_rectangle_img(void *mlx, int width, int height, int color)
+{
+    void	*img;
+    char	*data;
+    int		bits_per_pixel;
+    int		line_length;
+    int		endian;
+    int		y;
+    int		x;
+
+    img = mlx_new_image(mlx, width, height);
+    data = mlx_get_data_addr(img, &bits_per_pixel, &line_length, &endian);
+
+    y = -1;
+    while (++y < height)
+    {
+        x = -1;
+        while (++x < width)
+        {
+            int i = (y * line_length + x * (bits_per_pixel / 8));
+            *(unsigned int*)(data + i) = color;
+        }
+    }
+    return (img);
+}
+
 void	load_img(t_vars *vars)
 {
 	///MENU
@@ -97,6 +123,10 @@ void	load_img(t_vars *vars)
 
 	///MINIMAP TEXTURES
 	vars->wall = create_img(vars->mlx, EDGE, 0x808080);
+	
+	///SKY AND FLOOR
+	vars->celing = create_rectangle_img(vars->mlx, WIDTH, HEIGHT / 2, vars->celing_color);
+	vars->floor = create_rectangle_img(vars->mlx, WIDTH, HEIGHT / 2, vars->floor_color);
 }
 
 void	init_vars(t_vars *vars)
@@ -151,9 +181,7 @@ int	main(int argc, char **argv)
 	}
 	init_vars(vars);
 	if (parsing(vars, argv, argc) == 1)
-	{
 		return (1);
-	}
 	init_vars2(vars);
 	vars->mlx = mlx_init();
 	load_img(vars);

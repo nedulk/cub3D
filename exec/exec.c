@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/30 16:42:04 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:12:53 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,14 +272,10 @@ void	draw_grid(t_vars *vars)
 		while (vars->map[i][y])
 		{
 			if (vars->map[i][y] == '1')
-			{
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->wall, vars->x, vars->y);
-				vars->x += EDGE;
-			}
+				draw_wall_tile(vars);
 			else if(vars->map[i][y] == '0')
 			{
-				// draw_floor_tile(vars);
-				vars->x += EDGE;
+				draw_floor_tile(vars);
 				vars->y = vars->y0;
 			}
 			else if (vars->map[i][y] == ' ')
@@ -391,6 +387,7 @@ int	move(int keycode, t_vars *vars)
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 		&vars->line_length, &vars->endian);
+	mlx_clear_window(vars->mlx, vars->win);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	redraw_grid(vars);
 	redraw_grid_wo_p(vars);
@@ -423,6 +420,7 @@ int	mouse_move(int x, int y, t_vars *vars)
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 		&vars->line_length, &vars->endian);
+	mlx_clear_window(vars->mlx, vars->win);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	redraw_grid(vars);
 	redraw_grid_wo_p(vars);
@@ -436,10 +434,10 @@ int	exec(t_vars *vars)
 	vars->y0 = vars->y;
 	vars->x_map = 0;
 	vars->y_map = 0;
-	mlx_clear_window(vars->mlx, vars->win);
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 			&vars->line_length, &vars->endian);
+	mlx_clear_window(vars->mlx, vars->win);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	draw_grid(vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, move, vars);

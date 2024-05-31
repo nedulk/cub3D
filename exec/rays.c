@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/30 14:46:54 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/31 19:20:02 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	draw_rays(t_vars *vars)
 		vars->angle -= 360.0;
 	// angle = vars->angle;
 	column_start = 0;
-	printf("angle : %f\n", vars->angle);
 	vars->draw = 0;
+	// mlx_put_image_to_window(vars->mlx, vars->win, vars->celing, 0, 0); tentative img au lieu de put_pixel
 	while(vars->draw < vars->rays_number)
 	{
 		//origine du rayon

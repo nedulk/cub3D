@@ -52,6 +52,8 @@ typedef struct s_vars {
 ////////////IMG MENUE HANDLE////////////////    
 
 	void   *wall;
+	void    *floor;
+	void    *celing;
     void    *play_click;
     void    *play_selec;
 	int		play_button_x;
