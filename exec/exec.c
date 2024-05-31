@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/30 19:12:53 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:23:46 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,46 +295,68 @@ void	draw_grid(t_vars *vars)
 }
 void move_forward(t_vars *vars, double speed)
 {
-	double true_angle = vars->angle - ((1920 / 2) * PI / 180);
-
-	if (true_angle < 0)
-		true_angle += 360;
-	if (true_angle >= 360)
-		true_angle -= 360;
-	double radian_angle = true_angle * (PI / 180.0);
-	double move_step_x = -sin(radian_angle) * speed;
-    double move_step_y = cos(radian_angle) * speed;
-
-	vars->play_x += move_step_x;
-	vars->play_y += move_step_y;
-
+	(void)speed;
+	vars->angle -= 30;
+	vars->ray_x0 = vars->play_x;
+	vars->ray_y0 = vars->play_y;
+	rotation_matrix(vars);
+	vars->play_x = vars->play_x + vars->rotate_x1;
+	vars->play_y = vars->play_y + vars->rotate_y1;
 	if(check_walls(vars) == 1 || check_walls2(vars) == 1)
 	{
-		vars->play_x -= move_step_x;
-		vars->play_y -= move_step_y;
+		vars->play_x -= vars->rotate_x1;
+		vars->play_y -= vars->rotate_y1;
 	}
+	vars->angle += 30;
 }
 
 void move_backward(t_vars *vars, double speed)
 {
-	double true_angle = vars->angle - ((1920 * 0.8) * PI / 180);
-
-	if (true_angle < 0)
-		true_angle += 360;
-	if (true_angle >= 360)
-		true_angle -= 360;
-	double radian_angle = true_angle * (PI / 180.0);
-	double move_step_x = -sin(radian_angle) * speed;
-	double move_step_y = cos(radian_angle) * speed;
-
-	vars->play_x += move_step_x;
-	vars->play_y += move_step_y;
-
+	(void)speed;
+	vars->angle -= 30;
+	vars->ray_x0 = vars->play_x;
+	vars->ray_y0 = vars->play_y;
+	rotation_matrix(vars);
+	vars->play_x = vars->play_x - vars->rotate_x1;
+	vars->play_y = vars->play_y - vars->rotate_y1;
 	if(check_walls(vars) == 1 || check_walls2(vars) == 1)
 	{
-		vars->play_x -= move_step_x;
-		vars->play_y -= move_step_y;
+		vars->play_x += vars->rotate_x1;
+		vars->play_y += vars->rotate_y1;
 	}
+	vars->angle += 30;
+}
+
+void move_right(t_vars *vars)
+{
+	vars->angle += 60;
+	vars->ray_x0 = vars->play_x;
+	vars->ray_y0 = vars->play_y;
+	rotation_matrix(vars);
+	vars->play_x = vars->play_x + vars->rotate_x1;
+	vars->play_y = vars->play_y + vars->rotate_y1;
+	if(check_walls(vars) == 1 || check_walls2(vars) == 1)
+	{
+		vars->play_x -= vars->rotate_x1;
+		vars->play_y -= vars->rotate_y1;
+	}
+	vars->angle -= 60;
+}
+
+void move_left(t_vars *vars)
+{
+	vars->angle -= 120;
+	vars->ray_x0 = vars->play_x;
+	vars->ray_y0 = vars->play_y;
+	rotation_matrix(vars);
+	vars->play_x = vars->play_x + vars->rotate_x1;
+	vars->play_y = vars->play_y + vars->rotate_y1;
+	if(check_walls(vars) == 1 || check_walls2(vars) == 1)
+	{
+		vars->play_x -= vars->rotate_x1;
+		vars->play_y -= vars->rotate_y1;
+	}
+	vars->angle += 120;
 }
 
 int	move(int keycode, t_vars *vars)

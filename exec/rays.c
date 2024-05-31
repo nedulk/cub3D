@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/31 19:20:02 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/05/31 19:23:52 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void rotation_matrix(t_vars *vars)
 	radian = vars->angle *  (PI / 180);
 	cos_a = cos(radian);
 	sin_a = sin(radian);
-	dx = vars->ray_x1 - vars->ray_x0;
-	dy = vars->ray_y1 - vars->ray_y0;
+	dx = 1;
+	dy = 0;
 
 	vars->rotate_x1 = (dx * cos_a) - (dy * sin_a);
 	vars->rotate_y1 =(dx * sin_a) + (dy * cos_a);
@@ -51,7 +51,7 @@ void	draw_rays(t_vars *vars)
 	double	angle_step;
 	double	distance = 0;
 	// int	y;
-	vars->rays_number = 800.0;
+	vars->rays_number = 250.0;
 	// float x = 0;
 	float column_end;
 	float column_start;
@@ -74,17 +74,6 @@ void	draw_rays(t_vars *vars)
 		vars->ray_x0 = vars->play_x;
 		vars->ray_y0 = vars->play_y;
 		
-		//angle du rayon pour determiner la direction du rayon
-		if (vars->ray_x0 > 0)
-		{
-			vars->ray_x1 = cos((vars->angle * PI) / 180) + vars->ray_x0;
-			vars->ray_y1 = sin((vars->angle * PI) / 180) + vars->ray_x0;
-		}
-		else
-		{
-			vars->ray_x1 = cos((vars->angle * PI) / 180);
-			vars->ray_y1 = sin((vars->angle * PI) / 180);
-		}
 		rotation_matrix(vars);
 		// printf("r_x1 : %f\n", vars->rotate_x1);
 		// printf("r_y1 : %f\n", vars->rotate_y1);
