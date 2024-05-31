@@ -400,8 +400,7 @@ int	mouse_move(int x, int y, t_vars *vars)
 	// printf("first : %d\n", first_x);
 	// printf("last : %d\n", first_x);
 
-
-	if(vars->first_x < x - 5 || vars->first_x > x + 5)
+	if(vars->first_x < x - 25 || vars->first_x > x + 25)
 	{
 		vars->last_x = vars->first_x;
 		vars->first_x = x;
@@ -426,6 +425,7 @@ int	mouse_move(int x, int y, t_vars *vars)
 		redraw_grid_wo_p(vars);
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	}
+	// vars->first_x = x;
 	return (0);
 }
 
