@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/30 16:35:29 by dboire           ###   ########.fr       */
+/*   Updated: 2024/05/31 15:37:34 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -329,7 +329,7 @@ void move_backward(t_vars *vars, double speed)
 
 void move_right(t_vars *vars)
 {
-	vars->angle += 150;
+	vars->angle += 60;
 	vars->ray_x0 = vars->play_x;
 	vars->ray_y0 = vars->play_y;
 	rotation_matrix(vars);
@@ -340,7 +340,7 @@ void move_right(t_vars *vars)
 		vars->play_x -= vars->rotate_x1;
 		vars->play_y -= vars->rotate_y1;
 	}
-	vars->angle -= 150;
+	vars->angle -= 60;
 }
 
 void move_left(t_vars *vars)
