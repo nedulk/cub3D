@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:47:54 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 06:52:35 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/01 11:33:47 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 double	ft_absolute_number(double value)
 {
 	if (value < 0)
 		value = value * -1;
-	return (value);	
+	return (value);
 }
 
 double	ft_sign(double value)
@@ -57,7 +57,7 @@ void	ft_draw_horizontal(t_vars *vars)
 	errorinc = -2 * vars->dx;
 	while (1)
 	{
-		if(check_walls_path(vars) == 1)
+		if (check_walls_path(vars) == 1)
 			break ;
 		my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		error += slope;
@@ -81,7 +81,7 @@ void	ft_draw_vertical(t_vars *vars)
 	errorinc = -2 * vars->dy;
 	while (1)
 	{
-		if(check_walls_path(vars) == 1)
+		if (check_walls_path(vars) == 1)
 			break ;
 		my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		error += slope;

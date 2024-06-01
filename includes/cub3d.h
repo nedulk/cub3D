@@ -168,12 +168,31 @@ typedef struct s_point
 
 }	t_point;
 
+// Check diagonals
+int	check_so(t_vars *vars, double i, double y);
+int	check_se(t_vars *vars, double i, double y);
+int	check_ne(t_vars *vars, double i, double y);
+int	check_no(t_vars *vars, double i, double y);
 
+//Calculate position of the pixel in the square
+double	calculate_i(t_vars *vars, double i);
+double	calculate_y(t_vars *vars, double y);
+
+//Calculate position of the player in the square
+double	calculate_play_i(t_vars *vars, double i);
+double	calculate_play_y(t_vars *vars, double y);
+
+// Moving the player
+void	move_forward(t_vars *vars);
+void	move_backward(t_vars *vars);
+void	move_right(t_vars *vars);
+void	move_left(t_vars *vars);
+
+//Texture
+int	check_px_wall(t_vars *vars, float x, float y);
 
 
 void	ft_correct_angle(t_vars *vars);
-void	ft_draw_line_x(t_vars *vars);
-void	ft_draw_line_y(t_vars *vars);
 void	ft_draw_horizontal(t_vars *vars);
 void	ft_draw_vertical(t_vars *vars);
 int		ft_draw_line_bresenham(t_vars *vars);

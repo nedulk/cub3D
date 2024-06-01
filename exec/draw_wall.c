@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/01 07:27:35 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/01 11:35:23 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
-void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
+void	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 {
 	int centerY = HEIGHT / 2;
 
-	int draw_start = centerY - wall_height;	
-	if(draw_start < 0)
+	int draw_start = centerY - wall_height;
+	if (draw_start < 0)
 		draw_start = 0;
 	int draw_end = centerY + wall_height;
-	if(draw_end >= HEIGHT)
+	if (draw_end >= HEIGHT)
 		draw_end = HEIGHT - 1;
 	int j = draw_start;
-	int tex_height = RESOLUTION; // la hauteur de la texture
+	int tex_height = RESOLUTION;             // la hauteur de la texture
 	int line_height = draw_end - draw_start; // la hauteur du mur à l'écran
 	int direction = check_walls_ray(vars);
 	if (direction == NORTH)
@@ -36,7 +36,8 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 				double proportion = distance_to_wall / 40;
 				int tex_start = (tex_height - tex_height * proportion) / 2;
 				int tex_end = tex_height - tex_start;
-				tex_y = tex_start + ((j - draw_start) * (tex_end - tex_start)) / line_height;
+				tex_y = tex_start + ((j - draw_start) * (tex_end - tex_start))
+					/ line_height;
 			}
 			else
 				tex_y = ((j - draw_start) * tex_height) / line_height;
@@ -58,7 +59,8 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 				double proportion = distance_to_wall / 40;
 				int tex_start = (tex_height - tex_height * proportion) / 2;
 				int tex_end = tex_height - tex_start;
-				tex_y = tex_start + ((j - draw_start) * (tex_end - tex_start)) / line_height;
+				tex_y = tex_start + ((j - draw_start) * (tex_end - tex_start))
+					/ line_height;
 			}
 			else
 				tex_y = ((j - draw_start) * tex_height) / line_height;
@@ -80,7 +82,8 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 				double proportion = distance_to_wall / 40;
 				int tex_start = (tex_height - tex_height * proportion) / 2;
 				int tex_end = tex_height - tex_start;
-				tex_y = tex_start + ((j - draw_start) * (tex_end - tex_start)) / line_height;
+				tex_y = tex_start + ((j - draw_start) * (tex_end - tex_start))
+					/ line_height;
 			}
 			else
 				tex_y = ((j - draw_start) * tex_height) / line_height;
@@ -102,7 +105,8 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 				double proportion = distance_to_wall / 40;
 				int tex_start = (tex_height - tex_height * proportion) / 2;
 				int tex_end = tex_height - tex_start;
-				tex_y = tex_start + ((j - draw_start) * (tex_end - tex_start)) / line_height;
+				tex_y = tex_start + ((j - draw_start) * (tex_end - tex_start))
+					/ line_height;
 			}
 			else
 				tex_y = ((j - draw_start) * tex_height) / line_height;
@@ -114,15 +118,15 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 			j++;
 		}
 	}
-	// while (j <= HEIGHT)
-	// {
-	// 	my_mlx_pixel_put(vars, x, j, vars->floor_color);
-	// 	j++;
-	// }
-	// j = draw_start;
-	// while (j >= 0)
-	// {
-	// 	my_mlx_pixel_put(vars, x, j, vars->celing_color);
-	// 	j--;
-	// }
+	while (j <= HEIGHT)
+	{
+		my_mlx_pixel_put(vars, x, j, vars->floor_color);
+		j++;
+	}
+	j = draw_start;
+	while (j >= 0)
+	{
+		my_mlx_pixel_put(vars, x, j, vars->celing_color);
+		j--;
+	}
 }
