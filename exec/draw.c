@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:41:55 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 11:36:45 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 14:53:51 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	draw_floor_tile(t_vars *vars)
 	vars->y1 = vars->y + EDGE;
 	while (vars->x < vars->x1)
 	{
-		my_mlx_pixel_put(vars, vars->x, vars->y0, 0x00FFFFFF);
+		// my_mlx_pixel_put(vars, vars->x, vars->y0, 0x00FFFFFF);
 		vars->x++;
 	}
 	while (vars->y < vars->y1)
 	{
-		my_mlx_pixel_put(vars, vars->x, vars->y, 0x00FFFFFF);
+		// my_mlx_pixel_put(vars, vars->x, vars->y, 0x00FFFFFF);
 		vars->y++;
 	}
 }
@@ -48,7 +48,7 @@ void	draw_wall_tile(t_vars *vars)
 		vars->x = vars->x0;
 		while (vars->x < vars->x1)
 		{
-			my_mlx_pixel_put(vars, vars->x, vars->y, 0x00FFFFFF);
+			// my_mlx_pixel_put(vars, vars->x, vars->y, 0x00FFFFFF);
 			vars->x++;
 		}
 		vars->y++;

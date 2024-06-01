@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/01 13:50:00 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 16:55:05 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	init_draw(t_vars *vars, int wall_height)
 void	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 {
 	int	j;
+	(void)distance_to_wall;
+	(void)x;
+
 
 	j = vars->draw_start;
 	init_draw(vars, wall_height);

@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 18:24:41 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:37:24 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ void	re_draw_img(t_vars *vars)
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 			&vars->line_length, &vars->endian);
-	mlx_clear_window(vars->mlx, vars->win);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+	// mlx_clear_window(vars->mlx, vars->win);
 	redraw_grid(vars);
+	// mlx_put_image_to_window(vars->mlx, vars->win ,vars->celing, 0, 0);
 	redraw_grid_wo_p(vars);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 }
 
 int	move(int keycode, t_vars *vars)
@@ -59,17 +60,17 @@ int	mouse_move(int x, int y, t_vars *vars)
 	int	delta;
 
 	(void)y;
-	if (vars->first_x < x - 25 || vars->first_x > x + 25)
+	if (vars->first_x < x - 15 || vars->first_x > x + 15)
 	{
 		vars->last_x = vars->first_x;
 		vars->first_x = x;
-		delta = vars->first_x - vars->last_x;
+		delta = x;
 		if (delta > 0)
-			vars->angle += delta / 2;
+			vars->angle = x / 2;
 		else if (delta < 0)
 		{
-			delta = -delta;
-			vars->angle -= delta / 2;
+			x = -x;
+			vars->angle = x / 2;
 		}
 		re_draw_img(vars);
 	}
@@ -78,17 +79,20 @@ int	mouse_move(int x, int y, t_vars *vars)
 
 int	exec(t_vars *vars)
 {
-	vars->angle = 0;
 	vars->y = 0;
 	vars->first_x = 0;
 	vars->last_x = 0;
 	vars->y0 = vars->y;
 	vars->x_map = 0;
 	vars->y_map = 0;
+	vars->last_j = 0;
+	vars->last_xwall = 0;
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 			&vars->line_length, &vars->endian);
 	mlx_clear_window(vars->mlx, vars->win);
+	// mlx_put_image_to_window(vars->mlx, vars->win ,vars->celing, 0, 0);
+	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	draw_grid(vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, move, vars);
