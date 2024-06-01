@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:44 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 07:18:15 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/01 08:55:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 void	redraw_player(t_vars *vars)
 {
 	if(check_walls(vars) == 1)
-		return ;
-	if(check_walls2(vars) == 1)
 		return ;
 	ft_correct_angle(vars);
 	draw_rays(vars);

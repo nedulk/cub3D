@@ -12,10 +12,10 @@
 
 #include "../includes/cub3d.h"
 
-int	check_SO(t_vars *vars, int x_map, int y_map, double i, double y)
+int	check_SO(t_vars *vars, double i, double y)
 {
-	int		test_xmap = x_map;
-	int		test_ymap = y_map;
+	int		test_xmap = vars->x_map;
+	int		test_ymap = vars->y_map;
 
 	if ((i - 0.01) < 0)
 	{
@@ -30,10 +30,10 @@ int	check_SO(t_vars *vars, int x_map, int y_map, double i, double y)
 	}
 	return (0);
 }
-int	check_NE(t_vars *vars, int x_map, int y_map, double i, double y)
+int	check_NE(t_vars *vars, double i, double y)
 {
-	int		test_xmap = x_map;
-	int		test_ymap = y_map;
+	int		test_xmap = vars->x_map;
+	int		test_ymap = vars->y_map;
 
 	if ((i + 0.01) > 1)
 	{
@@ -49,10 +49,10 @@ int	check_NE(t_vars *vars, int x_map, int y_map, double i, double y)
 	return (0);
 }
 
-int	check_NO(t_vars *vars, int x_map, int y_map, double i, double y)
+int	check_NO(t_vars *vars, double i, double y)
 {
-	int		test_xmap = x_map;
-	int		test_ymap = y_map;
+	int		test_xmap = vars->x_map;
+	int		test_ymap = vars->y_map;
 
 	if ((i - 0.01) < 0)
 	{
@@ -69,10 +69,10 @@ int	check_NO(t_vars *vars, int x_map, int y_map, double i, double y)
 }
 
 
-int	check_SE(t_vars *vars, int x_map, int y_map, double i, double y)
+int	check_SE(t_vars *vars, double i, double y)
 {
-	int		test_xmap = x_map;
-	int		test_ymap = y_map;
+	int		test_xmap = vars->x_map;
+	int		test_ymap = vars->y_map;
 
 	if ((i + 0.01) >= 1)
 	{
@@ -88,45 +88,53 @@ int	check_SE(t_vars *vars, int x_map, int y_map, double i, double y)
 	return (0);
 }
 
-int	check_walls_path(t_vars *vars)
+double	calculate_i(t_vars *vars, double i)
 {
-	double	i;
-	int		x_map;
-	int		y_map;
-	double	y;
-	
-	x_map = 0;
-	y_map = 0;
-	i = 0;
-	vars->diagonals = 0;
 	while(i < vars->ray_x)
 	{
 		i += EDGE;
-		x_map++;
+		vars->x_map++;
 	}
 	i = (i - vars->ray_x) / EDGE;
-	y = 0;
+	if(vars->x_map > 0)
+		vars->x_map -= 1;
+	return(i);
+}
+
+double	calculate_y(t_vars *vars, double y)
+{
 	while(y < vars->ray_y)
 	{
 		y += EDGE;
-		y_map++;
+		vars->y_map++;
 	}
 	y = (y - vars->ray_y) / EDGE;
-	if(x_map > 0)
-		x_map -= 1;
-	if(y_map > 0)
-		y_map -= 1;
-	if ((vars->incx < 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
-		check_NO(vars, x_map, y_map, i, y);
-	else if ((vars->incx > 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
-		check_NE(vars, x_map, y_map, i, y);
-	else if ((vars->incx < 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
-		check_SO(vars, x_map, y_map, i, y);
-	else if ((vars->incx > 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
-		check_SE(vars, x_map, y_map, i, y);
-	vars->x_map = x_map;
-	vars->y_map = y_map;
-	if(vars->map[y_map][x_map] == '1' || vars->diagonals == 1)
+	if(vars->y_map > 0)
+		vars->y_map -= 1;
+	return (y);
+}
+
+int	check_walls_path(t_vars *vars)
+{
+	double	i;
+	double	y;
+	
+	vars->x_map = 0;
+	vars->y_map = 0;
+	vars->diagonals = 0;
+	i = 0;
+	y = 0;
+	i = calculate_i(vars, i);
+	y = calculate_y(vars, y);
+	if ((vars->incx < 0 && vars->incy < 0) && (vars->x_map > 0 && vars->y_map > 0))
+		check_NO(vars, i, y);
+	else if ((vars->incx > 0 && vars->incy < 0) && (vars->x_map > 0 && vars->y_map > 0))
+		check_NE(vars, i, y);
+	else if ((vars->incx < 0 && vars->incy > 0) && (vars->x_map > 0 && vars->y_map > 0))
+		check_SO(vars, i, y);
+	else if ((vars->incx > 0 && vars->incy > 0) && (vars->x_map > 0 && vars->y_map > 0))
+		check_SE(vars, i, y);
+	if(vars->map[vars->y_map][vars->x_map] == '1' || vars->diagonals == 1)
 	{
 		vars->wall_hit_x = vars->ray_x;
 		vars->wall_hit_y = vars->ray_y;
@@ -148,35 +156,18 @@ int	check_px_wall(t_vars *vars, float x, float y)
 }
 int	check_walls_ray(t_vars *vars)
 {
-	float	i;
-	int		x_map;
-	int		y_map;
-	float	y;
+	double	i;
+	double	y;
 	
-	x_map = 0;
-	y_map = 0;
+	vars->x_map = 0;
+	vars->y_map = 0;
 	i = 0;
-	while(i <= vars->ray_x)
-	{  
-		i += EDGE;
-		x_map++;
-	}
-	i = (i - vars->ray_x) / EDGE; // i = position precis du pixel i
 	y = 0;
-	while(y <= vars->ray_y)
-	{
-		y += EDGE;
-		y_map++;
-	}
-	y = (y - vars->ray_y) / EDGE; // y = position precis du pixel y
-	//vars->map[y_map - 1][x_map - 1]
-	if(x_map >= 1)
-		x_map -= 1;
-	if(y_map >= 1)
-		y_map -=1;
+	i = calculate_i(vars, i);
+	y = calculate_y(vars, y);
 	vars->pos_x = i;
 	vars->pos_y = y;
-    if(vars->map[y_map][x_map] == '1')
+    if(vars->map[vars->y_map][vars->x_map] == '1')
     {
 		if (vars->play_x < vars->wall_hit_x && check_px_wall(vars, vars->wall_hit_x - 1, vars->wall_hit_y) == 0)
 			return (WEST);
@@ -190,70 +181,46 @@ int	check_walls_ray(t_vars *vars)
     return (0);
 }
 
-int	check_walls2(t_vars *vars)
+double	calculate_play_i(t_vars *vars, double i)
 {
-	float	i;
-	int		x_map;
-	int		y_map;
-	float	y;
-	
-	x_map = 0;
-	y_map = 0;
-	i = 0;
-	while(i < vars->play_x + 1)
+	while(i < vars->play_x)
 	{
 		i += EDGE;
-		x_map++;
+		vars->x_map++;
 	}
-	i = (i - vars->play_x) / EDGE; // i = position precis du pixel i
-	y = 0;
-	while(y < vars->play_y + 1)
+	i = (i - vars->play_x) / EDGE;
+	if(vars->x_map > 0)
+		vars->x_map -= 1;
+	return (i);
+}
+
+double	calculate_play_y(t_vars *vars, double y)
+{
+	while(y < vars->play_y)
 	{
 		y += EDGE;
-		y_map++;
+		vars->y_map++;
 	}
-	y = (y - vars->play_y) / EDGE; // y = position precis du pixel y
-	if(x_map > 0)
-		x_map -= 1;
-	if(y_map > 0)
-		y_map -= 1;
-	// printf("path :y_map:%d\n", y_map);
-	// printf("path :x_map:%d\n", x_map);
-	if(vars->map[y_map][x_map] == '1')
-		return (1);
-	return (0);
+	y = (y - vars->play_y) / EDGE;
+	if(vars->y_map > 0)
+		vars->y_map -= 1;
+	return (y);
+	if(vars->y_map > 0)
+		vars->y_map -= 1;
 }
 
 int	check_walls(t_vars *vars)
 {
-	float	i;
-	int		x_map;
-	int		y_map;
-	float	y;
+	double	i;
+	double	y;
 	
-	x_map = 0;
-	y_map = 0;
+	vars->x_map = 0;
+	vars->y_map = 0;
 	i = 0;
-	while(i < vars->play_x)
-	{
-		i += EDGE;
-		x_map++;
-	}
-	i = (i - vars->play_x) / EDGE; // i = position precis du pixel i
 	y = 0;
-	while(y < vars->play_y)
-	{
-		y += EDGE;
-		y_map++;
-	}
-	y = (y - vars->play_y) / EDGE; // y = position precis du pixel y
-	if(x_map > 0)
-		x_map -= 1;
-	if(y_map > 0)
-		y_map -= 1;
-	// printf("path :y_map:%d\n", y_map);
-	// printf("path :x_map:%d\n", x_map);
-	if(vars->map[y_map][x_map] == '1')
+	i = calculate_play_i(vars, i);
+	y = calculate_play_y(vars, y);
+	if(vars->map[vars->y_map][vars->x_map] == '1')
 		return (1);
 	return (0);
 }
@@ -302,7 +269,7 @@ void move_forward(t_vars *vars, double speed)
 	rotation_matrix(vars);
 	vars->play_x = vars->play_x + vars->rotate_x1;
 	vars->play_y = vars->play_y + vars->rotate_y1;
-	if(check_walls(vars) == 1 || check_walls2(vars) == 1)
+	if(check_walls(vars) == 1)
 	{
 		vars->play_x -= vars->rotate_x1;
 		vars->play_y -= vars->rotate_y1;
@@ -319,7 +286,7 @@ void move_backward(t_vars *vars, double speed)
 	rotation_matrix(vars);
 	vars->play_x = vars->play_x - vars->rotate_x1;
 	vars->play_y = vars->play_y - vars->rotate_y1;
-	if(check_walls(vars) == 1 || check_walls2(vars) == 1)
+	if(check_walls(vars) == 1)
 	{
 		vars->play_x += vars->rotate_x1;
 		vars->play_y += vars->rotate_y1;
@@ -335,7 +302,7 @@ void move_right(t_vars *vars)
 	rotation_matrix(vars);
 	vars->play_x = vars->play_x + vars->rotate_x1;
 	vars->play_y = vars->play_y + vars->rotate_y1;
-	if(check_walls(vars) == 1 || check_walls2(vars) == 1)
+	if(check_walls(vars) == 1)
 	{
 		vars->play_x -= vars->rotate_x1;
 		vars->play_y -= vars->rotate_y1;
@@ -351,7 +318,7 @@ void move_left(t_vars *vars)
 	rotation_matrix(vars);
 	vars->play_x = vars->play_x + vars->rotate_x1;
 	vars->play_y = vars->play_y + vars->rotate_y1;
-	if(check_walls(vars) == 1 || check_walls2(vars) == 1)
+	if(check_walls(vars) == 1)
 	{
 		vars->play_x -= vars->rotate_x1;
 		vars->play_y -= vars->rotate_y1;
@@ -359,7 +326,17 @@ void move_left(t_vars *vars)
 	vars->angle += 120;
 }
 
-
+void	re_draw_img(t_vars *vars)
+{
+	mlx_destroy_image(vars->mlx, vars->img);
+	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
+	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
+		&vars->line_length, &vars->endian);
+	mlx_clear_window(vars->mlx, vars->win);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+	redraw_grid(vars);
+	redraw_grid_wo_p(vars);
+}
 
 int	move(int keycode, t_vars *vars)
 {
@@ -377,18 +354,7 @@ int	move(int keycode, t_vars *vars)
 		move_right(vars);
 	else if (keycode == XK_Escape)
 		exit(0);
-	vars->y = 0;
-	vars->y0 = vars->y;
-	vars->x = 0;
-	vars->x0 = vars->x;
-	mlx_destroy_image(vars->mlx, vars->img);
-	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
-	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
-		&vars->line_length, &vars->endian);
-	mlx_clear_window(vars->mlx, vars->win);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
-	redraw_grid(vars);
-	redraw_grid_wo_p(vars);
+	re_draw_img(vars);
 	return (0);
 }
 
@@ -396,9 +362,6 @@ int	mouse_move(int x, int y, t_vars *vars)
 {
 	(void)y;
 	int delta;
-
-	// printf("first : %d\n", first_x);
-	// printf("last : %d\n", first_x);
 
 	if(vars->first_x < x - 25 || vars->first_x > x + 25)
 	{
@@ -412,20 +375,8 @@ int	mouse_move(int x, int y, t_vars *vars)
 			delta = -delta;
 			vars->angle -= delta / 2;
 		}
-		vars->y = 0;
-		vars->y0 = vars->y;
-		vars->x = 0;
-		vars->x0 = vars->x;
-		mlx_destroy_image(vars->mlx, vars->img);
-		vars->img = mlx_new_image(vars->mlx, 1920, 1080);
-		vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
-			&vars->line_length, &vars->endian);
-		mlx_clear_window(vars->mlx, vars->win);
-		redraw_grid(vars);
-		redraw_grid_wo_p(vars);
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
+		re_draw_img(vars);
 	}
-	// vars->first_x = x;
 	return (0);
 }
 
