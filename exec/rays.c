@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/31 19:23:52 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/01 07:50:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,56 +34,50 @@ void rotation_matrix(t_vars *vars)
 
 	vars->rotate_x1 = (dx * cos_a) - (dy * sin_a);
 	vars->rotate_y1 =(dx * sin_a) + (dy * cos_a);
+	vars->ray_x1 = vars->ray_x0 + vars->rotate_x1;
+	vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
 }
 
 double calculate_wall_height(t_vars *vars, double distance, double ray_angle)
 {
     double wall_height;
-	(void)vars;
 	
     double corrected_distance = distance * cos((ray_angle - vars->angle) * (PI / 180.0));
     wall_height = (HEIGHT/ corrected_distance) * 20;
     return (wall_height);
 }
-
-void	draw_rays(t_vars *vars)
+void	ft_correct_angle(t_vars *vars)
 {
-	double	angle_step;
-	double	distance = 0;
-	// int	y;
-	vars->rays_number = 250.0;
-	// float x = 0;
-	float column_end;
-	float column_start;
-	// double angle;
-
-	// y = 1919;
-	angle_step = 60 / vars->rays_number;
-	vars->angle -= 60;
 	if (vars->angle < 0)
 		vars->angle += 360.0;
 	if (vars->angle >= 360)
 		vars->angle -= 360.0;
-	// angle = vars->angle;
-	column_start = 0;
+}
+
+void	define_fov(t_vars *vars)
+{
 	vars->draw = 0;
-	// mlx_put_image_to_window(vars->mlx, vars->win, vars->celing, 0, 0); tentative img au lieu de put_pixel
+	vars->rays_number = 500.0;
+	vars->angle_step = 60 / vars->rays_number;
+	vars->angle -= 60;
+	vars->ray_x0 = vars->play_x;
+	vars->ray_y0 = vars->play_y;
+}
+
+void	draw_rays(t_vars *vars)
+{
+	double	distance;
+	float column_end;
+	float column_start;
+
+	column_start = 0;
+	distance = 0;
+	define_fov(vars);
+	ft_correct_angle(vars);
 	while(vars->draw < vars->rays_number)
 	{
-		//origine du rayon
-		vars->ray_x0 = vars->play_x;
-		vars->ray_y0 = vars->play_y;
-		
 		rotation_matrix(vars);
-		// printf("r_x1 : %f\n", vars->rotate_x1);
-		// printf("r_y1 : %f\n", vars->rotate_y1);
-		//nouvelle position pour angle du rayon
-		vars->ray_x1 = vars->ray_x0 + vars->rotate_x1;
-		vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
 		ft_draw_line_bresenham(vars);
-		// printf("x: %f\n", vars->wall_hit_x);
-		// printf("y: %f\n", vars->wall_hit_y);
-		// exit(0);
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
 		int h = calculate_wall_height(vars, distance, vars->angle);
         column_end = (vars->draw + 1) * (WIDTH / vars->rays_number);
@@ -93,15 +87,7 @@ void	draw_rays(t_vars *vars)
 			column_start++;
 		}
 		vars->draw++;
-		vars->angle += angle_step;
-		if (vars->angle < 0)
-			vars->angle += 360.0;
-		if (vars->angle >= 360)
-			vars->angle -= 360.0;
+		vars->angle += vars->angle_step;
+		ft_correct_angle(vars);
 	}
-	// vars->angle -= 60;
-	if (vars->angle < 0)
-		vars->angle += 360.0;
-	if (vars->angle >= 360)
-		vars->angle -= 360.0;
 }

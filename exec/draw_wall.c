@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/30 16:37:36 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/01 07:27:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 {
 	int centerY = HEIGHT / 2;
 
-	(void)distance_to_wall;
 	int draw_start = centerY - wall_height;	
 	if(draw_start < 0)
 		draw_start = 0;
@@ -26,7 +25,6 @@ void draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 	int j = draw_start;
 	int tex_height = RESOLUTION; // la hauteur de la texture
 	int line_height = draw_end - draw_start; // la hauteur du mur à l'écran
-	
 	int direction = check_walls_ray(vars);
 	if (direction == NORTH)
 	{

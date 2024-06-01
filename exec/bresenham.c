@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:47:54 by dboire            #+#    #+#             */
-/*   Updated: 2024/05/30 14:23:46 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/01 06:52:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,52 +39,11 @@ int	ft_draw_line_bresenham(t_vars *vars)
 	vars->incy /= 5;
 	vars->ray_y = vars->ray_y0;
 	vars->ray_x = vars->ray_x0;
-	// if (vars->dx == 0)
-	// {
-	// 	ft_draw_line_y(vars);
-	// }
-	// else if (vars->dy == 0)
-	// {
-	// 	ft_draw_line_x(vars);
-	// }
 	if (vars->dx >= vars->dy)
-	{
 		ft_draw_horizontal(vars);
-	}
 	else
-	{
 		ft_draw_vertical(vars);
-	}
 	return (0);
-}
-
-void	ft_draw_line_x(t_vars *vars)
-{
-
-	while(1) //while(vars->ray_x != vars->ray_x1)
-	{
-		if(check_walls_path(vars) == 1)
-			break ;
-		if(vars->draw == 125 || vars -> draw == 0 || vars -> draw == 249)
-			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
-		// else
-		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
-		vars->ray_x += vars->incx;
-	}
-}
-
-void	ft_draw_line_y(t_vars *vars)
-{
-	while (1)
-	{
-		if(check_walls_path(vars) == 1)
-			break ;
-		if(vars->draw == 125 || vars -> draw == 0 || vars -> draw == 249)
-			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
-		// else
-		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
-		vars->ray_y += vars->incy;
-	}
 }
 
 void	ft_draw_horizontal(t_vars *vars)
@@ -100,10 +59,7 @@ void	ft_draw_horizontal(t_vars *vars)
 	{
 		if(check_walls_path(vars) == 1)
 			break ;
-		if(vars->draw == 125 || vars -> draw == 0 || vars -> draw == 249)
-			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
-		// else
-		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
+		my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		error += slope;
 		if (error >= 0)
 		{
@@ -127,10 +83,7 @@ void	ft_draw_vertical(t_vars *vars)
 	{
 		if(check_walls_path(vars) == 1)
 			break ;
-		if(vars->draw == 125 || vars -> draw == 0 || vars -> draw == 249)
-			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0x0000FF00);
-		// else
-		// 	my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
+		my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		error += slope;
 		if (error >= 0)
 		{

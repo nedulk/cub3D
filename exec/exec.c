@@ -22,7 +22,10 @@ int	check_SO(t_vars *vars, int x_map, int y_map, double i, double y)
 		if ((y + 0.01 > 1))
 		{
 			if(vars->map[test_ymap -1][test_xmap] == '1' && vars->map[test_ymap][test_xmap + 1] == '1')
+			{
+				vars->diagonals = 1;
 				return (1);
+			}
 		}
 	}
 	return (0);
@@ -37,7 +40,10 @@ int	check_NE(t_vars *vars, int x_map, int y_map, double i, double y)
 		if ((y - 0.01 < 0))
 		{
 			if(vars->map[test_ymap + 1][test_xmap] == '1' && vars->map[test_ymap][test_xmap - 1] == '1')
+			{
+				vars->diagonals = 1;
 				return (1);
+			}
 		}
 	}
 	return (0);
@@ -53,7 +59,10 @@ int	check_NO(t_vars *vars, int x_map, int y_map, double i, double y)
 		if ((y - 0.01 < 0))
 		{
 			if(vars->map[test_ymap + 1][test_xmap] == '1' && vars->map[test_ymap][test_xmap + 1] == '1')
+			{
+				vars->diagonals = 1;
 				return (1);
+			}
 		}
 	}
 	return (0);
@@ -70,7 +79,10 @@ int	check_SE(t_vars *vars, int x_map, int y_map, double i, double y)
 		if ((y + 0.01 >= 1))
 		{
 			if(vars->map[test_ymap - 1][test_xmap] == '1' && vars->map[test_ymap][test_xmap - 1] == '1')
+			{
+				vars->diagonals = 1;
 				return (1);
+			}
 		}
 	}
 	return (0);
@@ -86,47 +98,35 @@ int	check_walls_path(t_vars *vars)
 	x_map = 0;
 	y_map = 0;
 	i = 0;
+	vars->diagonals = 0;
 	while(i < vars->ray_x)
 	{
 		i += EDGE;
 		x_map++;
 	}
-	i = (i - vars->ray_x) / EDGE; // i = position precis du pixel i
+	i = (i - vars->ray_x) / EDGE;
 	y = 0;
 	while(y < vars->ray_y)
 	{
 		y += EDGE;
 		y_map++;
 	}
-	y = (y - vars->ray_y) / EDGE; // y = position precis du pixel y
-	//vars->map[y_map - 1][x_map - 1]
+	y = (y - vars->ray_y) / EDGE;
 	if(x_map > 0)
 		x_map -= 1;
 	if(y_map > 0)
 		y_map -= 1;
 	if ((vars->incx < 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
-	{
-		if(check_NO(vars, x_map, y_map, i, y))
-			return(1);
-	}
+		check_NO(vars, x_map, y_map, i, y);
 	else if ((vars->incx > 0 && vars->incy < 0) && (x_map > 0 && y_map > 0))
-	{
-		if(check_NE(vars, x_map, y_map, i, y))
-			return(1);
-	}
+		check_NE(vars, x_map, y_map, i, y);
 	else if ((vars->incx < 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
-	{
-		if(check_SO(vars, x_map, y_map, i, y))
-			return(1);
-	}
+		check_SO(vars, x_map, y_map, i, y);
 	else if ((vars->incx > 0 && vars->incy > 0) && (x_map > 0 && y_map > 0))
-	{
-		if(check_SE(vars, x_map, y_map, i, y))
-			return(1);
-	}
+		check_SE(vars, x_map, y_map, i, y);
 	vars->x_map = x_map;
 	vars->y_map = y_map;
-	if(vars->map[y_map][x_map] == '1')
+	if(vars->map[y_map][x_map] == '1' || vars->diagonals == 1)
 	{
 		vars->wall_hit_x = vars->ray_x;
 		vars->wall_hit_y = vars->ray_y;

@@ -142,6 +142,8 @@ typedef struct s_vars {
 	double			incx;
 	double			incy;
 	double			rotate;
+	double		angle_step;
+	int			diagonals;
 	int			length_x;
 	int			length_y;
 	int			zoom;
@@ -169,7 +171,7 @@ typedef struct s_point
 
 
 
-
+void	ft_correct_angle(t_vars *vars);
 void	ft_draw_line_x(t_vars *vars);
 void	ft_draw_line_y(t_vars *vars);
 void	ft_draw_horizontal(t_vars *vars);
