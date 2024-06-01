@@ -3,27 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   redraw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:44 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 08:55:57 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/01 11:39:41 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 void	redraw_player(t_vars *vars)
 {
-	if(check_walls(vars) == 1)
+	if (check_walls(vars) == 1)
 		return ;
 	ft_correct_angle(vars);
 	draw_rays(vars);
 }
+
 void	redraw_tile_and_floor(t_vars *vars, int i, int y)
 {
 	if (vars->map[i][y] == '1')
 		draw_wall_tile(vars);
-	else if(vars->map[i][y] == '0')
+	else if (vars->map[i][y] == '0')
 	{
 		draw_floor_tile(vars);
 		vars->y = vars->y0;
@@ -36,7 +37,7 @@ void	redraw_grid(t_vars *vars)
 {
 	int	i;
 	int	y;
-	
+
 	i = 0;
 	vars->y = 0;
 	while (vars->map[i])
@@ -59,7 +60,7 @@ void	redraw_grid_wo_p(t_vars *vars)
 {
 	int	i;
 	int	y;
-	
+
 	i = 0;
 	vars->y = 0;
 	while (vars->map[i])

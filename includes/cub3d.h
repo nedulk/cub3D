@@ -139,6 +139,9 @@ typedef struct s_vars {
 	double			vision_angle;
 	double			dx;
 	double			dy;
+	int			draw_start;
+	int			draw_end;
+	int			direction;
 	double			incx;
 	double			incy;
 	double			rotate;
@@ -190,6 +193,12 @@ void	move_left(t_vars *vars);
 
 //Texture
 int	check_px_wall(t_vars *vars, float x, float y);
+
+// Draw the texture of the wall depending on which direction the player face
+void	draw_north_wall(t_vars *vars, double distance_to_wall, int x);
+void	draw_south_wall(t_vars *vars, double distance_to_wall, int x);
+void	draw_east_wall(t_vars *vars, double distance_to_wall, int x);
+void	draw_west_wall(t_vars *vars, double distance_to_wall, int x);
 
 
 void	ft_correct_angle(t_vars *vars);

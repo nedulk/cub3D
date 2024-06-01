@@ -6,127 +6,46 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/01 11:35:23 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 12:23:04 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+void	init_draw(t_vars *vars, int wall_height)
+{
+	vars->draw_start = (HEIGHT / 2) - wall_height;
+	vars->draw_end = (HEIGHT / 2) + wall_height;
+	if (vars->draw_start < 0)
+		vars->draw_start = 0;
+	if (vars->draw_end >= HEIGHT)
+		vars->draw_end = HEIGHT - 1;
+	vars->direction = check_walls_ray(vars);
+}
+
 void	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 {
-	int centerY = HEIGHT / 2;
+	int	j;
 
-	int draw_start = centerY - wall_height;
-	if (draw_start < 0)
-		draw_start = 0;
-	int draw_end = centerY + wall_height;
-	if (draw_end >= HEIGHT)
-		draw_end = HEIGHT - 1;
-	int j = draw_start;
-	int tex_height = RESOLUTION;             // la hauteur de la texture
-	int line_height = draw_end - draw_start; // la hauteur du mur à l'écran
-	int direction = check_walls_ray(vars);
-	if (direction == NORTH)
-	{
-		while (j < draw_end)
-		{
-			int tex_y;
-			if (distance_to_wall <= 40)
-			{
-				double proportion = distance_to_wall / 40;
-				int tex_start = (tex_height - tex_height * proportion) / 2;
-				int tex_end = tex_height - tex_start;
-				tex_y = tex_start + ((j - draw_start) * (tex_end - tex_start))
-					/ line_height;
-			}
-			else
-				tex_y = ((j - draw_start) * tex_height) / line_height;
-
-			int po;
-
-			po = vars->pos_x * RESOLUTION;
-			my_mlx_pixel_put(vars, x, j, vars->texture_N[tex_y][po]);
-			j++;
-		}
-	}
-	else if (direction == EAST)
-	{
-		while (j < draw_end)
-		{
-			int tex_y;
-			if (distance_to_wall <= 40)
-			{
-				double proportion = distance_to_wall / 40;
-				int tex_start = (tex_height - tex_height * proportion) / 2;
-				int tex_end = tex_height - tex_start;
-				tex_y = tex_start + ((j - draw_start) * (tex_end - tex_start))
-					/ line_height;
-			}
-			else
-				tex_y = ((j - draw_start) * tex_height) / line_height;
-
-			int po;
-
-			po = vars->pos_y * RESOLUTION;
-			my_mlx_pixel_put(vars, x, j, vars->texture_E[tex_y][po]);
-			j++;
-		}
-	}
-	else if (direction == SOUTH)
-	{
-		while (j < draw_end)
-		{
-			int tex_y;
-			if (distance_to_wall <= 40)
-			{
-				double proportion = distance_to_wall / 40;
-				int tex_start = (tex_height - tex_height * proportion) / 2;
-				int tex_end = tex_height - tex_start;
-				tex_y = tex_start + ((j - draw_start) * (tex_end - tex_start))
-					/ line_height;
-			}
-			else
-				tex_y = ((j - draw_start) * tex_height) / line_height;
-
-			int po;
-
-			po = vars->pos_x * RESOLUTION;
-			my_mlx_pixel_put(vars, x, j, vars->texture_S[tex_y][po]);
-			j++;
-		}
-	}
-	else if (direction == WEST)
-	{
-		while (j < draw_end)
-		{
-			int tex_y;
-			if (distance_to_wall <= 40)
-			{
-				double proportion = distance_to_wall / 40;
-				int tex_start = (tex_height - tex_height * proportion) / 2;
-				int tex_end = tex_height - tex_start;
-				tex_y = tex_start + ((j - draw_start) * (tex_end - tex_start))
-					/ line_height;
-			}
-			else
-				tex_y = ((j - draw_start) * tex_height) / line_height;
-
-			int po;
-
-			po = vars->pos_y * RESOLUTION;
-			my_mlx_pixel_put(vars, x, j, vars->texture_W[tex_y][po]);
-			j++;
-		}
-	}
-	while (j <= HEIGHT)
-	{
-		my_mlx_pixel_put(vars, x, j, vars->floor_color);
-		j++;
-	}
-	j = draw_start;
-	while (j >= 0)
-	{
-		my_mlx_pixel_put(vars, x, j, vars->celing_color);
-		j--;
-	}
+	j = vars->draw_start;
+	init_draw(vars, wall_height);
+	if (vars->direction == NORTH)
+		draw_north_wall(vars, distance_to_wall, x);
+	else if (vars->direction == EAST)
+		draw_east_wall(vars, distance_to_wall, x);
+	else if (vars->direction == SOUTH)
+		draw_south_wall(vars, distance_to_wall, x);
+	else if (vars->direction == WEST)
+		draw_west_wall(vars, distance_to_wall, x);
+	// while (j <= HEIGHT)
+	// {
+	// 	my_mlx_pixel_put(vars, x, j, vars->floor_color);
+	// 	j++;
+	// }
+	// j = vars->draw_start;
+	// while (j >= 0)
+	// {
+	// 	my_mlx_pixel_put(vars, x, j, vars->celing_color);
+	// 	j--;
+	// }
 }

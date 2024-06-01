@@ -3,49 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 07:50:42 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/01 11:39:19 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
-void rotation_matrix(t_vars *vars)
+void	rotation_matrix(t_vars *vars)
 {
-	double radian;
-	double cos_a;
-	double sin_a;
-	double dx;
-	double dy;
-
+	double	radian;
+	double	cos_a;
+	double	sin_a;
+	double	dx;
+	double	dy;
 
 	radian = 0;
 	cos_a = 0;
 	sin_a = 0;
 	dx = vars->ray_x1 - vars->ray_x0;
 	dy = vars->ray_y1 - vars->ray_y0;
-	radian = vars->angle *  (PI / 180);
+	radian = vars->angle * (PI / 180);
 	cos_a = cos(radian);
 	sin_a = sin(radian);
 	dx = 1;
 	dy = 0;
-
 	vars->rotate_x1 = (dx * cos_a) - (dy * sin_a);
-	vars->rotate_y1 =(dx * sin_a) + (dy * cos_a);
+	vars->rotate_y1 = (dx * sin_a) + (dy * cos_a);
 	vars->ray_x1 = vars->ray_x0 + vars->rotate_x1;
 	vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
 }
 
-double calculate_wall_height(t_vars *vars, double distance, double ray_angle)
+double	calculate_wall_height(t_vars *vars, double distance, double ray_angle)
 {
-    double wall_height;
-	
-    double corrected_distance = distance * cos((ray_angle - vars->angle) * (PI / 180.0));
-    wall_height = (HEIGHT/ corrected_distance) * 20;
-    return (wall_height);
+	double	wall_height;
+	double	corrected_distance;
+
+	corrected_distance = distance * cos((ray_angle - vars->angle) * (PI
+				/ 180.0));
+	wall_height = (HEIGHT / corrected_distance) * 20;
+	return (wall_height);
 }
+
 void	ft_correct_angle(t_vars *vars)
 {
 	if (vars->angle < 0)
@@ -67,25 +68,24 @@ void	define_fov(t_vars *vars)
 void	draw_rays(t_vars *vars)
 {
 	double	distance;
-	float column_end;
-	float column_start;
+	float	column_end;
+	float	column_start;
+	int		h;
 
 	column_start = 0;
 	distance = 0;
 	define_fov(vars);
 	ft_correct_angle(vars);
-	while(vars->draw < vars->rays_number)
+	while (vars->draw < vars->rays_number)
 	{
 		rotation_matrix(vars);
 		ft_draw_line_bresenham(vars);
-		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y - vars->play_y, 2));
-		int h = calculate_wall_height(vars, distance, vars->angle);
-        column_end = (vars->draw + 1) * (WIDTH / vars->rays_number);
-        while(column_start < column_end)
-        {
-			draw_wall(vars, column_start, h, distance);
-			column_start++;
-		}
+		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
+					- vars->play_y, 2));
+		h = calculate_wall_height(vars, distance, vars->angle);
+		column_end = (vars->draw + 1) * (WIDTH / vars->rays_number);
+		while (column_start <= column_end)
+			draw_wall(vars, column_start++, h, distance);
 		vars->draw++;
 		vars->angle += vars->angle_step;
 		ft_correct_angle(vars);

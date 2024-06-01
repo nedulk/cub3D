@@ -6,11 +6,11 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:24:07 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 11:31:54 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 11:40:36 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 void	move_forward(t_vars *vars)
 {
