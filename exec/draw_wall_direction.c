@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:54:06 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 13:50:59 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 13:57:52 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	draw_north_wall(t_vars *vars, double distance_to_wall, int x, int j)
 	int	tex_y;
 	int	tex_start;
 
+	j = vars->draw_start;
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
@@ -44,6 +45,7 @@ int	draw_south_wall(t_vars *vars, double distance_to_wall, int x, int j)
 	int	tex_y;
 	int	tex_start;
 
+	j = vars->draw_start;
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
@@ -69,6 +71,7 @@ int	draw_east_wall(t_vars *vars, double distance_to_wall, int x, int j)
 	int	tex_y;
 	int	tex_start;
 
+	j = vars->draw_start;
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
@@ -94,6 +97,7 @@ int	draw_west_wall(t_vars *vars, double distance_to_wall, int x, int j)
 	int	tex_y;
 	int	tex_start;
 
+	j = vars->draw_start;
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
