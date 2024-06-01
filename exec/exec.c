@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 14:30:58 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 15:45:48 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ void	re_draw_img(t_vars *vars)
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 			&vars->line_length, &vars->endian);
 	mlx_clear_window(vars->mlx, vars->win);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	redraw_grid(vars);
+	mlx_put_image_to_window(vars->mlx, vars->win ,vars->celing, 0, 0);
 	redraw_grid_wo_p(vars);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 }
 
 int	move(int keycode, t_vars *vars)
@@ -61,7 +62,7 @@ int	mouse_move(int x, int y, t_vars *vars)
 	int	delta;
 
 	(void)y;
-	if (vars->first_x < x - 25 || vars->first_x > x + 25)
+	if (vars->first_x < x - 1 || vars->first_x > x + 25)
 	{
 		vars->last_x = vars->first_x;
 		vars->first_x = x;
@@ -86,10 +87,14 @@ int	exec(t_vars *vars)
 	vars->y0 = vars->y;
 	vars->x_map = 0;
 	vars->y_map = 0;
+	vars->last_j = 0;
+	vars->last_xwall = 0;
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 			&vars->line_length, &vars->endian);
 	mlx_clear_window(vars->mlx, vars->win);
+	mlx_put_image_to_window(vars->mlx, vars->win ,vars->celing, 0, 0);
+	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	draw_grid(vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, move, vars);

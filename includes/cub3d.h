@@ -117,6 +117,7 @@ typedef struct s_vars {
 	int				line_length;
 	int				endian;
 	void			*img;
+	void			*img2;
 	void			*addr;
 	int				x_map;
 	int				y_map;
@@ -154,6 +155,9 @@ typedef struct s_vars {
 	int			shift_y;
 	int			first_x;
 	int			last_x;
+	int			last_po;
+	int			last_j;
+	int			last_xwall;
 	int			bool;
 	double long	cos;
 	double long	sin;

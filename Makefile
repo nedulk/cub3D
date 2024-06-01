@@ -6,7 +6,7 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/01 14:34:31 by dboire           ###   ########.fr        #
+#    Updated: 2024/06/01 14:39:19 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,6 @@ MAIN_SRCS = src_parsing/main.c \
 			exec/check_walls_nsew.c\
 			exec/calculate_i_y.c\
 			exec/wasd.c\
-			exec/textures.c\
 			exec/draw_wall_direction.c\
 			exec/draw_grid.c\
 

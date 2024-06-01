@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:35:32 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 14:37:03 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 14:42:52 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	check_player_angle(t_vars *vars, int i, int y)
 {
-	if(vars->map[i][y] == 'N')
+	if (vars->map[i][y] == 'N')
 		vars->angle = 300;
-	if(vars->map[i][y] == 'W')
+	if (vars->map[i][y] == 'W')
 		vars->angle = 210;
-	if(vars->map[i][y] == 'S')
+	if (vars->map[i][y] == 'S')
 		vars->angle = 120;
-	if(vars->map[i][y] == 'E')
+	if (vars->map[i][y] == 'E')
 		vars->angle = 30;
 	draw_player(vars);
 	vars->map[i][y] = '0';
