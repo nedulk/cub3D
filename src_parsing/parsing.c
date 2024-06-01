@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:14:21 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/25 13:27:42 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/01 18:07:22 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,11 @@ int		parsing(t_vars *vars, char **argv, int argc)
 		return (1);
 	}
 	else if (check_param(argv[1], vars) == 1)
-	{
-		free_vars(vars);	
 		return (1);
-	}
 	else if ((vars->line_map != 0) && check_map(argv[1], vars) == 1)
-	{
-		free_vars(vars);
 		return (1);
-	}
-	if (check_param_valid(vars) == 1)
-	{
-		free_vars(vars);
+	else if (check_param_valid(vars) == 1)
 		return (1);
-	}
 	vars->floor_color = convert_color_string_to_int(vars->texture[4]);
 	vars->celing_color = convert_color_string_to_int(vars->texture[5]);
 	return (0);

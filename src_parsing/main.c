@@ -6,102 +6,12 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/30 19:19:01 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/01 19:20:55 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int **load_texture(t_vars *vars, char *texture_path)
-{
-	void	*img;
-	char	*img_data;
-	int		y;
-	int		x;
-	int		width = RESOLUTION;
-	int		height = RESOLUTION;
-	int		bits_per_pixel = 32;
-	int 	endian = 1;
-	int		size_line = RESOLUTION * (32 / 8);
-	int		index;
-	int		**texture;
-
-	img = mlx_xpm_file_to_image(vars->mlx, texture_path, &width, &height);
-
-	img_data = mlx_get_data_addr(img, &bits_per_pixel, &size_line, &endian);
-	texture = malloc(height * sizeof(int*));
-	y = 0;
-	while(y < height)
-	{
-		texture[y] = malloc(width * sizeof(int));
-		y++;
-	}
-	y = 0;
-	while(y < height)
-	{
-		x = 0;
-		while(x < width)
-		{
-			index = (y * size_line + x * (bits_per_pixel / 8));
-			texture[y][x] = *(int*)(img_data + index);
-			x++;
-		}
-		y++;
-	}
-	return (texture);
-}
-
-void	*create_img(void *mlx, int edge, int color)
-{
-    void	*img;
-    char	*data;
-    int		bits_per_pixel;
-    int		line_length;
-    int		endian;
-    int		y;
-    int		x;
-
-    img = mlx_new_image(mlx, edge, edge);
-    data = mlx_get_data_addr(img, &bits_per_pixel, &line_length, &endian);
-
-    y = -1;
-    while (++y < 40)
-    {
-        x = -1;
-        while (++x < 40)
-        {
-            int i = (y * line_length + x * (bits_per_pixel / 8));
-            *(unsigned int*)(data + i) = color;
-        }
-    }
-    return (img);
-}
-
-void	*create_rectangle_img(void *mlx, int width, int height, int color)
-{
-    void	*img;
-    char	*data;
-    int		bits_per_pixel;
-    int		line_length;
-    int		endian;
-    int		y;
-    int		x;
-
-    img = mlx_new_image(mlx, width, height);
-    data = mlx_get_data_addr(img, &bits_per_pixel, &line_length, &endian);
-
-    y = -1;
-    while (++y < height)
-    {
-        x = -1;
-        while (++x < width)
-        {
-            int i = (y * line_length + x * (bits_per_pixel / 8));
-            *(unsigned int*)(data + i) = color;
-        }
-    }
-    return (img);
-}
 
 void	load_img(t_vars *vars)
 {
@@ -181,7 +91,10 @@ int	main(int argc, char **argv)
 	}
 	init_vars(vars);
 	if (parsing(vars, argv, argc) == 1)
+	{
+		ft_exit(vars);
 		return (1);
+	}
 	init_vars2(vars);
 	vars->mlx = mlx_init();
 	load_img(vars);

@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:19:13 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/16 16:59:20 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/01 17:09:45 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,30 +53,36 @@ int test_path(char *path)
 	path = NULL;
 	return (0);
 }
+
+char* extract_number(char *tab, int *i, int *n)
+{
+	int a = 0;
+	char *test_nb = malloc(sizeof(char) * 5);
+	while (tab[*i] >= '0' && tab[*i] <= '9')
+	{	
+		if(*n < 5) 
+			test_nb[a] = tab[*i];
+		(*i)++;
+		(*n)++;
+		a++;
+	}
+	test_nb[a] = '\0';
+	return test_nb;
+}
+
 int test_color(char *tab)
 {
 	int i;
 	int n;
+	char *test_nb;
 
 	n = 0;
 	i = 0;
 	tab = remove_space(tab);
 	while (tab[i])
 	{
-		while (tab[i] >= '0' && tab[i] <= '9')
-		{	
-			i++;
-			n++;
-		}
-		if (n > 3)
-		{
-			printf(RED"Error\n"RESET);
-			printf(YELLOW"Color is invalid\n"RESET);
-			free(tab);
-			tab = NULL;
-			return (1);
-		}
-		if ((tab[i] < '0' || tab[i] > '9') && tab[i] != ',' && tab[i] != '\0')
+		test_nb = extract_number(tab, &i, &n);
+		if (ft_atoi(test_nb) > 255 || n > 3 || ((tab[i] < '0' || tab[i] > '9') && tab[i] != ',' && tab[i] != '\0'))
 		{
 			printf(RED"Error\n"RESET);
 			printf(YELLOW"Color is invalid\n"RESET);
@@ -106,7 +112,5 @@ int	check_param_valid(t_vars *vars)
 	}
 	if (test_color(vars->texture[4]) == 1 || test_color(vars->texture[5]) == 1)
 		return (1);
-	// for (int i = 0; vars->texture[i]; i++)
-	// 	printf("%s\n", vars->texture[i]);
 	return(0);
 }

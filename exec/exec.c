@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 13:35:57 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 18:24:41 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	move(int keycode, t_vars *vars)
 		move_backward(vars);
 	else if (keycode == XK_d)
 		move_right(vars);
-	else if (keycode == XK_Escape)
-		exit(0);
 	re_draw_img(vars);
 	return (0);
 }

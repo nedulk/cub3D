@@ -3,46 +3,96 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/20 15:25:19 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 19:30:46 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	destroy_image(t_vars *vars)
+void	free_double_char(char **tab)
 {
-	if (vars->play_click)
-	{
-		mlx_destroy_image(vars->mlx, vars->play_click);
-		mlx_destroy_image(vars->mlx, vars->play_selec);
-		mlx_destroy_image(vars->mlx, vars->title);
-	}
-	//mlx_destroy_image(vars->mlx, vars->you_win);
-	
+    int	i;
+
+    if (!tab)
+        return ;
+    i = 0;
+    while (tab[i])
+    {
+        free(tab[i]);
+        tab[i] = NULL;
+        i++;
+    }
+    free(tab);
 }
 
-void	free_vars(t_vars *vars)
+void free_double_int(int **tab)
 {
 	int	i;
 
+	if (!tab)
+		return ;
 	i = 0;
-	if (vars->map)
+	while (tab[i])
 	{
-		while (vars->map[i])
-			free(vars->map[i++]);
-		free(vars->map);
+		free(tab[i]);
+		tab[i] = NULL;
+		i++;
 	}
-	if (vars->texture)
+	free(tab);
+}
+
+void	destroy_image(t_vars *vars)
+{
+	if (vars->play_click)
+		mlx_destroy_image(vars->mlx, vars->play_click);
+	if (vars->play_selec)
+		mlx_destroy_image(vars->mlx, vars->play_selec);
+	if (vars->title)
+		mlx_destroy_image(vars->mlx, vars->title);
+	if (vars->texture_N)
+		mlx_destroy_image(vars->mlx, vars->texture_N);
+	if (vars->texture_W)
+		mlx_destroy_image(vars->mlx, vars->texture_W);
+	if (vars->texture_S)
+		mlx_destroy_image(vars->mlx, vars->texture_S);
+	if (vars->texture_E)
+		mlx_destroy_image(vars->mlx, vars->texture_E);
+	if (vars->wall)
+		mlx_destroy_image(vars->mlx, vars->wall);
+	if (vars->celing)
+		mlx_destroy_image(vars->mlx, vars->celing);
+	if (vars->floor)
+		mlx_destroy_image(vars->mlx, vars->floor);
+}
+
+void	free_strcut_texture(t_vars *vars)
+{
+	int i;
+
+	i = 0;
+	if (vars->texture_data->img_data)
+		free(vars->texture_data->img_data);
+	if (vars->texture_data->texture)
 	{
-		i = 0;
-		while (i < 7)
-			free(vars->texture[i++]);
-		free(vars->texture);
+		while (vars->texture_data->texture[i])
+			free(vars->texture_data->texture[i++]);
+		free(vars->texture_data->texture);
 	}
+}
+
+void	ft_exit(t_vars *vars)
+{	
+	free_strcut_texture(vars);
 	destroy_image(vars);
+	free_double_char(vars->texture);
+	free_double_char(vars->map);
+	free_double_int(vars->texture_N);
+	free_double_int(vars->texture_S);
+	free_double_int(vars->texture_E);
+	free_double_int(vars->texture_W);
 	if (vars->mlx && vars->win)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);

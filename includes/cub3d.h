@@ -22,6 +22,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define EDGE 40
+# define FOV 60
 # define PI 3.14159265
 # define RESOLUTION 128
 
@@ -44,6 +45,17 @@
 # define Y   "\x1B[33m"
 # define RESET "\x1B[0m"
 
+typedef struct s_texture_data
+{
+    void	*img;
+    char	*img_data;
+    int		width;
+    int		height;
+    int		bits_per_pixel;
+    int 	endian;
+    int		size_line;
+    int		**texture;
+}				t_texture_data;
 
 typedef struct s_vars {
     void    *mlx;
@@ -65,6 +77,7 @@ typedef struct s_vars {
 
 ///////////PARISNG HANDLE////////////////////
 
+	int		pass;
     char **texture;
 	int **texture_N;
 	int **texture_S;
@@ -157,6 +170,7 @@ typedef struct s_vars {
 	int			bool;
 	double long	cos;
 	double long	sin;
+	t_texture_data	*texture_data;
 	uint32_t	color;
 	uint32_t	color1;
 
@@ -233,18 +247,30 @@ int		move(int keycode, t_vars *vars);
 ////// MENU AND PARSING //////
 
 int        count_c(t_vars *vars);
+void	*create_rectangle_img(void *mlx, int width, int height, int color);
+void	*create_img(void *mlx, int edge, int color);
+int **load_texture(t_vars *vars, char *texture_path);
+void fill_texture(t_texture_data *data);
+int **initialize_texture(t_texture_data *data);
+int	check_left_right(t_vars *vars, int a, int i);
+int	is_nsew(char c);
+int	check_top_bottom(t_vars *vars, int a, int i);
+int check_diagonal(t_vars *vars, int a, int i);
+void handle_texture(char *line, t_vars *vars);
+void handle_fc(char *line, t_vars *vars);
+int handle_map(char *line, t_vars *vars, int i);
+int handle_error(char *error);
+char *stock_path(char *line, int i);
+int found_map(char *line);
 void    free_map(t_vars *vars);
 int        is_square(t_vars *vars);
 void    go_in_game(t_vars *vars);
 void    event_game(t_vars *vars);
 int        mouse_click(int button, int x, int y, t_vars *vars);
 int        mouse_over(int x, int y, t_vars *vars);
-int        check_error(char *map, t_vars *vars);
-void    find_p(t_vars *vars);
-void    find_a_way(t_vars *vars, int x, int y);
 int        nb_line(int fd);
-int        check_nsew(t_vars *vars);
-void    free_vars(t_vars *vars);
+int        check_nsew(char **map);
+void    ft_exit(t_vars *vars);
 void    free_modified_map(t_vars *vars);
 void    destroy_image(t_vars *vars);
 int        close_with_x(t_vars *vars);
@@ -254,7 +280,6 @@ int        check_map(char *map, t_vars *vars);
 int        check_param(char *map, t_vars *vars);
 int   	  check_param_valid(t_vars *vars);
 char     *remove_space(char *tab);
-void     free_exit(t_vars *vars);
 int check_param(char *map, t_vars *vars);
 
 ////// GAME /////

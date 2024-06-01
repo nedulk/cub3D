@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:47:29 by kprigent          #+#    #+#             */
-/*   Updated: 2024/05/30 14:45:11 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/01 17:03:52 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,6 @@ void	event_game(t_vars *vars)
 	mlx_mouse_hook(vars->win, mouse_click, vars);
 	mlx_hook(vars->win, 17, 1L << 17, close_with_x, vars);
 	mlx_key_hook(vars->win, close_with_esc, vars);
-	
-	/////////////////////
-	// hook mouvement? //
-	/////////////////////
-	
 	mlx_loop(vars->mlx);
 }
 
@@ -72,9 +67,4 @@ void	go_in_game(t_vars *vars)
 	vars->play_selec = NULL;
 	//mlx_destroy_image(vars->mlx, vars->title);
 	exec(vars);
-	
-	//////////////////////
-	// START GAME HERE //
-	/////////////////////
-	
 }
