@@ -6,7 +6,7 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/01 11:54:13 by dboire           ###   ########.fr        #
+#    Updated: 2024/06/01 13:35:38 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ MAIN_SRCS = src_parsing/main.c \
 			exec/wasd.c\
 			exec/textures.c\
 			exec/draw_wall_direction.c\
+			exec/draw_grid.c\
 
 
 OBJTS = $(MAIN_SRCS:.c=.o)

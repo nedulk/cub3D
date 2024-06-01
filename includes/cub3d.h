@@ -195,10 +195,10 @@ void	move_left(t_vars *vars);
 int	check_px_wall(t_vars *vars, float x, float y);
 
 // Draw the texture of the wall depending on which direction the player face
-void	draw_north_wall(t_vars *vars, double distance_to_wall, int x);
-void	draw_south_wall(t_vars *vars, double distance_to_wall, int x);
-void	draw_east_wall(t_vars *vars, double distance_to_wall, int x);
-void	draw_west_wall(t_vars *vars, double distance_to_wall, int x);
+int	draw_north_wall(t_vars *vars, double distance_to_wall, int x, int j);
+int	draw_south_wall(t_vars *vars, double distance_to_wall, int x, int j);
+int	draw_east_wall(t_vars *vars, double distance_to_wall, int x, int j);
+int	draw_west_wall(t_vars *vars, double distance_to_wall, int x, int j);
 
 
 void	ft_correct_angle(t_vars *vars);
