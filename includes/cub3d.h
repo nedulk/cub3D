@@ -200,6 +200,8 @@ int	draw_south_wall(t_vars *vars, double distance_to_wall, int x, int j);
 int	draw_east_wall(t_vars *vars, double distance_to_wall, int x, int j);
 int	draw_west_wall(t_vars *vars, double distance_to_wall, int x, int j);
 
+//check where the player needs to face
+void	check_player_angle(t_vars *vars, int i, int y);
 
 void	ft_correct_angle(t_vars *vars);
 void	ft_draw_horizontal(t_vars *vars);

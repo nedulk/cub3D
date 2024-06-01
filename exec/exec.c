@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 13:35:57 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 14:30:58 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	mouse_move(int x, int y, t_vars *vars)
 
 int	exec(t_vars *vars)
 {
-	vars->angle = 0;
 	vars->y = 0;
 	vars->first_x = 0;
 	vars->last_x = 0;
