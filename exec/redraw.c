@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redraw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:44 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 11:39:41 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 20:28:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	redraw_player(t_vars *vars)
 
 void	redraw_tile_and_floor(t_vars *vars, int i, int y)
 {
-	if (vars->map[i][y] == '1')
+	if (vars->map[i][y] == '1' || vars->map[i][y] == '2')
 		draw_wall_tile(vars);
 	else if (vars->map[i][y] == '0')
 	{

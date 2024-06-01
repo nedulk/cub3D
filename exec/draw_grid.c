@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_grid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:35:32 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 14:42:52 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 20:28:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_player_angle(t_vars *vars, int i, int y)
 
 void	loop_draw_grid(t_vars *vars, int i, int y)
 {
-	if (vars->map[i][y] == '1')
+	if (vars->map[i][y] == '1' || vars->map[i][y] == '2')
 		draw_wall_tile(vars);
 	else if (vars->map[i][y] == '0')
 	{

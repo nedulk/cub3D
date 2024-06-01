@@ -189,6 +189,9 @@ typedef struct s_point
 
 }	t_point;
 
+//Self-explanatory
+void	open_door(t_vars *vars);
+
 // Check diagonals
 int	check_so(t_vars *vars, double i, double y);
 int	check_se(t_vars *vars, double i, double y);

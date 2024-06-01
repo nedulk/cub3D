@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/01 16:55:05 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/01 20:50:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,21 @@ void	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 		my_mlx_pixel_put(vars, x, j, vars->celing_color);
 		j--;
 	}
+}
+void	open_door(t_vars *vars)
+{
+	double distance;
+
+	vars->angle -= FOV / 2;
+	distance = 0;
+	vars->ray_x0 = vars->play_x;
+	vars->ray_y0 = vars->play_y;
+	rotation_matrix(vars);
+	ft_draw_line_bresenham(vars);
+	distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
+		- vars->play_y, 2));
+	if(distance <= 40)
+		vars->map[vars->y_map][vars->x_map] = '0';
+	vars->angle += FOV / 2;
+	printf("distance : %f\n", distance);
 }

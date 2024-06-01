@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 19:37:24 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/01 20:35:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	move(int keycode, t_vars *vars)
 		move_backward(vars);
 	else if (keycode == XK_d)
 		move_right(vars);
+	else if (keycode == XK_e)
+		open_door(vars);
 	re_draw_img(vars);
 	return (0);
 }
