@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:19:13 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/01 17:09:45 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/02 13:55:23 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char* extract_number(char *tab, int *i, int *n)
 		a++;
 	}
 	test_nb[a] = '\0';
-	return test_nb;
+	return (test_nb);
 }
 
 int test_color(char *tab)
@@ -86,6 +86,7 @@ int test_color(char *tab)
 		{
 			printf(RED"Error\n"RESET);
 			printf(YELLOW"Color is invalid\n"RESET);
+			free(test_nb);
 			free(tab);
 			tab = NULL;
 			return (1);
@@ -93,6 +94,7 @@ int test_color(char *tab)
 		if (tab[i] != '\0')
 			i++;
 		n = 0;
+		free(test_nb);
 	}
 	free(tab);
 	tab = NULL;

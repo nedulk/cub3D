@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 17:18:13 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/01 19:30:13 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:16:11 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,20 @@ void fill_texture(t_texture_data *data)
 
 int **load_texture(t_vars *vars, char *texture_path)
 {
-    t_texture_data	*data;
+    t_texture_data	data;
     
-    data = malloc(sizeof(t_texture_data));
-    data->width = RESOLUTION;
-    data->height = RESOLUTION;
-    data->bits_per_pixel = 32;
-    data->endian = 1;
-    data->size_line = RESOLUTION * (32 / 8);
+    data.width = RESOLUTION;
+    data.height = RESOLUTION;
+    data.bits_per_pixel = 32;
+    data.endian = 1;
+    data.size_line = RESOLUTION * (32 / 8);
 
-    data->img = mlx_xpm_file_to_image(vars->mlx, texture_path, &data->width, &data->height);
-    data->img_data = mlx_get_data_addr(data->img, &data->bits_per_pixel, &data->size_line, &data->endian);
-    data->texture = initialize_texture(data);
-    fill_texture(data);
-    return (data->texture);
+    data.img = mlx_xpm_file_to_image(vars->mlx, texture_path, &data.width, &data.height);
+    data.img_data = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.size_line, &data.endian);
+    data.texture = initialize_texture(&data);
+    fill_texture(&data);
+    mlx_destroy_image(vars->mlx, data.img);
+    return (data.texture);
 }
 
 void	*create_img(void *mlx, int edge, int color)

@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/01 19:30:46 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:11:38 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void free_double_int(int **tab)
 	if (!tab)
 		return ;
 	i = 0;
-	while (tab[i])
+	while (i < RESOLUTION)
 	{
 		free(tab[i]);
 		tab[i] = NULL;
@@ -52,14 +52,6 @@ void	destroy_image(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->play_selec);
 	if (vars->title)
 		mlx_destroy_image(vars->mlx, vars->title);
-	if (vars->texture_N)
-		mlx_destroy_image(vars->mlx, vars->texture_N);
-	if (vars->texture_W)
-		mlx_destroy_image(vars->mlx, vars->texture_W);
-	if (vars->texture_S)
-		mlx_destroy_image(vars->mlx, vars->texture_S);
-	if (vars->texture_E)
-		mlx_destroy_image(vars->mlx, vars->texture_E);
 	if (vars->wall)
 		mlx_destroy_image(vars->mlx, vars->wall);
 	if (vars->celing)
@@ -68,24 +60,9 @@ void	destroy_image(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->floor);
 }
 
-void	free_strcut_texture(t_vars *vars)
-{
-	int i;
-
-	i = 0;
-	if (vars->texture_data->img_data)
-		free(vars->texture_data->img_data);
-	if (vars->texture_data->texture)
-	{
-		while (vars->texture_data->texture[i])
-			free(vars->texture_data->texture[i++]);
-		free(vars->texture_data->texture);
-	}
-}
 
 void	ft_exit(t_vars *vars)
 {	
-	free_strcut_texture(vars);
 	destroy_image(vars);
 	free_double_char(vars->texture);
 	free_double_char(vars->map);

@@ -6,7 +6,7 @@
 #    By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/01 19:37:14 by kprigent         ###   ########.fr        #
+#    Updated: 2024/06/02 14:24:58 by kprigent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ MAIN_SRCS = src_parsing/main.c \
 			libft/ft_putstrp.c \
 			libft/ft_putaddr.c \
 			libft/ft_itoa.c \
+			libft/ft_calloc.c \
+			libft/ft_bzero.c \
 			libft/ft_atoi.c \
 			libft/ft_split.c \
 			libft/ft_strlen.c \

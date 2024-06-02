@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/01 19:20:55 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/02 14:24:07 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	load_img(t_vars *vars)
 			"./img/play_selec.xpm", &vars->width, &vars->height);
 	vars->title = mlx_xpm_file_to_image(vars->mlx,
 			"./img/title.xpm", &vars->width, &vars->height);
-	vars->you_win = mlx_xpm_file_to_image(vars->mlx,
-			"./img/win.xpm", &vars->width, &vars->height);
 	
 	///GAME TEXTURES
 	vars->texture_N = load_texture(vars, "./img/texture_N.xpm");
@@ -83,7 +81,7 @@ int	main(int argc, char **argv)
 	(void)argv;
 	t_vars	*vars;
 	
-	vars = malloc(sizeof(t_vars));
+	vars = ft_calloc(1, sizeof(t_vars));
 	if (vars == NULL)
 	{
 		printf("Error\nMalloc failure\n");
