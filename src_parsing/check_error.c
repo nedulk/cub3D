@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:43:32 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/01 20:29:32 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/02 15:52:20 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int check_nsew(char **map)
 		j = 0;
 		while(map[i][j])
 		{
-			if (is_nsew(map[i][j]) == 1)
+			if (is_nsew(map[i][j]) == 1 && map[i][j] != 'D')
 				good += 1;
 			j++;
 		}

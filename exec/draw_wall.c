@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/01 20:50:55 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/02 16:57:43 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,21 @@ void	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 		j = draw_south_wall(vars, distance_to_wall, x, j);
 	else if (vars->direction == WEST)
 		j = draw_west_wall(vars, distance_to_wall, x, j);
-	while (j <= HEIGHT)
-	{
-		my_mlx_pixel_put(vars, x, j, vars->floor_color);
-		j++;
-	}
-	j = vars->draw_start;
-	while (j >= 0)
-	{
-		my_mlx_pixel_put(vars, x, j, vars->celing_color);
-		j--;
-	}
+	else if (vars->direction == DOOR)
+		j = draw_door(vars, distance_to_wall, x, j);
+	// else if (vars->direction == TV)
+	// 	j = draw_tv(vars, distance_to_wall, x, j);
+	// while (j <= HEIGHT)
+	// {
+	// 	my_mlx_pixel_put(vars, x, j, vars->floor_color);
+	// 	j++;
+	// }
+	// j = vars->draw_start;
+	// while (j >= 0)
+	// {
+	// 	my_mlx_pixel_put(vars, x, j, vars->celing_color);
+	// 	j--;
+	// }
 }
 void	open_door(t_vars *vars)
 {
@@ -64,8 +68,14 @@ void	open_door(t_vars *vars)
 	ft_draw_line_bresenham(vars);
 	distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
 		- vars->play_y, 2));
-	if(distance <= 40)
-		vars->map[vars->y_map][vars->x_map] = '0';
+	if(distance <= 40 && vars->map[vars->y_map][vars->x_map] == 'D')
+	{
+		vars->map[vars->y_map][vars->x_map] = 'O';
+		printf("%c\n", vars->map[vars->y_map][vars->x_map]);
+	}
+	else if(distance <= 40 && vars->map[vars->y_map][vars->x_map] == 'O')
+	{
+		vars->map[vars->y_map][vars->x_map] = 'D';
+	}
 	vars->angle += FOV / 2;
-	printf("distance : %f\n", distance);
 }

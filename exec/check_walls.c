@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:28:19 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/01 11:34:54 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/02 16:04:57 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_walls(t_vars *vars)
 	y = 0;
 	i = calculate_play_i(vars, i);
 	y = calculate_play_y(vars, y);
-	if (vars->map[vars->y_map][vars->x_map] == '1')
+	if (vars->map[vars->y_map][vars->x_map] == '1' || vars->map[vars->y_map][vars->x_map] == 'D')
 		return (1);
 	return (0);
 }
@@ -39,6 +39,8 @@ int	check_walls_ray(t_vars *vars)
 	y = 0;
 	i = calculate_i(vars, i);
 	y = calculate_y(vars, y);
+	if (vars->map[vars->y_map][vars->x_map] == 'D')
+		return (DOOR);
 	if (vars->map[vars->y_map][vars->x_map] == '1')
 	{
 		if (vars->play_x < vars->wall_hit_x && check_px_wall(vars,
@@ -86,7 +88,7 @@ int	check_walls_path(t_vars *vars)
 	i = calculate_i(vars, i);
 	y = calculate_y(vars, y);
 	check_diagonals_path(vars, i, y);
-	if (vars->map[vars->y_map][vars->x_map] == '1' || vars->diagonals == 1)
+	if (vars->map[vars->y_map][vars->x_map] == 'D' || vars->map[vars->y_map][vars->x_map] == '1' || vars->diagonals == 1)
 	{
 		vars->wall_hit_x = vars->ray_x;
 		vars->wall_hit_y = vars->ray_y;

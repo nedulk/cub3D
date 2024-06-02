@@ -22,7 +22,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define EDGE 40
-# define FOV 60
+# define FOV 90
 # define PI 3.14159265
 # define RESOLUTION 128
 
@@ -30,6 +30,7 @@
 # define SOUTH 1
 # define EAST 2
 # define WEST 3
+# define DOOR 4
 
 # define RESET   "\x1B[0m"
 # define RED     "\x1B[31m"
@@ -83,6 +84,7 @@ typedef struct s_vars {
 	int **texture_S;
 	int **texture_E;
 	int **texture_W;
+	int **texture_D;
 	double	pos_x;
 	double	pos_y;
     int        line_map;
@@ -220,6 +222,7 @@ int	draw_north_wall(t_vars *vars, double distance_to_wall, int x, int j);
 int	draw_south_wall(t_vars *vars, double distance_to_wall, int x, int j);
 int	draw_east_wall(t_vars *vars, double distance_to_wall, int x, int j);
 int	draw_west_wall(t_vars *vars, double distance_to_wall, int x, int j);
+int	draw_door(t_vars *vars, double distance_to_wall, int x, int j);
 
 //check where the player needs to face
 void	check_player_angle(t_vars *vars, int i, int y);
@@ -240,6 +243,7 @@ int		exec(t_vars *vars);
 void	draw_player(t_vars *vars);
 void	draw_floor_tile(t_vars *vars);
 void	draw_wall_tile(t_vars *vars);
+void draw_door_tile(t_vars *vars);
 void 	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall);
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 void	draw_rays(t_vars *vars);
