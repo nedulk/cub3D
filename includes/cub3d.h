@@ -136,6 +136,10 @@ typedef struct s_vars {
 	double wall_hit_y;
 
 ////////////////////
+	int 	  moving_forward;
+	int 	  moving_backward;
+	int 	  moving_left;
+	int 	  moving_right;
 	float rays_number;
 	float 	  draw;
     float        play_x;

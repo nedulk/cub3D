@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/03 18:18:09 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:52:20 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,20 @@ int	move(int keycode, t_vars *vars)
 {
 	if (keycode == XK_Left)
 		vars->angle -= 2;
-	if (keycode == XK_Right)
+	else if (keycode == XK_Right)
 		vars->angle += 2;
-	if (keycode == XK_w)
-		move_forward(vars);
+	else if (keycode == XK_w)
+		vars->moving_forward = 1;
 	else if (keycode == XK_a)
-		move_left(vars);
+		vars->moving_left = 1;
 	else if (keycode == XK_s)
-		move_backward(vars);
+		vars->moving_backward = 1;
 	else if (keycode == XK_d)
-		move_right(vars);
+		vars->moving_right = 1;
 	else if (keycode == XK_e)
 		open_door(vars);
-	re_draw_img(vars);
-	
+	else if (keycode == XK_Escape)
+		ft_exit(vars);
 	return (0);
 }
 
@@ -79,8 +79,40 @@ int	mouse_move(int x, int y, t_vars *vars)
 	return (0);
 }
 
+int	stop_move(int keycode, t_vars *vars)
+{
+	if (keycode == XK_w)
+		vars->moving_forward = 0;
+	else if (keycode == XK_a)
+		vars->moving_left = 0;
+	else if (keycode == XK_s)
+		vars->moving_backward = 0;
+	else if (keycode == XK_d)
+		vars->moving_right = 0;
+	return (0);
+}
+
+int	update_player_position(t_vars *vars)
+{
+	if (vars->moving_forward)
+		move_forward(vars);
+	if (vars->moving_backward)
+		move_backward(vars);
+	if (vars->moving_left)
+		move_left(vars);
+	if (vars->moving_right)
+		move_right(vars);
+	re_draw_img(vars);
+	return (0);
+}
+
 int	exec(t_vars *vars)
 {
+	vars->moving_forward = 0;
+    vars->moving_left = 0;
+    vars->moving_backward = 0;
+    vars->moving_right = 0;
+	
 	vars->y = 0;
 	vars->first_x = 0;
 	vars->last_x = 0;
@@ -96,8 +128,10 @@ int	exec(t_vars *vars)
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	draw_grid(vars);
-	mlx_hook(vars->win, KeyPress, KeyPressMask, move, vars);
-	mlx_hook(vars->win, MotionNotify, PointerMotionMask, mouse_move, vars);
+    mlx_hook(vars->win, KeyPress, KeyPressMask, move, vars);
+    mlx_hook(vars->win, KeyRelease, KeyReleaseMask, stop_move, vars);
+    mlx_hook(vars->win, MotionNotify, PointerMotionMask, mouse_move, vars);
+    mlx_loop_hook(vars->mlx, update_player_position, vars);
 	mlx_loop(vars->mlx);
 	return (0);
 }
