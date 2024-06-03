@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/03 13:44:47 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 18:18:09 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ void	re_draw_img(t_vars *vars)
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 			&vars->line_length, &vars->endian);
-	// mlx_clear_window(vars->mlx, vars->win);
 	redraw_grid(vars);
-	// mlx_put_image_to_window(vars->mlx, vars->win ,vars->celing, 0, 0);
 	redraw_grid_wo_p(vars);
 	draw_sprites(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/02 15:52:58 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 18:19:31 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,41 @@ void	define_fov(t_vars *vars)
 	vars->ray_y0 = vars->play_y;
 }
 
+void draw_celing(t_vars *vars)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < WIDTH)
+	{
+		j = 0;
+		while (j < HEIGHT / 2)
+		{
+			my_mlx_pixel_put(vars, i, j, vars->celing_color);
+			j++;
+		}
+		i++;
+	}
+}
+
+void draw_floor(t_vars *vars)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < WIDTH)
+	{
+		j = HEIGHT / 2;
+		while (j < HEIGHT)
+		{
+			my_mlx_pixel_put(vars, i, j, vars->floor_color);
+			j++;
+		}
+		i++;
+	}
+}
 void	draw_rays(t_vars *vars)
 {
 	double	distance;
@@ -76,6 +111,8 @@ void	draw_rays(t_vars *vars)
 	distance = 0;
 	define_fov(vars);
 	ft_correct_angle(vars);
+	draw_celing(vars);
+	draw_floor(vars);
 	while (vars->draw < vars->rays_number)
 	{
 		rotation_matrix(vars);

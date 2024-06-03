@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/02 16:57:43 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 18:20:17 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,6 @@ void	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 		j = draw_west_wall(vars, distance_to_wall, x, j);
 	else if (vars->direction == DOOR)
 		j = draw_door(vars, distance_to_wall, x, j);
-	// else if (vars->direction == TV)
-	// 	j = draw_tv(vars, distance_to_wall, x, j);
-	// while (j <= HEIGHT)
-	// {
-	// 	my_mlx_pixel_put(vars, x, j, vars->floor_color);
-	// 	j++;
-	// }
-	// j = vars->draw_start;
-	// while (j >= 0)
-	// {
-	// 	my_mlx_pixel_put(vars, x, j, vars->celing_color);
-	// 	j--;
-	// }
 }
 void	open_door(t_vars *vars)
 {
