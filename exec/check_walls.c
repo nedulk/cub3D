@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:28:19 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/03 18:56:47 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 23:21:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,12 @@ int	check_walls_path(t_vars *vars)
 		vars->wall_hit_x = vars->ray_x;
 		vars->wall_hit_y = vars->ray_y;
 		return (1);
+	}
+	else if(vars->map[vars->y_map][vars->x_map] == 'O')
+	{
+		
+		vars->doorx = vars->x_map;
+		vars->doory = vars->y_map;
 	}
 	return (0);
 }
