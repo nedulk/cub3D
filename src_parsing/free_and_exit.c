@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/03 16:26:28 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 17:47:44 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,14 @@ void	destroy_image(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->celing);
 	if (vars->floor)
 		mlx_destroy_image(vars->mlx, vars->floor);
+	if (vars->loading)
+		mlx_destroy_image(vars->mlx, vars->loading);
+	if (vars->loading_1)
+		mlx_destroy_image(vars->mlx, vars->loading_1);
+	if (vars->loading_2)
+		mlx_destroy_image(vars->mlx, vars->loading_2);
+	if (vars->loading_3)
+		mlx_destroy_image(vars->mlx, vars->loading_3);
 }
 
 
