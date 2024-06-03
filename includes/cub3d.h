@@ -24,7 +24,7 @@
 # define EDGE 40
 # define FOV 90
 # define PI 3.14159265
-# define RESOLUTION 128
+# define RESOLUTION 1024
 # define SPRITE_HEIGHT 600
 # define SPRITE_WIDTH 1421
 # define TRANSPARENT_COLOR 0x00000000
@@ -261,7 +261,7 @@ int		exec(t_vars *vars);
 void	draw_player(t_vars *vars);
 void	draw_floor_tile(t_vars *vars);
 void	draw_wall_tile(t_vars *vars);
-void draw_door_tile(t_vars *vars);
+void draw_door_tile(t_vars *vars, int color);
 void 	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall);
 void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 void	draw_rays(t_vars *vars);

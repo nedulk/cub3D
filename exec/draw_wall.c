@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/03 18:47:55 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 22:28:28 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	open_door(t_vars *vars)
 	if(distance <= 40 && vars->map[vars->y_map][vars->x_map] == 'D')
 	{
 		vars->map[vars->y_map][vars->x_map] = 'O';
-		printf("%c\n", vars->map[vars->y_map][vars->x_map]);
 	}
 	else if(distance <= 40 && vars->map[vars->y_map][vars->x_map] == 'O')
 	{

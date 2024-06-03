@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:41:55 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/02 16:09:55 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 21:44:11 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,14 @@ void	draw_floor_tile(t_vars *vars)
 	}
 }
 
-void draw_door_tile(t_vars *vars)
+void draw_door_tile(t_vars *vars, int state)
 {
+	int color;
+	
+	if (state == 1)
+		color = 0x00FFA500;
+	else if (state == 0)
+		color = 0x000FF000;	
 	vars->x0 = vars->x;
 	vars->x1 = vars->x + EDGE;
 	vars->y = vars->y0;
@@ -48,7 +54,7 @@ void draw_door_tile(t_vars *vars)
 		vars->x = vars->x0;
 		while (vars->x < vars->x1)
 		{
-			my_mlx_pixel_put(vars, vars->x, vars->y, 0x0000FF00);
+			my_mlx_pixel_put(vars, vars->x, vars->y, color);
 			vars->x++;
 		}
 		vars->y++;
