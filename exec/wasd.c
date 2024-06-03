@@ -46,7 +46,7 @@ void	move_backward(t_vars *vars)
 
 void	move_right(t_vars *vars)
 {
-	vars->angle += FOV;
+	vars->angle += FOV - (FOV / 3);
 	vars->ray_x0 = vars->play_x;
 	vars->ray_y0 = vars->play_y;
 	rotation_matrix(vars);
@@ -57,12 +57,12 @@ void	move_right(t_vars *vars)
 		vars->play_x -= vars->rotate_x1;
 		vars->play_y -= vars->rotate_y1;
 	}
-	vars->angle -= FOV;
+	vars->angle -= FOV - (FOV / 3);
 }
 
 void	move_left(t_vars *vars)
 {
-	vars->angle -= FOV * 2;
+	vars->angle -= FOV + (FOV / 3);
 	vars->ray_x0 = vars->play_x;
 	vars->ray_y0 = vars->play_y;
 	rotation_matrix(vars);
@@ -73,5 +73,5 @@ void	move_left(t_vars *vars)
 		vars->play_x -= vars->rotate_x1;
 		vars->play_y -= vars->rotate_y1;
 	}
-	vars->angle += FOV * 2;
+	vars->angle += FOV + (FOV / 3);
 }
