@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/03 23:21:51 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/03 23:39:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	open_door(t_vars *vars)
 	ft_draw_line_bresenham(vars);
 	distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
 		- vars->play_y, 2));
-	if(distance <= 40 && vars->map[vars->y_map][vars->x_map] == 'D')
+	if(distance <= 40 && vars->map[vars->y_map][vars->x_map] == 'D' && vars->doorx == 0 && vars->doory == 0)
 	{
 		vars->map[vars->y_map][vars->x_map] = 'O';
 		printf("%c\n", vars->map[vars->y_map][vars->x_map]);
