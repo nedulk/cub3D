@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/03 19:52:20 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:01:21 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,9 @@ int	move(int keycode, t_vars *vars)
 
 int	mouse_move(int x, int y, t_vars *vars)
 {
-	int	delta;
-
 	(void)y;
-	if (vars->first_x < x - 15 || vars->first_x > x + 15)
-	{
-		vars->last_x = vars->first_x;
-		vars->first_x = x;
-		delta = x;
-		if (delta > 0)
-			vars->angle = x / 2;
-		else if (delta < 0)
-		{
-			x = -x;
-			vars->angle = x / 2;
-		}
-		re_draw_img(vars);
-	}
+	vars->last_x = vars->first_x;
+	vars->first_x = x;
 	return (0);
 }
 
@@ -94,6 +80,16 @@ int	stop_move(int keycode, t_vars *vars)
 
 int	update_player_position(t_vars *vars)
 {
+	int	delta;
+
+	delta = vars->first_x - vars->last_x;
+	if (delta > 0)
+		vars->angle += delta / 2;
+	else if (delta < 0)
+	{
+		delta = -delta;
+		vars->angle -= delta / 2;
+	}
 	if (vars->moving_forward)
 		move_forward(vars);
 	if (vars->moving_backward)
@@ -112,10 +108,10 @@ int	exec(t_vars *vars)
     vars->moving_left = 0;
     vars->moving_backward = 0;
     vars->moving_right = 0;
-	
-	vars->y = 0;
 	vars->first_x = 0;
 	vars->last_x = 0;
+	
+	vars->y = 0;
 	vars->y0 = vars->y;
 	vars->x_map = 0;
 	vars->y_map = 0;
