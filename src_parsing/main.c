@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/02 15:54:27 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:53:44 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,15 @@ void	load_img(t_vars *vars)
 	vars->texture_S = load_texture(vars, "./img/texture_N.xpm");
 	vars->texture_E = load_texture(vars, "./img/texture_E.xpm");
 	vars->texture_D = load_texture(vars, "./img/texture_D.xpm");
-
+	
+	///SPRITES
+	vars->sprite = ft_calloc(5, sizeof(int **));
+	vars->sprite[0] = load_texture(vars, "./img/sprite_1.xpm");
+	vars->sprite[1] = load_texture(vars, "./img/sprite_2.xpm");
+	vars->sprite[2] = load_texture(vars, "./img/sprite_3.xpm");
+	vars->sprite[3] = load_texture(vars, "./img/sprite_4.xpm");
+	vars->sprite[4] = load_texture(vars, "./img/sprite_5.xpm");
+	
 	///MINIMAP TEXTURES
 	vars->wall = create_img(vars->mlx, EDGE, 0x808080);
 	

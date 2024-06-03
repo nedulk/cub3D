@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/02 16:12:11 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:44:47 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	re_draw_img(t_vars *vars)
 	redraw_grid(vars);
 	// mlx_put_image_to_window(vars->mlx, vars->win ,vars->celing, 0, 0);
 	redraw_grid_wo_p(vars);
+	draw_sprites(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 }
 
@@ -54,6 +55,7 @@ int	move(int keycode, t_vars *vars)
 	else if (keycode == XK_e)
 		open_door(vars);
 	re_draw_img(vars);
+	
 	return (0);
 }
 

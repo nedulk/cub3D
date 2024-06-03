@@ -6,7 +6,7 @@
 #    By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/02 14:24:58 by kprigent         ###   ########.fr        #
+#    Updated: 2024/06/03 13:56:07 by kprigent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ MAIN_SRCS = src_parsing/main.c \
 			libft/ft_strncmp.c \
 			exec/exec.c\
 			exec/draw.c\
+			exec/sprites_handle.c\
 			exec/redraw.c\
 			exec/bresenham.c\
 			exec/rays.c\

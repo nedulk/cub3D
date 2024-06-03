@@ -25,12 +25,16 @@
 # define FOV 90
 # define PI 3.14159265
 # define RESOLUTION 128
+# define SPRITE_HEIGHT 1024
+# define SPRITE_WIDTH 2024
+# define TRANSPARENT_COLOR 0x00000000
 
 # define NORTH 0
 # define SOUTH 1
 # define EAST 2
 # define WEST 3
 # define DOOR 4
+# define TV 5
 
 # define RESET   "\x1B[0m"
 # define RED     "\x1B[31m"
@@ -85,6 +89,7 @@ typedef struct s_vars {
 	int **texture_E;
 	int **texture_W;
 	int **texture_D;
+	int ***sprite;
 	double	pos_x;
 	double	pos_y;
     int        line_map;
@@ -223,6 +228,8 @@ int	draw_south_wall(t_vars *vars, double distance_to_wall, int x, int j);
 int	draw_east_wall(t_vars *vars, double distance_to_wall, int x, int j);
 int	draw_west_wall(t_vars *vars, double distance_to_wall, int x, int j);
 int	draw_door(t_vars *vars, double distance_to_wall, int x, int j);
+int	draw_tv(t_vars *vars, double distance_to_wall, int x, int j);
+void draw_sprites(t_vars *vars);
 
 //check where the player needs to face
 void	check_player_angle(t_vars *vars, int i, int y);
