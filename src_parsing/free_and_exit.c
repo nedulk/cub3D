@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/02 14:11:38 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:26:28 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,30 @@ void free_double_int(int **tab)
 	free(tab);
 }
 
+void free_triple_int(int ***tab)
+{
+	int	i;
+	int	j;
+
+	if (!tab)
+		return ;
+	i = 0;
+	while (i < 5)
+	{
+		j = 0;
+		while (j < SPRITE_HEIGHT)
+		{
+			free(tab[i][j]);
+			tab[i][j] = NULL;
+			j++;
+		}
+		free(tab[i]);
+		tab[i] = NULL;
+		i++;
+	}
+	free(tab);
+}
+
 void	destroy_image(t_vars *vars)
 {
 	if (vars->play_click)
@@ -70,6 +94,8 @@ void	ft_exit(t_vars *vars)
 	free_double_int(vars->texture_S);
 	free_double_int(vars->texture_E);
 	free_double_int(vars->texture_W);
+	free_double_int(vars->texture_D);
+	free_triple_int(vars->sprite);
 	if (vars->mlx && vars->win)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);

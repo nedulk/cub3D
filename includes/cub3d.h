@@ -25,8 +25,8 @@
 # define FOV 90
 # define PI 3.14159265
 # define RESOLUTION 128
-# define SPRITE_HEIGHT 1024
-# define SPRITE_WIDTH 2024
+# define SPRITE_HEIGHT 600
+# define SPRITE_WIDTH 1421
 # define TRANSPARENT_COLOR 0x00000000
 
 # define NORTH 0

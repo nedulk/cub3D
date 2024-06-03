@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:45:02 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/03 15:57:22 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:39:31 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void draw_sprites(t_vars *vars)
 	static int i = 0;
 	int x;
 	int y;
-	int offset_x = 100;
-	int offset_y = 100;
+	int offset_x = 300;
+	int offset_y = 700;
 	
 	y = 0;
 	while (y < SPRITE_HEIGHT)
