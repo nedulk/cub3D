@@ -29,6 +29,9 @@
 # define SPRITE_WIDTH 1421
 # define TRANSPARENT_COLOR 0x00000000
 
+# define LOAD_X 700
+# define LOAD_Y 500
+
 # define NORTH 0
 # define SOUTH 1
 # define EAST 2
@@ -68,6 +71,10 @@ typedef struct s_vars {
 
 ////////////IMG MENUE HANDLE////////////////    
 
+	void	*loading;
+	void	*loading_1;
+	void	*loading_2;
+	void	*loading_3;
 	void   *wall;
 	void    *floor;
 	void    *celing;
