@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/03 18:19:31 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 18:41:44 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_correct_angle(t_vars *vars)
 void	define_fov(t_vars *vars)
 {
 	vars->draw = 0;
-	vars->rays_number = 250;
+	vars->rays_number = 1920;
 	vars->angle_step = FOV / vars->rays_number;
 	vars->angle -= FOV;
 	vars->ray_x0 = vars->play_x;

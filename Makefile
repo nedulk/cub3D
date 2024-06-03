@@ -6,7 +6,7 @@
 #    By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/03 13:56:07 by kprigent         ###   ########.fr        #
+#    Updated: 2024/06/03 18:50:42 by kprigent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,10 +59,10 @@ MAIN_SRCS = src_parsing/main.c \
 OBJTS = $(MAIN_SRCS:.c=.o)
 
 HEADER = -I includes
-CFLAGS = -Wall -Wextra -Werror -I ./mlx/ -g
+CFLAGS = -Wall -Wextra -Werror -I ./mlx/ -g -O3 -fPIE
 
 $(NAME): $(OBJTS)
-	cc -o $(NAME) $(OBJTS) $(CFLAGS) $(HEADER) -L ./mlx -lmlx -lXext -lX11 -lm -lbsd
+	gcc -o $(NAME) $(OBJTS) $(CFLAGS) $(HEADER) -L ./mlx -lmlx -lXext -lX11 -lm -lbsd -pie
 
 RM	=	rm -f
 
