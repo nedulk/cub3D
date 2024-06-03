@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/03 18:41:44 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/03 21:57:57 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,10 @@ void	rotation_matrix(t_vars *vars)
 	radian = 0;
 	cos_a = 0;
 	sin_a = 0;
-	dx = vars->ray_x1 - vars->ray_x0;
-	dy = vars->ray_y1 - vars->ray_y0;
 	radian = vars->angle * (PI / 180);
 	cos_a = cos(radian);
 	sin_a = sin(radian);
-	dx = 1;
+	dx = SPEED;
 	dy = 0;
 	vars->rotate_x1 = (dx * cos_a) - (dy * sin_a);
 	vars->rotate_y1 = (dx * sin_a) + (dy * cos_a);
