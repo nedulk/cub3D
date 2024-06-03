@@ -21,6 +21,9 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define SPEED 5
+# define RAYS 100
+# define EDGE_GRID 20
 # define EDGE 40
 # define FOV 90
 # define PI 3.14159265
