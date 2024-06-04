@@ -94,11 +94,11 @@ int	check_walls_path(t_vars *vars)
 		vars->wall_hit_y = vars->ray_y;
 		return (1);
 	}
-	else if(vars->map[vars->y_map][vars->x_map] == 'O')
+	else if(vars->map[vars->y_map][vars->x_map] == 'O' && vars->door == 1)
 	{
-		
 		vars->doorx = vars->x_map;
 		vars->doory = vars->y_map;
+		return(1);
 	}
 	return (0);
 }

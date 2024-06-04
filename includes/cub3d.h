@@ -192,6 +192,7 @@ typedef struct s_vars {
 	int			last_po;
 	int			last_j;
 	int			last_xwall;
+	int			door;
 	int			doorx;
 	int			doory;
 	int			bool;

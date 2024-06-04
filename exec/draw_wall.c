@@ -52,19 +52,24 @@ void	open_door(t_vars *vars)
 	vars->ray_x0 = vars->play_x;
 	vars->ray_y0 = vars->play_y;
 	rotation_matrix(vars);
+	vars->door = 1;
 	ft_draw_line_bresenham(vars);
 	distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
 		- vars->play_y, 2));
 	if(distance <= 40 && vars->map[vars->y_map][vars->x_map] == 'D' && vars->doorx == 0 && vars->doory == 0)
 	{
+		if (vars->play_x == vars->x_map && vars->play_y == vars->y_map)
+			return ;
 		vars->map[vars->y_map][vars->x_map] = 'O';
 		printf("%c\n", vars->map[vars->y_map][vars->x_map]);
 	}
-	else if(vars->doorx > 0 && vars->doory > 0)
+	else if(distance != 0 && distance <= 40 && vars->map[vars->y_map][vars->x_map] == 'O')
 	{
+		printf("distance :%f\n", distance);
 		vars->map[vars->doory][vars->doorx] = 'D';
 		vars->doorx = 0;
 		vars->doory = 0;
 	}
+	vars->door = 0;
 	vars->angle += FOV / 2;
 }
