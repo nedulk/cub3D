@@ -22,7 +22,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define SPEED 5
-# define RAYS 100
+# define RAYS 1
 # define EDGE 40
 # define FOV 90
 # define PI 3.14159265
@@ -143,6 +143,7 @@ typedef struct s_vars {
 	int 	  moving_backward;
 	int 	  moving_left;
 	int 	  moving_right;
+	int 	  map_press;
 	float rays_number;
 	float 	  draw;
     float        play_x;

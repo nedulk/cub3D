@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/04 16:12:08 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 16:42:15 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,20 @@ void	define_fov(t_vars *vars)
 void draw_celing(t_vars *vars)
 {
 	int i;
-	// int j;
+	int j;
 
 	i = 0;
-	draw_sky_img(vars);
-	// while (i < WIDTH)
-	// {
-	// 	j = 0;
-	// 	while (j < HEIGHT / 2)
-	// 	{
-	// 		my_mlx_pixel_put(vars, i, j, vars->celing_color);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
+	// draw_sky_img(vars);
+	while (i < WIDTH)
+	{
+		j = 0;
+		while (j < HEIGHT / 2)
+		{
+			my_mlx_pixel_put(vars, i, j, vars->celing_color);
+			j++;
+		}
+		i++;
+	}
 }
 
 void draw_floor(t_vars *vars)

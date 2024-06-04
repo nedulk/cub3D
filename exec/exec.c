@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/04 13:54:21 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 16:38:55 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	move(int keycode, t_vars *vars)
 		vars->moving_right = 1;
 	else if (keycode == XK_e)
 		open_door(vars);
+	else if (keycode == XK_m)
+		vars->map_press = 1;
 	else if (keycode == XK_Escape)
 		ft_exit(vars);
 	return (0);
@@ -75,6 +77,8 @@ int	stop_move(int keycode, t_vars *vars)
 		vars->moving_backward = 0;
 	else if (keycode == XK_d)
 		vars->moving_right = 0;
+	else if (keycode == XK_m)
+		vars->map_press = 0;
 	return (0);
 }
 

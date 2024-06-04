@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:41:55 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/03 21:44:11 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 16:43:41 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ void	draw_floor_tile(t_vars *vars)
 	vars->y1 = vars->y + EDGE;
 	while (vars->x < vars->x1)
 	{
-		my_mlx_pixel_put(vars, vars->x, vars->y0, 0x00FFFFFF);
+		if (vars->map_press == 1)
+			my_mlx_pixel_put(vars, vars->x, vars->y0, 0x00FFFFFF);
 		vars->x++;
 	}
-	while (vars->y < vars->y1)
+	while (vars->y < vars->y1 && vars->map_press == 1)
 	{
-		my_mlx_pixel_put(vars, vars->x, vars->y, 0x00FFFFFF);
+		if (vars->map_press == 1)
+			my_mlx_pixel_put(vars, vars->x, vars->y, 0x00FFFFFF);
 		vars->y++;
 	}
 }
@@ -54,7 +56,8 @@ void draw_door_tile(t_vars *vars, int state)
 		vars->x = vars->x0;
 		while (vars->x < vars->x1)
 		{
-			my_mlx_pixel_put(vars, vars->x, vars->y, color);
+			if (vars->map_press == 1)
+				my_mlx_pixel_put(vars, vars->x, vars->y, color);
 			vars->x++;
 		}
 		vars->y++;
@@ -73,7 +76,8 @@ void	draw_wall_tile(t_vars *vars)
 		vars->x = vars->x0;
 		while (vars->x < vars->x1)
 		{
-			my_mlx_pixel_put(vars, vars->x, vars->y, 0x00FFFFFF);
+			if (vars->map_press == 1)
+				my_mlx_pixel_put(vars, vars->x, vars->y, 0x00FFFFFF);
 			vars->x++;
 		}
 		vars->y++;

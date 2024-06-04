@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/04 16:11:54 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 16:42:02 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	load_img(t_vars *vars)
 	vars->texture_S = load_texture(vars, "./img/texture_S.xpm");
 	vars->texture_E = load_texture(vars, "./img/texture_E.xpm");
 	vars->texture_D = load_texture(vars, "./img/texture_D.xpm");
-	vars->texture_C = load_texture(vars, "./img/texture_C.xpm");
+	// vars->texture_C = load_texture(vars, "./img/texture_C.xpm");
 	
 	///SPRITES
 	vars->sprite = ft_calloc(5, sizeof(int **));
