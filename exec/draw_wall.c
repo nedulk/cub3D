@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/03 23:21:51 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/04 13:06:32 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 		j = draw_south_wall(vars, distance_to_wall, x, j);
 	else if (vars->direction == WEST)
 		j = draw_west_wall(vars, distance_to_wall, x, j);
-	else if (vars->direction == DOOR)
+	else if (vars->direction == DOOR_X || vars->direction == DOOR_Y)
 		j = draw_door(vars, distance_to_wall, x, j);
 }
 void	open_door(t_vars *vars)
@@ -58,7 +58,6 @@ void	open_door(t_vars *vars)
 	if(distance <= 40 && vars->map[vars->y_map][vars->x_map] == 'D')
 	{
 		vars->map[vars->y_map][vars->x_map] = 'O';
-		printf("%c\n", vars->map[vars->y_map][vars->x_map]);
 	}
 	else if(vars->doorx > 0 && vars->doory > 0)
 	{

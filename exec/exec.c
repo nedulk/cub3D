@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/03 20:01:21 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:54:21 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_px_wall(t_vars *vars, float x, float y)
 
 	x_map = (int)(x / EDGE);
 	y_map = (int)(y / EDGE);
-	if (vars->map[y_map][x_map] == '1')
+	if (vars->map[y_map][x_map] == '1' || vars->map[y_map][x_map] == 'D')
 		return (1);
 	return (0);
 }

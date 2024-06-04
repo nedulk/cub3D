@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:45:02 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/03 19:50:50 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 15:11:05 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,26 @@ void draw_sprites(t_vars *vars)
 			}
 			y++;
 		}
+	}
+}
+
+void draw_sky_img(t_vars *vars)
+{
+	int x;
+	int y;
+	int offset_x = 0;
+	int offset_y = 0;
+	
+	y = 0;
+	while (y < 540)
+	{
+		x = 0;
+		while (x < 1920)
+		{
+			int color = vars->texture_C[y][x];
+			my_mlx_pixel_put(vars, x + offset_x, y + offset_y, color);
+			x++;
+		}
+		y++;
 	}
 }

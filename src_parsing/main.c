@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/03 17:42:41 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 16:11:54 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ void	load_img(t_vars *vars)
 	
 	///GAME TEXTURES
 	vars->texture_N = load_texture(vars, "./img/texture_N.xpm");
-	vars->texture_W = load_texture(vars, "./img/texture_E.xpm");
-	vars->texture_S = load_texture(vars, "./img/texture_N.xpm");
+	vars->texture_W = load_texture(vars, "./img/texture_W.xpm");
+	vars->texture_S = load_texture(vars, "./img/texture_S.xpm");
 	vars->texture_E = load_texture(vars, "./img/texture_E.xpm");
 	vars->texture_D = load_texture(vars, "./img/texture_D.xpm");
+	vars->texture_C = load_texture(vars, "./img/texture_C.xpm");
 	
 	///SPRITES
 	vars->sprite = ft_calloc(5, sizeof(int **));
@@ -56,7 +57,7 @@ void	load_img(t_vars *vars)
 	vars->sprite[4] = load_texture(vars, "./img/sprite_55.xpm");
 	
 	///MINIMAP TEXTURES
-	vars->wall = create_img(vars->mlx, EDGE, 0x808080);
+	// vars->wall = create_img(vars->mlx, EDGE, 0x808080);
 	
 	///SKY AND FLOOR
 	vars->celing = create_rectangle_img(vars->mlx, WIDTH, HEIGHT / 2, vars->celing_color);

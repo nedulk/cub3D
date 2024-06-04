@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:54:06 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/02 15:57:56 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:20:18 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,10 @@ int	draw_door(t_vars *vars, double distance_to_wall, int x, int j)
 		}
 		else
 			tex_y = ((j - vars->draw_start) * RESOLUTION) / line_height;
-		po = vars->pos_x * RESOLUTION;
+		if (vars->direction == DOOR_X)
+			po = vars->pos_x * RESOLUTION;
+		else
+			po = vars->pos_y * RESOLUTION;
 		my_mlx_pixel_put(vars, x, j, vars->texture_D[tex_y][po]);
 		j++;
 	}
