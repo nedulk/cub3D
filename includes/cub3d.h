@@ -36,7 +36,7 @@
 # define LOAD_Y 500
 
 // SKY = 0 basic color | SKY = 1 sky texture | SKY = 2 sky 360°  
-# define SKY 1
+# define SKY 0
 
 # define NORTH 0
 # define SOUTH 1

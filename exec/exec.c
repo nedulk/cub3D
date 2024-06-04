@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/04 16:50:21 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:04:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ int	exec(t_vars *vars)
     vars->moving_right = 0;
 	vars->first_x = 0;
 	vars->last_x = 0;
-	
 	vars->y = 0;
 	vars->y0 = vars->y;
 	vars->x_map = 0;

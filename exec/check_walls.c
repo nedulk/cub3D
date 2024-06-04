@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:28:19 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/04 16:04:55 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 22:58:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,34 @@ int	check_walls(t_vars *vars)
 	return (0);
 }
 
+int	check_door_path(t_vars *vars)
+{
+	if (vars->play_x < vars->wall_hit_x && check_px_wall(vars,
+			vars->wall_hit_x - 1, vars->wall_hit_y) == 0)
+		return (WEST);
+	else if (vars->play_x > vars->wall_hit_x && check_px_wall(vars,
+			vars->wall_hit_x + 1, vars->wall_hit_y) == 0)
+		return (EAST);
+	else if (vars->play_y < vars->wall_hit_y && check_px_wall(vars,
+			vars->wall_hit_x, vars->wall_hit_y - 1) == 0)
+		return (SOUTH);
+	else if (vars->play_y > vars->wall_hit_y && check_px_wall(vars,
+			vars->wall_hit_x, vars->wall_hit_y + 1) == 0)
+		return (NORTH);
+	return(0);
+}
+
 int	check_walls_ray(t_vars *vars)
 {
 	double	i;
 	double	y;
+	int		side;
 
 	vars->x_map = 0;
 	vars->y_map = 0;
 	i = 0;
 	y = 0;
+	side = 0;
 	i = calculate_i(vars, i);
 	y = calculate_y(vars, y);
 	if (vars->map[vars->y_map][vars->x_map] == 'D') 
@@ -49,18 +68,8 @@ int	check_walls_ray(t_vars *vars)
 	}
 	if (vars->map[vars->y_map][vars->x_map] == '1' || vars->map[vars->y_map][vars->x_map] == 'D')
 	{
-		if (vars->play_x < vars->wall_hit_x && check_px_wall(vars,
-				vars->wall_hit_x - 1, vars->wall_hit_y) == 0)
-			return (WEST);
-		else if (vars->play_x > vars->wall_hit_x && check_px_wall(vars,
-				vars->wall_hit_x + 1, vars->wall_hit_y) == 0)
-			return (EAST);
-		else if (vars->play_y < vars->wall_hit_y && check_px_wall(vars,
-				vars->wall_hit_x, vars->wall_hit_y - 1) == 0)
-			return (SOUTH);
-		else if (vars->play_y > vars->wall_hit_y && check_px_wall(vars,
-				vars->wall_hit_x, vars->wall_hit_y + 1) == 0)
-			return (NORTH);
+		side = check_door_path(vars);
+		return (side);
 	}
 	return (0);
 }

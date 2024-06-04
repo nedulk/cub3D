@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/04 19:31:57 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 23:04:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 	else if (vars->direction == DOOR_X || vars->direction == DOOR_Y)
 		j = draw_door(vars, distance_to_wall, x, j);
 }
+
 void	open_door(t_vars *vars)
 {
 	double distance;
