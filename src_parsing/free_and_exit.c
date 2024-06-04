@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/03 17:47:44 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:35:06 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,10 @@ void	destroy_image(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->loading_2);
 	if (vars->loading_3)
 		mlx_destroy_image(vars->mlx, vars->loading_3);
+	if (vars->loading_sky)
+		mlx_destroy_image(vars->mlx, vars->loading_sky);
+	if (vars->loading_360)
+		mlx_destroy_image(vars->mlx, vars->loading_360);
 }
 
 
@@ -103,6 +107,8 @@ void	ft_exit(t_vars *vars)
 	free_double_int(vars->texture_E);
 	free_double_int(vars->texture_W);
 	free_double_int(vars->texture_D);
+	if (SKY == 1 || SKY == 2)
+		free_double_int(vars->texture_Sky);
 	free_triple_int(vars->sprite);
 	if (vars->mlx && vars->win)
 	{
