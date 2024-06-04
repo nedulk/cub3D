@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:45:02 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/04 15:11:05 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:26:21 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,12 @@
 void draw_sprites(t_vars *vars)
 {
 	static int i = 0;
+	static int counter = 0;
 	int x;
 	int y;
 	int offset_x = 300;
 	int offset_y = 700;
-	
+
 	y = 0;
 	if (vars->moving_forward == 1 || vars->moving_backward == 1 
 		|| vars->moving_left == 1 || vars->moving_right == 1)
@@ -36,10 +37,14 @@ void draw_sprites(t_vars *vars)
 			}
 			y++;
 		}
-		if (i == 4)
-			i = 0;
-		else
-			i++;
+		if (counter % 2 == 0)
+		{
+			if (i == 4)
+				i = 0;
+			else
+				i++;
+		}
+		counter++;
 	}
 	else 
 	{
@@ -58,23 +63,51 @@ void draw_sprites(t_vars *vars)
 	}
 }
 
-void draw_sky_img(t_vars *vars)
+void draw_sky_simple(t_vars *vars)
 {
-	int x;
-	int y;
-	int offset_x = 0;
-	int offset_y = 0;
-	
-	y = 0;
-	while (y < 540)
+    int x;
+    int y;
+    int offset_x = 0;
+    int offset_y = 0;
+    
+    y = 0;
+    while (y < 540)
+    {
+        x = 0;
+        while (x < 1920)
+        {
+            int texture_x = (x + offset_x) % 1920;
+            int color = vars->texture_Sky[y][texture_x];
+            my_mlx_pixel_put(vars, x, y + offset_y, color);
+            x++;
+        }
+        y++;
+    }
+}
+
+void draw_sky_img(t_vars *vars, double angle)
+{
+    int x;
+    int y;
+    int offset_x = (angle / 360) * 7680;
+    int offset_y = 0;
+    
+    y = 0;
+	if (SKY == 1)
 	{
-		x = 0;
-		while (x < 1920)
-		{
-			int color = vars->texture_C[y][x];
-			my_mlx_pixel_put(vars, x + offset_x, y + offset_y, color);
-			x++;
-		}
-		y++;
+		draw_sky_simple(vars);
+		return ;
 	}
+    while (y < 540)
+    {
+        x = 0;
+        while (x < 7680)
+        {
+            int texture_x = (x + offset_x) % 7680;
+            int color = vars->texture_Sky[y][texture_x];
+            my_mlx_pixel_put(vars, x, y + offset_y, color);
+            x++;
+        }
+        y++;
+    }
 }

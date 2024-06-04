@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/04 16:42:02 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:14:52 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	load_img(t_vars *vars)
 			"./img/loading_2.xpm", &vars->width, &vars->height);
 	vars->loading_3 = mlx_xpm_file_to_image(vars->mlx,
 			"./img/loading_3.xpm", &vars->width, &vars->height);
+	vars->loading_sky = mlx_xpm_file_to_image(vars->mlx,
+			"./img/loading_sky.xpm", &vars->width, &vars->height);
+	vars->loading_360 = mlx_xpm_file_to_image(vars->mlx,
+			"./img/loading_360.xpm", &vars->width, &vars->height);
 	
 	///MENU
 	vars->play_click = mlx_xpm_file_to_image(vars->mlx,
@@ -42,8 +46,16 @@ void	load_img(t_vars *vars)
 	vars->texture_S = load_texture(vars, "./img/texture_S.xpm");
 	vars->texture_E = load_texture(vars, "./img/texture_E.xpm");
 	vars->texture_D = load_texture(vars, "./img/texture_D.xpm");
-	// vars->texture_C = load_texture(vars, "./img/texture_C.xpm");
-	
+	if (SKY == 1)
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->loading_sky, LOAD_X, LOAD_Y);
+		vars->texture_Sky = load_texture(vars, "./img/texture_sky.xpm");
+	}
+	if (SKY == 2)
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->loading_360, LOAD_X, LOAD_Y);
+		vars->texture_Sky = load_texture(vars, "./img/texture_Sky_360.xpm");
+	}
 	///SPRITES
 	vars->sprite = ft_calloc(5, sizeof(int **));
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->loading, LOAD_X, LOAD_Y);	

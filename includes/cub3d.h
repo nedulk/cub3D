@@ -18,6 +18,7 @@
 # include "libft.h"
 # include <stdint.h>
 # include <math.h>
+#include <pthread.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -33,6 +34,9 @@
 
 # define LOAD_X 700
 # define LOAD_Y 500
+
+// SKY = 0 basic color | SKY = 1 sky texture | SKY = 2 sky 360°  
+# define SKY 1
 
 # define NORTH 0
 # define SOUTH 1
@@ -54,6 +58,9 @@
 # define G   "\x1B[32m"
 # define Y   "\x1B[33m"
 # define RESET "\x1B[0m"
+
+
+
 
 typedef struct s_texture_data
 {
@@ -77,6 +84,8 @@ typedef struct s_vars {
 	void	*loading_1;
 	void	*loading_2;
 	void	*loading_3;
+	void	*loading_sky;
+	void	*loading_360;
 	void   *wall;
 	void    *floor;
 	void    *celing;
@@ -98,7 +107,7 @@ typedef struct s_vars {
 	int **texture_E;
 	int **texture_W;
 	int **texture_D;
-	int **texture_C;
+	int **texture_Sky;
 	int ***sprite;
 	double	pos_x;
 	double	pos_y;
@@ -248,7 +257,7 @@ int	draw_west_wall(t_vars *vars, double distance_to_wall, int x, int j);
 int	draw_door(t_vars *vars, double distance_to_wall, int x, int j);
 int	draw_tv(t_vars *vars, double distance_to_wall, int x, int j);
 void draw_sprites(t_vars *vars);
-void draw_sky_img(t_vars *vars);
+void draw_sky_img(t_vars *vars, double angle);
 
 //check where the player needs to face
 void	check_player_angle(t_vars *vars, int i, int y);

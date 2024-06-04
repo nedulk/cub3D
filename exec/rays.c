@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/04 16:42:15 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/04 19:02:37 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ void draw_celing(t_vars *vars)
 	int j;
 
 	i = 0;
-	// draw_sky_img(vars);
+	if (SKY != 0)
+	{
+		draw_sky_img(vars, vars->angle);
+		return ;
+	}
 	while (i < WIDTH)
 	{
 		j = 0;
