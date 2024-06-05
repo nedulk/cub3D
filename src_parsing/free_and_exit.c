@@ -6,29 +6,13 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 11:40:23 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:59:52 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	free_double_char(char **tab)
-{
-    int	i;
-
-    if (!tab)
-        return ;
-    i = 0;
-    while (tab[i])
-    {
-        free(tab[i]);
-        tab[i] = NULL;
-        i++;
-    }
-    free(tab);
-}
-
-void free_double_int(int **tab)
+void	free_double_int(int **tab)
 {
 	int	i;
 
@@ -44,7 +28,7 @@ void free_double_int(int **tab)
 	free(tab);
 }
 
-void free_triple_int(int ***tab)
+void	free_triple_int(int ***tab)
 {
 	int	i;
 	int	j;
@@ -96,9 +80,8 @@ void	destroy_image(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->loading_360);
 }
 
-
 void	ft_exit(t_vars *vars)
-{	
+{
 	destroy_image(vars);
 	free_double_char(vars->texture);
 	free_double_char(vars->map);

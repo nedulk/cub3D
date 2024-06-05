@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 11:33:42 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:17:55 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int	menu_player(t_vars *vars)
 
 int	main(int argc, char **argv)
 {
+	t_vars	*vars;
+
 	(void)argc;
 	(void)argv;
-	t_vars	*vars;
-	
 	vars = ft_calloc(1, sizeof(t_vars));
 	if (vars == NULL)
 	{

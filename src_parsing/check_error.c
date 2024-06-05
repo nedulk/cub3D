@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:43:32 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 11:26:03 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:59:21 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int	check_border(t_vars *vars)
 {
 	int	a;
-	int i;
-	
+	int	i;
+
 	i = 0;
 	a = 0;
 	while (vars->map[a])
-	{	
+	{
 		i = 0;
-		while(vars->map[a][i] != '\0')
+		while (vars->map[a][i] != '\0')
 		{
 			if (vars->map[a][i] == '0' || is_nsew(vars->map[a][i]) == 1)
 			{
@@ -40,7 +40,7 @@ int	check_border(t_vars *vars)
 	return (0);
 }
 
-int check_char(char **tab)
+int	check_char(char **tab)
 {
 	int	a;
 	int	i;
@@ -51,8 +51,9 @@ int check_char(char **tab)
 	{
 		while (tab[a][i])
 		{
-			if (tab[a][i] != '0' && tab[a][i] != '1' && tab[a][i] != '2' && is_nsew(tab[a][i]) == 0
-				&& tab[a][i] != ' ' && tab[a][i] != '\t' && tab[a][i] != '\n')
+			if (tab[a][i] != '0' && tab[a][i] != '1' && tab[a][i] != '2'
+				&& is_nsew(tab[a][i]) == 0 && tab[a][i] != ' '
+				&& tab[a][i] != '\t' && tab[a][i] != '\n')
 			{
 				printf(RED"Error\n"RESET);
 				printf(YELLOW"Wrong caracter found\n"RESET);
@@ -63,7 +64,7 @@ int check_char(char **tab)
 		i = 0;
 		a++;
 	}
-	return (0);	
+	return (0);
 }
 
 int	stock_map(char *map, t_vars *vars)
@@ -89,18 +90,18 @@ int	stock_map(char *map, t_vars *vars)
 	return (0);
 }
 
-int check_nsew(char **map)
+int	check_nsew(char **map)
 {
-	int i;
-	int j;
-	int good;
+	int	i;
+	int	j;
+	int	good;
 
 	good = 0;
 	i = 0;
-	while(map[i])
+	while (map[i])
 	{
 		j = 0;
-		while(map[i][j])
+		while (map[i][j])
 		{
 			if (is_nsew(map[i][j]) == 1 && map[i][j] != 'D')
 				good += 1;

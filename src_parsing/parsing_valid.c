@@ -6,22 +6,22 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:19:13 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 11:06:15 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:35:09 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-char *remove_space(char *input)
+char	*remove_space(char *input)
 {
-	int i;
-	int j;
-	char *output;
-	
+	int		i;
+	int		j;
+	char	*output;
+
 	i = 0;
 	j = 0;
 	output = malloc(sizeof(char) * (ft_strlen(input) + 1));
-	while(i < (int)ft_strlen(input))
+	while (i < (int)ft_strlen(input))
 	{
 		if (input[i] != ' ' && input[i] != '\t' && input[i] != '\n')
 		{
@@ -34,9 +34,9 @@ char *remove_space(char *input)
 	return (output);
 }
 
-int test_path(char *path)
+int	test_path(char *path)
 {
-	int fd;
+	int	fd;
 
 	path = remove_space(path);
 	fd = open(path, O_RDONLY);
@@ -46,7 +46,7 @@ int test_path(char *path)
 		printf(YELLOW"Texture path is invalid\n"RESET);
 		free(path);
 		path = NULL;
-		return(1);
+		return (1);
 	}
 	close(fd);
 	free(path);
@@ -54,13 +54,16 @@ int test_path(char *path)
 	return (0);
 }
 
-char* extract_number(char *tab, int *i, int *n)
+char	*extract_number(char *tab, int *i, int *n)
 {
-	int a = 0;
-	char *test_nb = malloc(sizeof(char) * 5);
+	int		a;
+	char	*test_nb;
+
+	a = 0;
+	test_nb = malloc(sizeof(char) * 5);
 	while (tab[*i] >= '0' && tab[*i] <= '9')
-	{	
-		if(*n < 5) 
+	{
+		if (*n < 5)
 			test_nb[a] = tab[*i];
 		(*i)++;
 		(*n)++;
@@ -70,11 +73,11 @@ char* extract_number(char *tab, int *i, int *n)
 	return (test_nb);
 }
 
-int test_color(char *tab)
+int	test_color(char *tab)
 {
-	int i;
-	int n;
-	char *test_nb;
+	int		i;
+	int		n;
+	char	*test_nb;
 
 	n = 0;
 	i = 0;
@@ -82,10 +85,10 @@ int test_color(char *tab)
 	while (tab[i])
 	{
 		test_nb = extract_number(tab, &i, &n);
-		if (ft_atoi(test_nb) > 255 || n > 3 || ((tab[i] < '0' || tab[i] > '9') && tab[i] != ',' && tab[i] != '\0'))
+		if (ft_atoi(test_nb) > 255 || n > 3 || ((tab[i] < '0'
+					|| tab[i] > '9') && tab[i] != ',' && tab[i] != '\0'))
 		{
-			printf(RED"Error\n"RESET);
-			printf(YELLOW"Color is invalid\n"RESET);
+			printf(YELLOW"Error\nColor is invalid\n"RESET);
 			free(test_nb);
 			free(tab);
 			return (1);
@@ -101,7 +104,7 @@ int test_color(char *tab)
 
 int	check_param_valid(t_vars *vars)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)
@@ -112,5 +115,5 @@ int	check_param_valid(t_vars *vars)
 	}
 	if (test_color(vars->texture[4]) == 1 || test_color(vars->texture[5]) == 1)
 		return (1);
-	return(0);
+	return (0);
 }

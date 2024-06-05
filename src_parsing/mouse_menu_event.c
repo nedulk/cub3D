@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:47:29 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/03 17:26:54 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:20:03 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	mouse_over(int x, int y, t_vars *vars)
 {
 	if (vars->play_click && vars->play_selec)
 	{
-		if (x >= vars->play_button_x && x <= vars->play_button_x + 168 && y >= vars->play_button_y
+		if (x >= vars->play_button_x && x <= vars->play_button_x + 168
+			&& y >= vars->play_button_y
 			&& y <= vars->play_button_y + 88)
 			mlx_put_image_to_window(vars->mlx, vars->win, vars->play_selec,
 				vars->play_button_x, vars->play_button_y);
@@ -37,8 +38,10 @@ int	mouse_click(int button, int x, int y, t_vars *vars)
 	mlx_mouse_get_pos(vars->mlx, vars->win, &mouse_x, &mouse_y);
 	if (button == 1)
 	{
-		if (mouse_x >= vars->play_button_x && mouse_x <= vars->play_button_x + 168
-			&& mouse_y >= vars->play_button_y && mouse_y <= vars->play_button_y + 88
+		if (mouse_x >= vars->play_button_x
+			&& mouse_x <= vars->play_button_x + 168
+			&& mouse_y >= vars->play_button_y
+			&& mouse_y <= vars->play_button_y + 88
 			&& vars->play_click)
 		{
 			vars->button_clicked = 1;
@@ -61,7 +64,5 @@ void	event_game(t_vars *vars)
 void	go_in_game(t_vars *vars)
 {
 	vars->button_clicked = 1;
-	// vars->play_click = NULL;
-	// vars->play_selec = NULL;
 	exec(vars);
 }

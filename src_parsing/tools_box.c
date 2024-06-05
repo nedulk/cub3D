@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_error2.c                                     :+:      :+:    :+:   */
+/*   tools_boxx.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/21 13:55:38 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/01 17:29:27 by kprigent         ###   ########.fr       */
+/*   Created: 2024/06/05 12:32:19 by kprigent          #+#    #+#             */
+/*   Updated: 2024/06/05 12:32:46 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,27 @@ int	nb_line(int fd)
 		free(line);
 	}
 	return (i);
+}
+
+void	free_double_char(char **tab)
+{
+	int	i;
+
+	if (!tab)
+		return ;
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		tab[i] = NULL;
+		i++;
+	}
+	free(tab);
+}
+
+int	handle_error(char *message)
+{
+	printf(RED"Error\n"RESET);
+	printf(YELLOW"%s"RESET, message);
+	return (1);
 }

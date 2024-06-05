@@ -18,7 +18,6 @@
 # include "libft.h"
 # include <stdint.h>
 # include <math.h>
-#include <pthread.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -206,6 +205,7 @@ typedef struct s_vars {
 	int			doorx;
 	int			doory;
 	int			bool;
+	int color_img;
 	double long	cos;
 	double long	sin;
 	t_texture_data	*texture_data;
@@ -295,7 +295,7 @@ int		move(int keycode, t_vars *vars);
 ////// MENU AND PARSING //////
 
 void	*create_rectangle_img(void *mlx, int width, int height, int color);
-void	*create_img(void *mlx, int edge, int color);
+void	*create_img(t_vars *vars, void *mlx, int edge, int color);
 int **load_texture(t_vars *vars, char *texture_path);
 void fill_texture(t_texture_data *data);
 int **initialize_texture(t_texture_data *data);
@@ -332,8 +332,7 @@ int check_param(char *map, t_vars *vars);
 void	sprites_sky_floor(t_vars *vars);
  void game_textures(t_vars *vars);
  void load_menu(t_vars *vars);
-
-
-////// GAME /////
+ void	free_double_char(char **tab);
+ int handle_error(char *message);
 
 #endif

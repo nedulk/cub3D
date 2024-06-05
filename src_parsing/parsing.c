@@ -6,35 +6,36 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:14:21 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 11:05:42 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 12:36:56 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int convert_color_string_to_int(char* color_string)
+int	convert_color_string_to_int(t_vars *vars, char *color_string)
 {
-	int i;
-    int red, green, blue;
-    char **rgb_values;
-	int color;
+	int		i;
+	int		red;
+	int		green;
+	int		blue;
+	char	**rgb_values;
 
 	i = 0;
-    rgb_values = ft_split(color_string, ',');
-    red = ft_atoi(rgb_values[0]);
-    green = ft_atoi(rgb_values[1]);
-    blue = ft_atoi(rgb_values[2]);
-    while (i < 3)
+	rgb_values = ft_split(color_string, ',');
+	red = ft_atoi(rgb_values[0]);
+	green = ft_atoi(rgb_values[1]);
+	blue = ft_atoi(rgb_values[2]);
+	while (i < 3)
 	{
-        free(rgb_values[i]);
+		free(rgb_values[i]);
 		i++;
-    }
-    free(rgb_values);
-    color = (red << 16) | (green << 8) | blue;
-    return (color);
+	}
+	free(rgb_values);
+	vars->color_img = (red << 16) | (green << 8) | blue;
+	return (vars->color_img);
 }
 
-int		parsing(t_vars *vars, char **argv, int argc)
+int	parsing(t_vars *vars, char **argv, int argc)
 {
 	if (argc > 2)
 	{
@@ -54,7 +55,7 @@ int		parsing(t_vars *vars, char **argv, int argc)
 		return (1);
 	else if (check_param_valid(vars) == 1)
 		return (1);
-	vars->floor_color = convert_color_string_to_int(vars->texture[4]);
-	vars->celing_color = convert_color_string_to_int(vars->texture[5]);
+	vars->floor_color = convert_color_string_to_int(vars, vars->texture[4]);
+	vars->celing_color = convert_color_string_to_int(vars, vars->texture[5]);
 	return (0);
 }
