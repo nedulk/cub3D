@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+         #
+#    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/03 18:50:42 by kprigent         ###   ########.fr        #
+#    Updated: 2024/06/05 11:03:54 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,11 @@ OBJTS = $(MAIN_SRCS:.c=.o)
 
 HEADER = -I includes
 CFLAGS = -Wall -Wextra -Werror -I ./mlx/ -g -O3 -fPIE
+
+SKY		?= 0
+ifeq ($(SKY), 1)
+	CFLAGS += -DSKY=1
+endif
 
 $(NAME): $(OBJTS)
 	gcc -o $(NAME) $(OBJTS) $(CFLAGS) $(HEADER) -L ./mlx -lmlx -lXext -lX11 -lm -lbsd -pie
