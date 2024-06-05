@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:23:19 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 12:25:46 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 16:19:30 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,12 @@ int	process_lines(int fd, t_vars *vars)
 		if (vars->pass == 0 && found_map(line) == 0 && line[0] != ' '
 			&& line[0] != '\0' && line[0] != '\n' && line[0] != '\t')
 		{
-			printf(RED"Error\n"RESET);
-			printf(YELLOW"Wrong parameter\n"RESET);
+			while (line)
+			{
+				free(line);
+				line = get_next_line(fd);
+			}
+			printf(YELLOW"Error\nWrong parameter\n"RESET);
 			return (1);
 		}
 		result = handle_map(line, vars, i);

@@ -113,7 +113,7 @@ typedef struct s_vars {
 	char			*line;
 	int				width;
 	int				height;
-	/////////////////////////////////
+	char			*buff;
 	int				button_clicked;
 	double			wall_hit_x;
 	double			wall_hit_y;
