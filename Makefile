@@ -6,7 +6,7 @@
 #    By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/05 11:38:29 by kprigent         ###   ########.fr        #
+#    Updated: 2024/06/05 11:48:49 by kprigent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,11 @@ OBJTS = $(MAIN_SRCS:.c=.o)
 
 HEADER = -I includes
 CFLAGS = -Wall -Wextra -Werror -I ./mlx/ -g -O3 -fPIE
+
+SKY		?= 0
+ifeq ($(SKY), 1)
+	CFLAGS += -DSKY=1
+endif
 
 $(NAME): $(OBJTS)
 	gcc -o $(NAME) $(OBJTS) $(CFLAGS) $(HEADER) -L ./mlx -lmlx -lXext -lX11 -lm -lbsd -pie

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/04 23:04:38 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/05 11:20:24 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int	mouse_move(int x, int y, t_vars *vars)
 	(void)y;
 	vars->last_x = vars->first_x;
 	vars->first_x = x;
+	mlx_mouse_move(vars->mlx, vars->win, WIDTH / 2, HEIGHT / 2);
 	return (0);
 }
 
@@ -131,6 +132,7 @@ int	exec(t_vars *vars)
     mlx_hook(vars->win, KeyRelease, KeyReleaseMask, stop_move, vars);
     mlx_hook(vars->win, MotionNotify, PointerMotionMask, mouse_move, vars);
     mlx_loop_hook(vars->mlx, update_player_position, vars);
+    mlx_mouse_hide(vars->mlx, vars->win);
 	mlx_loop(vars->mlx);
 	return (0);
 }

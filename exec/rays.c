@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/04 23:05:20 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/05 11:41:39 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ double	calculate_wall_height(t_vars *vars, double distance, double ray_angle)
 	double	wall_height;
 	double	corrected_distance;
 
-	corrected_distance = distance * cos((ray_angle - vars->angle) * (PI
+	corrected_distance = distance * cos((vars->angle - (ray_angle - (FOV / 2))) * (PI
 				/ 180.0));
-	wall_height = (HEIGHT / corrected_distance) * 20;
+	wall_height = (HEIGHT / corrected_distance) * 20.;
 	return (wall_height);
 }
 
@@ -109,7 +109,9 @@ void	draw_rays(t_vars *vars)
 	// float	column_end;
 	float	column_start;
 	int		h;
+	double		angle_init;
 
+	angle_init = vars->angle;
 	column_start = 0;
 	distance = 0;
 	define_fov(vars);
@@ -122,7 +124,7 @@ void	draw_rays(t_vars *vars)
 		ft_draw_line_bresenham(vars);
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
 					- vars->play_y, 2));
-		h = calculate_wall_height(vars, distance, vars->angle);
+		h = calculate_wall_height(vars, distance, angle_init);
 		// column_end = (vars->draw + 1) * (WIDTH / vars->rays_number);
 		// while (column_start <= column_end)
 			draw_wall(vars, column_start++, h, distance);
