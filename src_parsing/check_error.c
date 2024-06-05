@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:43:32 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/02 15:52:20 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:26:03 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,41 +64,6 @@ int check_char(char **tab)
 		a++;
 	}
 	return (0);	
-}
-
-void	map_to_chart(t_vars *vars, int fd)
-{
-	int		a;
-	int		i;
-	int 	b;
-
-	a = 0;
-	b = 0;
-	i = 0;
-	while (vars->line || a == 0)
-	{
-		while (b < vars->line_map)
-		{
-			vars->line = get_next_line(fd);
-			free(vars->line);
-			b++;
-		}
-		vars->line = get_next_line(fd);
-		if (vars->line == NULL)
-			break ;
-		vars->map[a] = (char *)malloc(sizeof(char)
-				* (ft_strlen(vars->line) + 1));
-		while (vars->line[i])
-		{
-			vars->map[a][i] = vars->line[i];
-			i++;
-		}
-		free(vars->line);
-		vars->map[a][i] = '\0';
-		i = 0;
-		a++;
-	}
-	vars->map[a] = NULL;
 }
 
 int	stock_map(char *map, t_vars *vars)

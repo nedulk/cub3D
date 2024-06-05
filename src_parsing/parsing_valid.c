@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:19:13 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/02 13:55:23 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:06:15 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int test_color(char *tab)
 			printf(YELLOW"Color is invalid\n"RESET);
 			free(test_nb);
 			free(tab);
-			tab = NULL;
 			return (1);
 		}
 		if (tab[i] != '\0')
@@ -97,7 +96,6 @@ int test_color(char *tab)
 		free(test_nb);
 	}
 	free(tab);
-	tab = NULL;
 	return (0);
 }
 

@@ -36,7 +36,7 @@
 # define LOAD_Y 500
 
 // SKY = 0 basic color | SKY = 1 sky texture | SKY = 2 sky 360°  
-# define SKY 0
+# define SKY 1
 
 # define NORTH 0
 # define SOUTH 1
@@ -294,7 +294,6 @@ int		move(int keycode, t_vars *vars);
 
 ////// MENU AND PARSING //////
 
-int        count_c(t_vars *vars);
 void	*create_rectangle_img(void *mlx, int width, int height, int color);
 void	*create_img(void *mlx, int edge, int color);
 int **load_texture(t_vars *vars, char *texture_path);
@@ -328,7 +327,12 @@ int        check_map(char *map, t_vars *vars);
 int        check_param(char *map, t_vars *vars);
 int   	  check_param_valid(t_vars *vars);
 char     *remove_space(char *tab);
+void	map_to_chart(t_vars *vars, int fd);
 int check_param(char *map, t_vars *vars);
+void	sprites_sky_floor(t_vars *vars);
+ void game_textures(t_vars *vars);
+ void load_menu(t_vars *vars);
+
 
 ////// GAME /////
 

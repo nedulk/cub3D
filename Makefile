@@ -6,7 +6,7 @@
 #    By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/03 18:50:42 by kprigent         ###   ########.fr        #
+#    Updated: 2024/06/05 11:38:29 by kprigent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,10 +16,11 @@ MAIN_SRCS = src_parsing/main.c \
 			src_parsing/event_close_release_button.c \
 			src_parsing/mouse_menu_event.c \
 			src_parsing/check_error.c \
-			src_parsing/check_error2.c \
+			src_parsing/tools_box.c \
 			src_parsing/free_and_exit.c \
-			src_parsing/free_map_is_square.c \
+			src_parsing/map_to_chart.c \
 			src_parsing/parsing.c \
+			src_parsing/texture_img_load.c \
 			src_parsing/parsing_param.c \
 			src_parsing/parsing_valid.c \
 			src_parsing/parsing_param_nsew.c \

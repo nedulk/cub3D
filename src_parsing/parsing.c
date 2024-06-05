@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:14:21 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/01 18:07:22 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:05:42 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int convert_color_string_to_int(char* color_string)
 	int i;
     int red, green, blue;
     char **rgb_values;
+	int color;
 
 	i = 0;
     rgb_values = ft_split(color_string, ',');
@@ -29,7 +30,7 @@ int convert_color_string_to_int(char* color_string)
 		i++;
     }
     free(rgb_values);
-    int color = (red << 16) | (green << 8) | blue;
+    color = (red << 16) | (green << 8) | blue;
     return (color);
 }
 
