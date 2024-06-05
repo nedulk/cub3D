@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:54:06 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/05 13:41:58 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:57:32 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	draw_north_wall(t_vars *vars, double distance_to_wall, int x, int j)
 
 	j = vars->draw_start;
 	if (x == vars->last_xwall && j == vars->last_j)
-		return(0);
+		return (0);
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
@@ -49,7 +49,7 @@ int	draw_south_wall(t_vars *vars, double distance_to_wall, int x, int j)
 
 	j = vars->draw_start;
 	if (x == vars->last_xwall && j == vars->last_j)
-		return(0);
+		return (0);
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
@@ -77,7 +77,7 @@ int	draw_east_wall(t_vars *vars, double distance_to_wall, int x, int j)
 
 	j = vars->draw_start;
 	if (x == vars->last_xwall && j == vars->last_j)
-		return(0);
+		return (0);
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
@@ -105,7 +105,7 @@ int	draw_west_wall(t_vars *vars, double distance_to_wall, int x, int j)
 
 	j = vars->draw_start;
 	if (x == vars->last_xwall && j == vars->last_j)
-		return(0);
+		return (0);
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
@@ -127,9 +127,9 @@ int	draw_west_wall(t_vars *vars, double distance_to_wall, int x, int j)
 int	is_door(t_vars *vars)
 {
 	if (vars->direction == DOOR_X)
-		return(vars->pos_x * RESOLUTION);
+		return (vars->pos_x * RESOLUTION);
 	else
-		return(vars->pos_y * RESOLUTION);
+		return (vars->pos_y * RESOLUTION);
 }
 
 int	draw_door(t_vars *vars, double distance_to_wall, int x, int j)
@@ -141,7 +141,7 @@ int	draw_door(t_vars *vars, double distance_to_wall, int x, int j)
 
 	j = vars->draw_start;
 	if (x == vars->last_xwall && j == vars->last_j)
-		return(0);
+		return (0);
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
@@ -159,4 +159,3 @@ int	draw_door(t_vars *vars, double distance_to_wall, int x, int j)
 	}
 	return (j);
 }
-

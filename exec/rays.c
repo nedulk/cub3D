@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/05 11:41:39 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/05 13:54:36 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,10 @@ void	rotation_matrix(t_vars *vars)
 double	calculate_wall_height(t_vars *vars, double distance, double ray_angle)
 {
 	double	wall_height;
-	double	corrected_distance;
+	(void)vars;
+	(void)ray_angle;
 
-	corrected_distance = distance * cos((vars->angle - (ray_angle - (FOV / 2))) * (PI
-				/ 180.0));
-	wall_height = (HEIGHT / corrected_distance) * 20.;
+	wall_height = (HEIGHT / distance) * 20.;
 	return (wall_height);
 }
 
@@ -63,10 +62,10 @@ void	define_fov(t_vars *vars)
 	vars->ray_y0 = vars->play_y;
 }
 
-void draw_celing(t_vars *vars)
+void	draw_celing(t_vars *vars)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	if (SKY != 0)
@@ -86,10 +85,10 @@ void draw_celing(t_vars *vars)
 	}
 }
 
-void draw_floor(t_vars *vars)
+void	draw_floor(t_vars *vars)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < WIDTH)
@@ -103,13 +102,13 @@ void draw_floor(t_vars *vars)
 		i++;
 	}
 }
+
 void	draw_rays(t_vars *vars)
 {
 	double	distance;
-	// float	column_end;
 	float	column_start;
 	int		h;
-	double		angle_init;
+	double	angle_init;
 
 	angle_init = vars->angle;
 	column_start = 0;
@@ -125,9 +124,7 @@ void	draw_rays(t_vars *vars)
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
 					- vars->play_y, 2));
 		h = calculate_wall_height(vars, distance, angle_init);
-		// column_end = (vars->draw + 1) * (WIDTH / vars->rays_number);
-		// while (column_start <= column_end)
-			draw_wall(vars, column_start++, h, distance);
+		draw_wall(vars, column_start++, h, distance);
 		vars->draw++;
 		vars->angle += vars->angle_step;
 		ft_correct_angle(vars);

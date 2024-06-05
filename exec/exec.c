@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/05 11:20:24 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/05 13:38:11 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,11 +110,9 @@ int	update_player_position(t_vars *vars)
 int	exec(t_vars *vars)
 {
 	vars->moving_forward = 0;
-    vars->moving_left = 0;
-    vars->moving_backward = 0;
-    vars->moving_right = 0;
-	vars->first_x = 0;
-	vars->last_x = 0;
+	vars->moving_left = 0;
+	vars->moving_backward = 0;
+	vars->moving_right = 0;
 	vars->y = 0;
 	vars->y0 = vars->y;
 	vars->x_map = 0;
@@ -128,11 +126,11 @@ int	exec(t_vars *vars)
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 	draw_grid(vars);
-    mlx_hook(vars->win, KeyPress, KeyPressMask, move, vars);
-    mlx_hook(vars->win, KeyRelease, KeyReleaseMask, stop_move, vars);
-    mlx_hook(vars->win, MotionNotify, PointerMotionMask, mouse_move, vars);
-    mlx_loop_hook(vars->mlx, update_player_position, vars);
-    mlx_mouse_hide(vars->mlx, vars->win);
+	mlx_hook(vars->win, KeyPress, KeyPressMask, move, vars);
+	mlx_hook(vars->win, KeyRelease, KeyReleaseMask, stop_move, vars);
+	mlx_hook(vars->win, MotionNotify, PointerMotionMask, mouse_move, vars);
+	mlx_loop_hook(vars->mlx, update_player_position, vars);
+	mlx_mouse_hide(vars->mlx, vars->win);
 	mlx_loop(vars->mlx);
 	return (0);
 }

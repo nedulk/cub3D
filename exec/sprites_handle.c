@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:45:02 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 13:40:35 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:58:10 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int	counter_i(int *i, int *counter)
 
 void	draw_sprites_handle1(t_vars *vars, int *i, int *counter)
 {
-	int y;
+	int	y;
 	int	x;
 	int	color;
-	int offset_x;
-	int offset_y;
+	int	offset_x;
+	int	offset_y;
 
 	y = 0;
 	x = 0;
@@ -54,11 +54,11 @@ void	draw_sprites_handle1(t_vars *vars, int *i, int *counter)
 
 void	draw_sprites_handle2(t_vars *vars)
 {
-	int y;
+	int	y;
 	int	x;
 	int	color;
-	int offset_x;
-	int offset_y;
+	int	offset_x;
+	int	offset_y;
 
 	y = 0;
 	x = 0;
@@ -78,19 +78,19 @@ void	draw_sprites_handle2(t_vars *vars)
 	}
 }
 
-void draw_sprites(t_vars *vars)
+void	draw_sprites(t_vars *vars)
 {
-	static int counter = 0;
+	static int	counter = 0;
 	static int	i = 0;
 
-	if (vars->moving_forward == 1 || vars->moving_backward == 1 
+	if (vars->moving_forward == 1 || vars->moving_backward == 1
 		|| vars->moving_left == 1 || vars->moving_right == 1)
 		draw_sprites_handle1(vars, &i, &counter);
-	else 
+	else
 		draw_sprites_handle2(vars);
 }
 
-void draw_sky_simple(t_vars *vars)
+void	draw_sky_simple(t_vars *vars)
 {
 	int x;
 	int y;
@@ -112,7 +112,7 @@ void draw_sky_simple(t_vars *vars)
 	}
 }
 
-void draw_sky_img(t_vars *vars, double angle)
+void	draw_sky_img(t_vars *vars, double angle)
 {
 	int x;
 	int y;
