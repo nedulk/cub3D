@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:54:06 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/05 13:57:32 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:59:59 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	draw_south_wall(t_vars *vars, double distance_to_wall, int x, int j)
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
-		if (distance_to_wall <= 20)
+		if (distance_to_wall <= 40)
 		{
 			tex_start = (RESOLUTION - RESOLUTION * (distance_to_wall / 40)) / 2;
 			tex_y = tex_start + ((j - vars->draw_start) * ((RESOLUTION
@@ -81,7 +81,7 @@ int	draw_east_wall(t_vars *vars, double distance_to_wall, int x, int j)
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
-		if (distance_to_wall <= 20)
+		if (distance_to_wall <= 40)
 		{
 			tex_start = (RESOLUTION - RESOLUTION * (distance_to_wall / 40)) / 2;
 			tex_y = tex_start + ((j - vars->draw_start) * ((RESOLUTION
@@ -109,7 +109,7 @@ int	draw_west_wall(t_vars *vars, double distance_to_wall, int x, int j)
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
-		if (distance_to_wall <= 20)
+		if (distance_to_wall <= 40)
 		{
 			tex_start = (RESOLUTION - RESOLUTION * (distance_to_wall / 40)) / 2;
 			tex_y = tex_start + ((j - vars->draw_start) * ((RESOLUTION
@@ -145,7 +145,7 @@ int	draw_door(t_vars *vars, double distance_to_wall, int x, int j)
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
-		if (distance_to_wall <= 20)
+		if (distance_to_wall <= 40)
 		{
 			tex_start = (RESOLUTION - RESOLUTION * (distance_to_wall / 40)) / 2;
 			tex_y = tex_start + ((j - vars->draw_start) * ((RESOLUTION
