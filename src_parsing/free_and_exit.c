@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 11:59:52 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:56:26 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ void	ft_exit(t_vars *vars)
 	destroy_image(vars);
 	free_double_char(vars->texture);
 	free_double_char(vars->map);
-	free_double_int(vars->texture_N);
-	free_double_int(vars->texture_S);
-	free_double_int(vars->texture_E);
-	free_double_int(vars->texture_W);
-	free_double_int(vars->texture_D);
+	free_double_int(vars->texture_n);
+	free_double_int(vars->texture_s);
+	free_double_int(vars->texture_e);
+	free_double_int(vars->texture_w);
+	free_double_int(vars->texture_d);
 	if (SKY == 1 || SKY == 2)
-		free_double_int(vars->texture_Sky);
+		free_double_int(vars->texture_sky);
 	free_triple_int(vars->sprite);
 	if (vars->mlx && vars->win)
 	{
@@ -101,17 +101,4 @@ void	ft_exit(t_vars *vars)
 	}
 	free(vars);
 	exit(0);
-}
-
-void	free_modified_map(t_vars *vars)
-{
-	int	i;
-
-	i = 0;
-	while (i < vars->l)
-	{
-		free(vars->map[i]);
-		i++;
-	}
-	free(vars->map);
 }

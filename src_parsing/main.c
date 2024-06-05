@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 12:17:55 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:55:16 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,8 @@ void	load_img(t_vars *vars)
 void	init_vars(t_vars *vars)
 {
 	vars->bool = 0;
-	vars->victory = 0;
-	vars->start = 0;
 	vars->line = NULL;
 	vars->button_clicked = 0;
-	vars->l = 0;
-	vars->ll = 0;
-	vars->e = 0;
-	vars->p = 0;
-	vars->c = 0;
-	vars->wrong = 0;
 	vars->width = 0;
 	vars->height = 0;
 	vars->map = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall_direction.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:54:06 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/04 23:04:01 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/05 13:41:58 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	draw_north_wall(t_vars *vars, double distance_to_wall, int x, int j)
 		else
 			tex_y = ((j - vars->draw_start) * RESOLUTION) / line_height;
 		po = vars->pos_x * RESOLUTION;
-		my_mlx_pixel_put(vars, x, j, vars->texture_N[tex_y][po]);
+		my_mlx_pixel_put(vars, x, j, vars->texture_n[tex_y][po]);
 		j++;
 	}
 	return (j);
@@ -53,7 +53,7 @@ int	draw_south_wall(t_vars *vars, double distance_to_wall, int x, int j)
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
-		if (distance_to_wall <= 40)
+		if (distance_to_wall <= 20)
 		{
 			tex_start = (RESOLUTION - RESOLUTION * (distance_to_wall / 40)) / 2;
 			tex_y = tex_start + ((j - vars->draw_start) * ((RESOLUTION
@@ -62,7 +62,7 @@ int	draw_south_wall(t_vars *vars, double distance_to_wall, int x, int j)
 		else
 			tex_y = ((j - vars->draw_start) * RESOLUTION) / line_height;
 		po = vars->pos_x * RESOLUTION;
-		my_mlx_pixel_put(vars, x, j, vars->texture_S[tex_y][po]);
+		my_mlx_pixel_put(vars, x, j, vars->texture_s[tex_y][po]);
 		j++;
 	}
 	return (j);
@@ -81,7 +81,7 @@ int	draw_east_wall(t_vars *vars, double distance_to_wall, int x, int j)
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
-		if (distance_to_wall <= 40)
+		if (distance_to_wall <= 20)
 		{
 			tex_start = (RESOLUTION - RESOLUTION * (distance_to_wall / 40)) / 2;
 			tex_y = tex_start + ((j - vars->draw_start) * ((RESOLUTION
@@ -90,7 +90,7 @@ int	draw_east_wall(t_vars *vars, double distance_to_wall, int x, int j)
 		else
 			tex_y = ((j - vars->draw_start) * RESOLUTION) / line_height;
 		po = vars->pos_y * RESOLUTION;
-		my_mlx_pixel_put(vars, x, j, vars->texture_E[tex_y][po]);
+		my_mlx_pixel_put(vars, x, j, vars->texture_e[tex_y][po]);
 		j++;
 	}
 	return (j);
@@ -109,7 +109,7 @@ int	draw_west_wall(t_vars *vars, double distance_to_wall, int x, int j)
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
-		if (distance_to_wall <= 40)
+		if (distance_to_wall <= 20)
 		{
 			tex_start = (RESOLUTION - RESOLUTION * (distance_to_wall / 40)) / 2;
 			tex_y = tex_start + ((j - vars->draw_start) * ((RESOLUTION
@@ -118,7 +118,7 @@ int	draw_west_wall(t_vars *vars, double distance_to_wall, int x, int j)
 		else
 			tex_y = ((j - vars->draw_start) * RESOLUTION) / line_height;
 		po = vars->pos_y * RESOLUTION;
-		my_mlx_pixel_put(vars, x, j, vars->texture_W[tex_y][po]);
+		my_mlx_pixel_put(vars, x, j, vars->texture_w[tex_y][po]);
 		j++;
 	}
 	return (j);
@@ -145,7 +145,7 @@ int	draw_door(t_vars *vars, double distance_to_wall, int x, int j)
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)
 	{
-		if (distance_to_wall <= 40)
+		if (distance_to_wall <= 20)
 		{
 			tex_start = (RESOLUTION - RESOLUTION * (distance_to_wall / 40)) / 2;
 			tex_y = tex_start + ((j - vars->draw_start) * ((RESOLUTION
@@ -154,7 +154,7 @@ int	draw_door(t_vars *vars, double distance_to_wall, int x, int j)
 		else
 			tex_y = ((j - vars->draw_start) * RESOLUTION) / line_height;
 		po = is_door(vars);
-		my_mlx_pixel_put(vars, x, j, vars->texture_D[tex_y][po]);
+		my_mlx_pixel_put(vars, x, j, vars->texture_d[tex_y][po]);
 		j++;
 	}
 	return (j);
