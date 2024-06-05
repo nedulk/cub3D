@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:47:54 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/04 16:45:57 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:35:56 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,11 @@ double	ft_sign(double value)
 
 int	ft_draw_line_bresenham(t_vars *vars)
 {
-	double diff_x = vars->ray_x1 - vars->ray_x0;
-	double diff_y = vars->ray_y1 - vars->ray_y0;
+	double	diff_x;
+	double	diff_y;
 
+	diff_x = vars->ray_x1 - vars->ray_x0;
+	diff_y = vars->ray_y1 - vars->ray_y0;
 	vars->dx = ft_absolute_number(diff_x);
 	vars->incx = ft_sign(diff_x);
 	vars->dy = ft_absolute_number(diff_y);
@@ -62,7 +64,7 @@ void	ft_draw_horizontal(t_vars *vars)
 	{
 		if (check_walls_path(vars) == 1)
 			break ;
-		if((int)vars->draw % RAYS == 0 && vars->map_press == 1)
+		if ((int)vars->draw % RAYS == 0 && vars->map_press == 1)
 			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		error += slope;
 		if (error >= 0)
@@ -87,7 +89,7 @@ void	ft_draw_vertical(t_vars *vars)
 	{
 		if (check_walls_path(vars) == 1)
 			break ;
-		if((int)vars->draw % RAYS == 0 && vars->map_press == 1)
+		if ((int)vars->draw % RAYS == 0 && vars->map_press == 1)
 			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
 		error += slope;
 		if (error >= 0)

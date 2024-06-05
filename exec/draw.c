@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:41:55 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/04 16:43:41 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/05 13:37:45 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ void	draw_floor_tile(t_vars *vars)
 	}
 }
 
-void draw_door_tile(t_vars *vars, int state)
+void	draw_door_tile(t_vars *vars, int state)
 {
-	int color;
-	
+	int	color;
+
 	if (state == 1)
 		color = 0x00FFA500;
 	else if (state == 0)
-		color = 0x000FF000;	
+		color = 0x000FF000;
 	vars->x0 = vars->x;
 	vars->x1 = vars->x + EDGE;
 	vars->y = vars->y0;
