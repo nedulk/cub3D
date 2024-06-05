@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   sprites_handle.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:45:02 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/04 23:20:20 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/05 11:04:17 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	counter_i(int i, int counter)
+int	counter_i(int *i, int *counter)
 {
-	if (counter % 2 == 0)
+	if (*counter % 2 == 0)
 	{
-		if (i == 4)
-			i = 0;
+		if (*i == 4)
+			*i = 0;
 		else
-			i++;
+			(*i)++;
 	}
-	return (i);
+	return (*i);
 }
 
-void	draw_sprites_handle1(t_vars *vars, int i, int counter)
+void	draw_sprites_handle1(t_vars *vars, int *i, int *counter)
 {
 	int y;
 	int	x;
@@ -41,15 +41,15 @@ void	draw_sprites_handle1(t_vars *vars, int i, int counter)
 		x = 0;
 		while (x < SPRITE_WIDTH)
 		{
-			color = vars->sprite[i][y][x];
+			color = vars->sprite[*i][y][x];
 			if (color != TRANSPARENT_COLOR)
 				my_mlx_pixel_put(vars, x + offset_x, y + offset_y, color);
 			x++;
 		}
 		y++;
 	}
-	i = counter_i(i, counter);
-	counter++;
+	*i = counter_i(i, counter);
+	(*counter)++;
 }
 
 void	draw_sprites_handle2(t_vars *vars)
@@ -80,14 +80,12 @@ void	draw_sprites_handle2(t_vars *vars)
 
 void draw_sprites(t_vars *vars)
 {
-	int counter;
-	int	i;
+	static int counter = 0;
+	static int	i = 0;
 
-	i = 0;
-	counter = 0;
 	if (vars->moving_forward == 1 || vars->moving_backward == 1 
 		|| vars->moving_left == 1 || vars->moving_right == 1)
-		draw_sprites_handle1(vars, i, counter);
+		draw_sprites_handle1(vars, &i, &counter);
 	else 
 		draw_sprites_handle2(vars);
 }
