@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bresenham.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:47:54 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/05 13:35:56 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/08 17:15:01 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_draw_horizontal(t_vars *vars)
 		if (check_walls_path(vars) == 1)
 			break ;
 		if ((int)vars->draw % RAYS == 0 && vars->map_press == 1)
-			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
+			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFD3D3D3);
 		error += slope;
 		if (error >= 0)
 		{
@@ -90,7 +90,7 @@ void	ft_draw_vertical(t_vars *vars)
 		if (check_walls_path(vars) == 1)
 			break ;
 		if ((int)vars->draw % RAYS == 0 && vars->map_press == 1)
-			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFF0000);
+			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFD3D3D3);
 		error += slope;
 		if (error >= 0)
 		{

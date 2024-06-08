@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:41:55 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/05 13:37:45 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/08 17:16:39 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	draw_wall_tile(t_vars *vars)
 		while (vars->x < vars->x1)
 		{
 			if (vars->map_press == 1)
-				my_mlx_pixel_put(vars, vars->x, vars->y, 0x00FFFFFF);
+				my_mlx_pixel_put(vars, vars->x, vars->y, 0xFF888888);
 			vars->x++;
 		}
 		vars->y++;
