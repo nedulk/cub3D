@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:45:02 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 15:07:18 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/08 17:28:37 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,61 +88,4 @@ void	draw_sprites(t_vars *vars)
 		draw_sprites_handle1(vars, &i, &counter);
 	else
 		draw_sprites_handle2(vars);
-}
-
-void	draw_sky_simple(t_vars *vars)
-{
-	int	x;
-	int	y;
-	int	offset_x;
-	int	offset_y;
-	int	texture_x;
-	int	color;
-
-	offset_x = 0;
-	offset_y = 0;
-	y = 0;
-	while (y < 540)
-	{
-		x = 0;
-		while (x < 1920)
-		{
-			texture_x = (x + offset_x) % 1920;
-			color = vars->texture_sky[y][texture_x];
-			my_mlx_pixel_put(vars, x, y + offset_y, color);
-			x++;
-		}
-		y++;
-	}
-}
-
-void	draw_sky_img(t_vars *vars, double angle)
-{
-	int	x;
-	int	y;
-	int	offset_x;
-	int	offset_y;
-	int	texture_x;
-	int	color;
-
-	offset_x = (angle / 360) * 7680;
-	offset_y = 0;
-	y = 0;
-	if (SKY == 1)
-	{
-		draw_sky_simple(vars);
-		return ;
-	}
-	while (y < 540)
-	{
-		x = 0;
-		while (x < 7680)
-		{
-			texture_x = (x + offset_x) % 7680;
-			color = vars->texture_sky[y][texture_x];
-			my_mlx_pixel_put(vars, x, y + offset_y, color);
-			x++;
-		}
-		y++;
-	}
 }

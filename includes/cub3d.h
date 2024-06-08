@@ -194,6 +194,12 @@ typedef struct s_point
 int	check_walls_player(t_vars *vars);
 int	mouse_move(int x, int y, t_vars *vars);
 int	stop_move(int keycode, t_vars *vars);
+void	draw_sky_simple(t_vars *vars);
+void	draw_sky_img(t_vars *vars, double angle);
+int		is_door(t_vars *vars);
+int		draw_door(t_vars *vars, double distance_to_wall, int x, int j);
+void	define_fov(t_vars *vars);
+
 
 //Self-explanatory
 void	open_door(t_vars *vars);

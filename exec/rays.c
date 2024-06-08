@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 15:12:06 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/08 17:33:30 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,6 @@ void	rotation_matrix(t_vars *vars)
 	vars->rotate_y1 = (dx * sin_a) + (dy * cos_a);
 	vars->ray_x1 = vars->ray_x0 + vars->rotate_x1;
 	vars->ray_y1 = vars->ray_y0 + vars->rotate_y1;
-}
-
-double	calculate_wall_height(t_vars *vars, double distance, double ray_angle)
-{
-	double	wall_height;
-
-	(void)vars;
-	(void)ray_angle;
-	wall_height = (HEIGHT / distance) * 20.;
-	return (wall_height);
-}
-
-void	ft_correct_angle(t_vars *vars)
-{
-	if (vars->angle < 0)
-		vars->angle += 360.0;
-	if (vars->angle >= 360)
-		vars->angle -= 360.0;
-}
-
-void	define_fov(t_vars *vars)
-{
-	vars->draw = 0;
-	vars->rays_number = 1920;
-	vars->angle_step = FOV / vars->rays_number;
-	vars->angle -= FOV;
-	vars->ray_x0 = vars->play_x;
-	vars->ray_y0 = vars->play_y;
 }
 
 void	draw_celing(t_vars *vars)
@@ -123,7 +95,7 @@ void	draw_rays(t_vars *vars)
 		ft_draw_line_bresenham(vars);
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
 					- vars->play_y, 2));
-		h = calculate_wall_height(vars, distance, angle_init);
+		h = (HEIGHT / distance) * 20.;
 		draw_wall(vars, column_start++, h, distance);
 		vars->draw++;
 		vars->angle += vars->angle_step;
