@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 15:26:21 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 18:42:48 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	destroy_image(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->loading_sky);
 	if (vars->loading_360)
 		mlx_destroy_image(vars->mlx, vars->loading_360);
+	mlx_destroy_image(vars->mlx, vars->img);
 }
 
 void	ft_exit(t_vars *vars)
