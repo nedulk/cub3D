@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:23:19 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 15:46:05 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 17:49:40 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,7 @@ int	process_lines(int fd, t_vars *vars)
 			return (free_line(line, fd));
 		result = handle_map(line, vars, i, fd);
 		if (result != -1)
-		{
-			// free_line(line, fd);
 			return (result);
-		}
 		free(line);
 		i++;
 	}
