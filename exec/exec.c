@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/05 15:56:53 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 12:03:04 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,16 @@ int	exec(t_vars *vars)
 	vars->moving_left = 0;
 	vars->moving_backward = 0;
 	vars->moving_right = 0;
+	vars->x_map = 0;
+	vars->y_map = 0;
 	vars->y = 0;
 	vars->y0 = vars->y;
 	vars->x_map = 0;
 	vars->y_map = 0;
 	vars->last_j = 0;
 	vars->last_xwall = 0;
+	vars->prev_pos_x = vars->x_map = 1;
+	vars->prev_pos_y = vars->y_map = 1;
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 			&vars->line_length, &vars->endian);

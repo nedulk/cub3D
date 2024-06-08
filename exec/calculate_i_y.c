@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:18:40 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/05 13:36:02 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/08 11:16:27 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,4 @@ double	calculate_play_y(t_vars *vars, double y)
 	if (vars->y_map > 0)
 		vars->y_map -= 1;
 	return (y);
-	if (vars->y_map > 0)
-		vars->y_map -= 1;
 }

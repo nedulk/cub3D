@@ -124,6 +124,8 @@ typedef struct s_vars {
 	int				map_press;
 	float			rays_number;
 	float			draw;
+	int				prev_pos_x;
+	int				prev_pos_y;
 	float			play_x;
 	float			play_y;
 	int				bits_per_pixel;
@@ -187,6 +189,9 @@ typedef struct s_point
 	int	c;
 
 }	t_point;
+
+
+int	check_walls_player(t_vars *vars);
 
 //Self-explanatory
 void	open_door(t_vars *vars);
