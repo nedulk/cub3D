@@ -191,7 +191,7 @@ typedef struct s_point
 }	t_point;
 
 
-int	check_walls_player(t_vars *vars);
+int		check_walls_player(t_vars *vars);
 
 //Self-explanatory
 void	open_door(t_vars *vars);
@@ -270,7 +270,7 @@ int		check_top_bottom(t_vars *vars, int a, int i);
 int		check_diagonal(t_vars *vars, int a, int i);
 void	handle_texture(char *line, t_vars *vars);
 void	handle_fc(char *line, t_vars *vars);
-int		handle_map(char *line, t_vars *vars, int i);
+int		handle_map(char *line, t_vars *vars, int i, int fd);
 int		handle_error(char *error);
 char	*stock_path(char *line, int i);
 int		found_map(char *line);
@@ -295,6 +295,8 @@ void	sprites_sky_floor(t_vars *vars);
 void	game_textures(t_vars *vars);
 void	load_menu(t_vars *vars);
 void	free_double_char(char **tab);
+int		free_line(char *line, int fd);
 int		handle_error(char *message);
+void	free_texture(char **texture);
 
 #endif

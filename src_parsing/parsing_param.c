@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:23:19 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 16:19:30 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 15:46:05 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	found_map(char *line)
 	int	i;
 
 	i = 0;
+	if (line == NULL)
+		return (0);
 	while (line[i])
 	{
 		while (line[i] == ' ')
@@ -35,7 +37,7 @@ char	*stock_path(char *line, int i)
 
 	j = 0;
 	line = remove_space(line);
-	texture = malloc(sizeof(char) * ft_strlen(line));
+	texture = ft_calloc(1, sizeof(char) * ft_strlen(line));
 	while (line[i] == ' ')
 		i++;
 	while (line[i] != ' ' && line[i] != '\0')
@@ -52,7 +54,7 @@ char	*stock_path(char *line, int i)
 
 int	setup_resources(char *map, t_vars *vars, int *fd)
 {
-	vars->texture = malloc(sizeof(char *) * 7);
+	vars->texture = ft_calloc(1, sizeof(char *) * 7);
 	if (vars->texture == NULL)
 		return (handle_error("Can't upload texture\n"));
 	vars->texture[6] = NULL;
@@ -77,18 +79,13 @@ int	process_lines(int fd, t_vars *vars)
 		handle_fc(line, vars);
 		if (vars->pass == 0 && found_map(line) == 0 && line[0] != ' '
 			&& line[0] != '\0' && line[0] != '\n' && line[0] != '\t')
-		{
-			while (line)
-			{
-				free(line);
-				line = get_next_line(fd);
-			}
-			printf(YELLOW"Error\nWrong parameter\n"RESET);
-			return (1);
-		}
-		result = handle_map(line, vars, i);
+			return (free_line(line, fd));
+		result = handle_map(line, vars, i, fd);
 		if (result != -1)
+		{
+			// free_line(line, fd);
 			return (result);
+		}
 		free(line);
 		i++;
 	}

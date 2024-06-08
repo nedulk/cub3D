@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_param_nseww.c                              :+:      :+:    :+:   */
+/*   parsing_param_nsew.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:20:48 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 12:22:00 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 15:46:20 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	handle_fc(char *line, t_vars *vars)
 	}
 }
 
-int	handle_map(char *line, t_vars *vars, int i)
+int	handle_map(char *line, t_vars *vars, int i, int fd)
 {
 	if (found_map(line) == 1)
 	{
@@ -71,7 +71,7 @@ int	handle_map(char *line, t_vars *vars, int i)
 		{
 			printf(RED"Error\n"RESET);
 			printf(YELLOW"Missing parameter\n"RESET);
-			free(line);
+			free_line(line, fd);
 			return (1);
 		}
 	}

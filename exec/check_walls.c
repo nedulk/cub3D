@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:28:19 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 12:09:23 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/08 13:45:35 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,37 +45,29 @@ int	check_walls_player(t_vars *vars)
 		return (1);
 	if(vars->map[vars->prev_pos_y + 1][vars->prev_pos_x] == '1' && vars->map[vars->prev_pos_y][vars->prev_pos_x + 1] == '1')
 	{
-		printf("ok no\n");
 		if(vars->y_map == vars->prev_pos_y - 1 && vars->x_map == vars->prev_pos_x - 1)
 		{
-			printf("NO\n"); // NO
 			return(1);
 		}
 	}
 	if(vars->map[vars->prev_pos_y + 1][vars->prev_pos_x] == '1' && vars->map[vars->prev_pos_y][vars->prev_pos_x - 1] == '1')
 	{
-		printf("ok ne\n");
 		if(vars->y_map == vars->prev_pos_y - 1 && vars->x_map == vars->prev_pos_x + 1)
 		{
-			printf("NE\n"); // NE
 			return(1);
 		}
 	}
 	if(vars->map[vars->prev_pos_y - 1][vars->prev_pos_x] == '1' && vars->map[vars->prev_pos_y][vars->prev_pos_x + 1] == '1')
 	{
-		printf("ok SO\n");
 		if(vars->y_map == vars->prev_pos_y + 1 && vars->x_map == vars->prev_pos_x - 1)
 		{
-			printf("SO\n"); // SO
 			return(1);
 		}
 	}
 	if(vars->map[vars->prev_pos_y - 1][vars->prev_pos_x] == '1' && vars->map[vars->prev_pos_y][vars->prev_pos_x - 1] == '1')
 	{
-		printf("ok se\n");
 		if(vars->y_map == vars->prev_pos_y + 1 && vars->x_map == vars->prev_pos_x + 1)
 		{
-			printf("SE\n"); // SE
 			return(1);
 		}
 	}

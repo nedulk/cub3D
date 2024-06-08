@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 13:56:26 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 15:26:21 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	destroy_image(t_vars *vars)
 void	ft_exit(t_vars *vars)
 {
 	destroy_image(vars);
-	free_double_char(vars->texture);
+	free_texture(vars->texture);
 	free_double_char(vars->map);
 	free_double_int(vars->texture_n);
 	free_double_int(vars->texture_s);

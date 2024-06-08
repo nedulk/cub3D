@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:00:53 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 12:16:07 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 14:19:07 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ int	**initialize_texture(t_texture_data *data)
 {
 	int		y;
 
-	data->texture = malloc(data->height * sizeof(int *));
+	data->texture = ft_calloc(1, data->height * sizeof(int *));
 	y = 0;
 	while (y < data->height)
 	{
-		data->texture[y] = malloc(data->width * sizeof(int));
+		data->texture[y] = ft_calloc(1, data->width * sizeof(int));
 		y++;
 	}
 	return (data->texture);

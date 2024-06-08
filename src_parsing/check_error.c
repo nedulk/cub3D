@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:43:32 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 11:59:21 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 14:17:44 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	stock_map(char *map, t_vars *vars)
 		printf(YELLOW"Can't open map\n"RESET);
 		return (0);
 	}
-	vars->map = malloc(sizeof(char *) * (nb_line(fd) + 1));
+	vars->map = ft_calloc(1, sizeof(char *) * (nb_line(fd) + 1));
 	if (vars->map == NULL)
 	{
 		printf(RED"Error\n Can't upload map\n" RESET);
