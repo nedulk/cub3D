@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 15:20:13 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 17:13:54 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	load_img(t_vars *vars)
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->title,
 		vars->title_x, vars->title_y);
 	game_textures(vars);
-	// sprites_sky_floor(vars);
+	sprites_sky_floor(vars);
 	mlx_clear_window(vars->mlx, vars->win);
 }
 
