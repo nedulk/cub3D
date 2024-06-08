@@ -6,7 +6,7 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/08 17:31:41 by dboire           ###   ########.fr        #
+#    Updated: 2024/06/08 17:38:03 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,8 @@ MAIN_SRCS = src_parsing/main.c \
 			exec/move.c\
 			exec/sky.c\
 			exec/door.c\
-			exec/utils.c
+			exec/utils.c\
+			exec/check_diagonals.c
 
 
 OBJTS = $(MAIN_SRCS:.c=.o)

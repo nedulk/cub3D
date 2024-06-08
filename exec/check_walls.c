@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:28:19 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 17:33:36 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/08 17:38:33 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,51 +29,6 @@ int	check_walls(t_vars *vars)
 	return (0);
 }
 
-int	check_walls_player(t_vars *vars)
-{
-	double	i;
-	double	y;
-
-	i = 0;
-	y = 0;
-	vars->x_map = 0;
-	vars->y_map = 0;
-	i = calculate_play_i(vars, i);
-	y = calculate_play_y(vars, y);
-	if (vars->map[vars->y_map][vars->x_map] == '1'
-		|| vars->map[vars->y_map][vars->x_map] == 'D')
-		return (1);
-	if (vars->map[vars->prev_pos_y + 1][vars->prev_pos_x] == '1'
-		&& vars->map[vars->prev_pos_y][vars->prev_pos_x + 1] == '1')
-	{
-		if (vars->y_map == vars->prev_pos_y - 1
-			&& vars->x_map == vars->prev_pos_x - 1)
-			return (1);
-	}
-	if (vars->map[vars->prev_pos_y + 1][vars->prev_pos_x] == '1'
-		&& vars->map[vars->prev_pos_y][vars->prev_pos_x - 1] == '1')
-	{
-		if (vars->y_map == vars->prev_pos_y - 1
-			&& vars->x_map == vars->prev_pos_x + 1)
-			return (1);
-	}
-	if (vars->map[vars->prev_pos_y - 1][vars->prev_pos_x] == '1'
-		&& vars->map[vars->prev_pos_y][vars->prev_pos_x + 1] == '1')
-	{
-		if (vars->y_map == vars->prev_pos_y + 1
-			&& vars->x_map == vars->prev_pos_x - 1)
-			return (1);
-	}
-	if (vars->map[vars->prev_pos_y - 1][vars->prev_pos_x] == '1'
-		&& vars->map[vars->prev_pos_y][vars->prev_pos_x - 1] == '1')
-	{
-		if (vars->y_map == vars->prev_pos_y + 1
-			&& vars->x_map == vars->prev_pos_x + 1)
-			return (1);
-	}
-	return (0);
-}
-
 int	check_door_path(t_vars *vars)
 {
 	if (vars->play_x < vars->wall_hit_x && check_px_wall(vars, vars->wall_hit_x
@@ -93,17 +48,13 @@ int	check_door_path(t_vars *vars)
 
 int	check_walls_ray(t_vars *vars)
 {
-	double	i;
-	double	y;
 	int		side;
 
 	vars->x_map = 0;
 	vars->y_map = 0;
-	i = 0;
-	y = 0;
 	side = 0;
-	i = calculate_i(vars, i);
-	y = calculate_y(vars, y);
+	calculate_i(vars, 0);
+	calculate_y(vars, 0);
 	if (vars->map[vars->y_map][vars->x_map] == 'D')
 	{
 		if ((vars->play_y < vars->wall_hit_y && check_px_wall(vars,
