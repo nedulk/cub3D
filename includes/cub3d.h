@@ -192,6 +192,8 @@ typedef struct s_point
 
 
 int	check_walls_player(t_vars *vars);
+int	mouse_move(int x, int y, t_vars *vars);
+int	stop_move(int keycode, t_vars *vars);
 
 //Self-explanatory
 void	open_door(t_vars *vars);
