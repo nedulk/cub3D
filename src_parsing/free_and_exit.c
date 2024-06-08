@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 15:26:21 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 19:01:45 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,27 @@ void	free_double_int(int **tab)
 	free(tab);
 }
 
-void	free_triple_int(int ***tab)
+void	free_triple_int(t_vars *vars)
 {
 	int	i;
 	int	j;
 
-	if (!tab)
-		return ;
 	i = 0;
 	while (i < 5)
 	{
 		j = 0;
 		while (j < SPRITE_HEIGHT)
 		{
-			free(tab[i][j]);
-			tab[i][j] = NULL;
+			free(vars->sprite[i][j]);
+			vars->sprite[i][j] = NULL;
 			j++;
 		}
-		free(tab[i]);
-		tab[i] = NULL;
+		free(vars->sprite[i]);
+		vars->sprite[i] = NULL;
 		i++;
 	}
-	free(tab);
+	free(vars->sprite);
+	vars->sprite = NULL;
 }
 
 void	destroy_image(t_vars *vars)
@@ -92,13 +91,14 @@ void	ft_exit(t_vars *vars)
 	free_double_int(vars->texture_d);
 	if (SKY == 1 || SKY == 2)
 		free_double_int(vars->texture_sky);
-	free_triple_int(vars->sprite);
+	free_triple_int(vars);
 	if (vars->mlx && vars->win)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);
 		mlx_destroy_display(vars->mlx);
 		free(vars->mlx);
 	}
+
 	free(vars);
 	exit(0);
 }
