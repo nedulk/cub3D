@@ -191,7 +191,7 @@ typedef struct s_point
 }	t_point;
 
 
-int		check_walls_player(t_vars *vars);
+int	check_walls_player(t_vars *vars);
 
 //Self-explanatory
 void	open_door(t_vars *vars);
@@ -256,7 +256,6 @@ void	redraw_player(t_vars *vars);
 void	redraw_grid(t_vars *vars);
 int		check_walls_ray(t_vars *vars);
 int		check_walls_path(t_vars *vars);
-int		mouse_move(int x, int y, t_vars *vars);
 int		move(int keycode, t_vars *vars);
 
 ////// MENU AND PARSING //////

@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 13:37:14 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/08 15:11:53 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ void	open_door(t_vars *vars)
 	ft_draw_line_bresenham(vars);
 	distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
 				- vars->play_y, 2));
-	if (distance <= 40 && vars->map[vars->y_map][vars->x_map] == 'D'
-		&& vars->doorx == 0 && vars->doory == 0)
+	if (distance <= 40 && vars->map[vars->y_map][vars->x_map] == 'D')
 	{
 		if (vars->play_x == vars->x_map && vars->play_y == vars->y_map)
 			return ;
@@ -67,8 +66,6 @@ void	open_door(t_vars *vars)
 		&& vars->map[vars->y_map][vars->x_map] == 'O')
 	{
 		vars->map[vars->doory][vars->doorx] = 'D';
-		vars->doorx = 0;
-		vars->doory = 0;
 	}
 	vars->door = 0;
 	vars->angle += FOV / 2;

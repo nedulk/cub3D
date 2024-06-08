@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:28:19 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 13:45:35 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 15:53:43 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,48 @@ int	check_walls_player(t_vars *vars)
 	if (vars->map[vars->y_map][vars->x_map] == '1'
 		|| vars->map[vars->y_map][vars->x_map] == 'D')
 		return (1);
-	if(vars->map[vars->prev_pos_y + 1][vars->prev_pos_x] == '1' && vars->map[vars->prev_pos_y][vars->prev_pos_x + 1] == '1')
+	if (vars->map[vars->prev_pos_y + 1][vars->prev_pos_x] == '1'
+		&& vars->map[vars->prev_pos_y][vars->prev_pos_x + 1] == '1')
 	{
+		printf("ok no\n");
 		if(vars->y_map == vars->prev_pos_y - 1 && vars->x_map == vars->prev_pos_x - 1)
 		{
+			printf("NO\n"); // NO
 			return(1);
 		}
+		printf("2\n");
+		printf("vars->prev_pos_x: %d\n", vars->prev_pos_x);
+		printf("vars->prev_pos_y: %d\n", vars->prev_pos_y);
+		printf("vars x_map : %d\n", vars->x_map);
+		printf("vars y_map : %d\n", vars->y_map);
 	}
-	if(vars->map[vars->prev_pos_y + 1][vars->prev_pos_x] == '1' && vars->map[vars->prev_pos_y][vars->prev_pos_x - 1] == '1')
+	if (vars->map[vars->prev_pos_y + 1][vars->prev_pos_x] == '1'
+		&& vars->map[vars->prev_pos_y][vars->prev_pos_x - 1] == '1')
 	{
+		printf("ok ne\n");
 		if(vars->y_map == vars->prev_pos_y - 1 && vars->x_map == vars->prev_pos_x + 1)
 		{
+			printf("NE\n"); // NE
 			return(1);
 		}
 	}
-	if(vars->map[vars->prev_pos_y - 1][vars->prev_pos_x] == '1' && vars->map[vars->prev_pos_y][vars->prev_pos_x + 1] == '1')
+	if (vars->map[vars->prev_pos_y - 1][vars->prev_pos_x] == '1'
+		&& vars->map[vars->prev_pos_y][vars->prev_pos_x + 1] == '1')
 	{
+		printf("ok SO\n");
 		if(vars->y_map == vars->prev_pos_y + 1 && vars->x_map == vars->prev_pos_x - 1)
 		{
+			printf("SO\n"); // SO
 			return(1);
 		}
 	}
-	if(vars->map[vars->prev_pos_y - 1][vars->prev_pos_x] == '1' && vars->map[vars->prev_pos_y][vars->prev_pos_x - 1] == '1')
+	if (vars->map[vars->prev_pos_y - 1][vars->prev_pos_x] == '1'
+		&& vars->map[vars->prev_pos_y][vars->prev_pos_x - 1] == '1')
 	{
+		printf("ok se\n");
 		if(vars->y_map == vars->prev_pos_y + 1 && vars->x_map == vars->prev_pos_x + 1)
 		{
+			printf("SE\n"); // SE
 			return(1);
 		}
 	}

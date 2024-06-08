@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+         #
+#    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/05 11:48:49 by kprigent         ###   ########.fr        #
+#    Updated: 2024/06/08 15:05:41 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ MAIN_SRCS = src_parsing/main.c \
 			exec/wasd.c\
 			exec/draw_wall_direction.c\
 			exec/draw_grid.c\
+			exec/move.c\
 
 
 OBJTS = $(MAIN_SRCS:.c=.o)

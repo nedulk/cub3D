@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprites_handle.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 13:45:02 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 13:58:10 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 15:07:18 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,19 +92,23 @@ void	draw_sprites(t_vars *vars)
 
 void	draw_sky_simple(t_vars *vars)
 {
-	int x;
-	int y;
-	int offset_x = 0;
-	int offset_y = 0;
+	int	x;
+	int	y;
+	int	offset_x;
+	int	offset_y;
+	int	texture_x;
+	int	color;
 
+	offset_x = 0;
+	offset_y = 0;
 	y = 0;
 	while (y < 540)
 	{
 		x = 0;
 		while (x < 1920)
 		{
-			int texture_x = (x + offset_x) % 1920;
-			int color = vars->texture_sky[y][texture_x];
+			texture_x = (x + offset_x) % 1920;
+			color = vars->texture_sky[y][texture_x];
 			my_mlx_pixel_put(vars, x, y + offset_y, color);
 			x++;
 		}
@@ -114,11 +118,15 @@ void	draw_sky_simple(t_vars *vars)
 
 void	draw_sky_img(t_vars *vars, double angle)
 {
-	int x;
-	int y;
-	int offset_x = (angle / 360) * 7680;
-	int offset_y = 0;
+	int	x;
+	int	y;
+	int	offset_x;
+	int	offset_y;
+	int	texture_x;
+	int	color;
 
+	offset_x = (angle / 360) * 7680;
+	offset_y = 0;
 	y = 0;
 	if (SKY == 1)
 	{
@@ -130,8 +138,8 @@ void	draw_sky_img(t_vars *vars, double angle)
 		x = 0;
 		while (x < 7680)
 		{
-			int texture_x = (x + offset_x) % 7680;
-			int color = vars->texture_sky[y][texture_x];
+			texture_x = (x + offset_x) % 7680;
+			color = vars->texture_sky[y][texture_x];
 			my_mlx_pixel_put(vars, x, y + offset_y, color);
 			x++;
 		}

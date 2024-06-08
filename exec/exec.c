@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 12:03:04 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/08 15:11:02 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,30 +59,6 @@ int	move(int keycode, t_vars *vars)
 	return (0);
 }
 
-int	mouse_move(int x, int y, t_vars *vars)
-{
-	(void)y;
-	vars->last_x = vars->first_x;
-	vars->first_x = x;
-	mlx_mouse_move(vars->mlx, vars->win, WIDTH / 2, HEIGHT / 2);
-	return (0);
-}
-
-int	stop_move(int keycode, t_vars *vars)
-{
-	if (keycode == XK_w)
-		vars->moving_forward = 0;
-	else if (keycode == XK_a)
-		vars->moving_left = 0;
-	else if (keycode == XK_s)
-		vars->moving_backward = 0;
-	else if (keycode == XK_d)
-		vars->moving_right = 0;
-	else if (keycode == XK_Tab)
-		vars->map_press = 0;
-	return (0);
-}
-
 int	update_player_position(t_vars *vars)
 {
 	int	delta;
@@ -109,20 +85,16 @@ int	update_player_position(t_vars *vars)
 
 int	exec(t_vars *vars)
 {
-	vars->moving_forward = 0;
-	vars->moving_left = 0;
-	vars->moving_backward = 0;
-	vars->moving_right = 0;
-	vars->x_map = 0;
-	vars->y_map = 0;
+	vars->x_map = 1;
+	vars->y_map = 1;
 	vars->y = 0;
 	vars->y0 = vars->y;
 	vars->x_map = 0;
 	vars->y_map = 0;
 	vars->last_j = 0;
 	vars->last_xwall = 0;
-	vars->prev_pos_x = vars->x_map = 1;
-	vars->prev_pos_y = vars->y_map = 1;
+	vars->prev_pos_x = 1;
+	vars->prev_pos_y = 1;
 	vars->img = mlx_new_image(vars->mlx, 1920, 1080);
 	vars->addr = mlx_get_data_addr(vars->img, &vars->bits_per_pixel,
 			&vars->line_length, &vars->endian);

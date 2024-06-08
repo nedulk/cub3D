@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/05 14:11:14 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/08 15:12:06 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	rotation_matrix(t_vars *vars)
 double	calculate_wall_height(t_vars *vars, double distance, double ray_angle)
 {
 	double	wall_height;
+
 	(void)vars;
 	(void)ray_angle;
-
 	wall_height = (HEIGHT / distance) * 20.;
 	return (wall_height);
 }
