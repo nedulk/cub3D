@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_menu_event.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:47:29 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 12:20:03 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/09 16:34:29 by kleden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	mouse_over(int x, int y, t_vars *vars)
 {
-	if (vars->play_click && vars->play_selec)
+	if (vars->play_click && vars->play_selec && vars->button_clicked == 0)
 	{
 		if (x >= vars->play_button_x && x <= vars->play_button_x + 168
 			&& y >= vars->play_button_y
@@ -36,7 +36,7 @@ int	mouse_click(int button, int x, int y, t_vars *vars)
 	x++;
 	y++;
 	mlx_mouse_get_pos(vars->mlx, vars->win, &mouse_x, &mouse_y);
-	if (button == 1)
+	if (button == 1 && vars->button_clicked == 0)
 	{
 		if (mouse_x >= vars->play_button_x
 			&& mouse_x <= vars->play_button_x + 168

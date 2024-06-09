@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse_menu_event.c                                 :+:      :+:    :+:   */
+/*   mouse_menu_event_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:47:29 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 12:20:03 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/09 16:37:26 by kleden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	mouse_click(int button, int x, int y, t_vars *vars)
 	x++;
 	y++;
 	mlx_mouse_get_pos(vars->mlx, vars->win, &mouse_x, &mouse_y);
-	if (button == 1)
+	if (button == 1 && vars->button_clicked == 0)
 	{
 		if (mouse_x >= vars->play_button_x
 			&& mouse_x <= vars->play_button_x + 168
