@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/09 11:03:07 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/09 10:59:49 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	re_draw_img(t_vars *vars)
 			&vars->line_length, &vars->endian);
 	redraw_grid(vars);
 	redraw_grid_wo_p(vars);
+	// draw_sprites(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 }
 
@@ -51,6 +52,8 @@ int	move(int keycode, t_vars *vars)
 		vars->moving_right = 1;
 	else if (keycode == XK_e)
 		open_door(vars);
+	else if (keycode == XK_Tab)
+		vars->map_press = 1;
 	else if (keycode == XK_Escape)
 		ft_exit(vars);
 	return (0);
@@ -98,7 +101,9 @@ int	exec(t_vars *vars)
 	draw_grid(vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, move, vars);
 	mlx_hook(vars->win, KeyRelease, KeyReleaseMask, stop_move, vars);
+	mlx_hook(vars->win, MotionNotify, PointerMotionMask, mouse_move, vars);
 	mlx_loop_hook(vars->mlx, update_player_position, vars);
+	mlx_mouse_hide(vars->mlx, vars->win);
 	mlx_loop(vars->mlx);
 	return (0);
 }
