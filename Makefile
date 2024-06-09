@@ -6,11 +6,12 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/09 11:40:01 by dboire           ###   ########.fr        #
+#    Updated: 2024/06/09 11:41:45 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3D
+NAMEB = cub3D_bonus
 
 MAIN_SRCS = src_parsing/main.c \
 			src_parsing/event_close_release_button.c \
@@ -59,7 +60,7 @@ MAIN_SRCS = src_parsing/main.c \
 			exec/sky.c\
 			exec/door.c\
 			exec/utils.c\
-			exec/check_diagonals.c
+			exec/check_diagonals.c\
 
 MAIN_SRCSB = src_parsing_bonus/main_bonus.c \
 			src_parsing_bonus/event_close_release_button_bonus.c \
