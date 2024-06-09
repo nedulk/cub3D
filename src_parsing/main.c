@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 17:13:54 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/09 10:43:22 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	load_img(t_vars *vars)
 
 void	init_vars(t_vars *vars)
 {
-	vars->bool = 0;
 	vars->line = NULL;
 	vars->button_clicked = 0;
 	vars->width = 0;

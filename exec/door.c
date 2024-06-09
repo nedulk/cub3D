@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 17:28:47 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 17:29:17 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/09 10:45:41 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	draw_door(t_vars *vars, double distance_to_wall, int x, int j)
 	int	tex_start;
 
 	j = vars->draw_start;
-	if (x == vars->last_xwall && j == vars->last_j)
+	if (x == 0 && j == 0)
 		return (0);
 	line_height = vars->draw_end - vars->draw_start;
 	while (j < vars->draw_end)

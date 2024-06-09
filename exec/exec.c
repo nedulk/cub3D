@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 18:42:33 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/09 10:45:31 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,8 +91,6 @@ int	exec(t_vars *vars)
 	vars->y0 = vars->y;
 	vars->x_map = 0;
 	vars->y_map = 0;
-	vars->last_j = 0;
-	vars->last_xwall = 0;
 	vars->prev_pos_x = 1;
 	vars->prev_pos_y = 1;
 	mlx_clear_window(vars->mlx, vars->win);
