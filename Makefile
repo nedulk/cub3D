@@ -6,7 +6,7 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/09 11:41:45 by dboire           ###   ########.fr        #
+#    Updated: 2024/06/10 18:00:24 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -118,11 +118,16 @@ OBJTSB = $(MAIN_SRCSB:.c=.o)
 HEADER = -I includes
 CFLAGS = -Wall -Wextra -Werror -I ./mlx/ -g -O3 -fPIE
 
-$(NAME): $(OBJTS)
-	gcc -o $(NAME) $(OBJTS) $(CFLAGS) $(HEADER) -L ./mlx -lmlx -lXext -lX11 -lm -lbsd -pie
+MLX_DIR = minilibx-linux
+MLX_LIB = $(MLX_DIR)/libmlx.a
+MLX_INCLUDE = -I$(MLX_DIR)
+LDFLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd -pie
 
-$(NAMEB): $(OBJTSB)
-	gcc -o $(NAMEB) $(OBJTSB) $(CFLAGS) $(HEADER) -L ./mlx -lmlx -lXext -lX11 -lm -lbsd -pie
+$(NAME): $(OBJTS) $(MLX_LIB)
+	gcc -o $(NAME) $(OBJTS) $(CFLAGS) $(HEADER) $(LDFLAGS)
+
+$(NAMEB): $(OBJTSB) $(MLX_LIB)
+	gcc -o $(NAMEB) $(OBJTSB) $(CFLAGS) $(HEADER) $(LDFLAGS)
 
 RM	=	rm -f
 
@@ -130,15 +135,25 @@ all:	${NAME}
 
 bonus: ${NAMEB}
 
+mlx:
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		echo "\nYou need to have MiniLibX installed to execute cub3D :"; \
+		echo "----------------------------------------"; \
+		echo -n "So do you want to install MLX? [y/N] " && read ans && if [ $${ans:-'N'} = 'y' ]; then \
+			git clone https://github.com/42Paris/minilibx-linux $(MLX_DIR) && $(MAKE) -C $(MLX_DIR); \
+		fi; \
+		echo "----------------------------------------"; \
+	fi
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	${RM} ${OBJTS} ${OBJTSB}
-	
-fclean:	clean
+
+fclean: clean
 	${RM} ${NAME} ${NAMEB}
 
-re:	fclean all
+re: fclean all
 
 .PHONY: all bonus clean fclean re

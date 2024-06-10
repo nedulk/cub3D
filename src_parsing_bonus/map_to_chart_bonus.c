@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_to_chart.c                                     :+:      :+:    :+:   */
+/*   map_to_chart_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:18:30 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 12:19:29 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:28:53 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	map_to_chart(t_vars *vars, int fd)
 		vars->line = get_next_line(fd);
 		if (vars->line == NULL)
 			break ;
-		vars->map[a] = (char *)malloc(sizeof(char)
+		vars->map[a] = (char *)ft_calloc(1, sizeof(char)
 				* (ft_strlen(vars->line) + 1));
 		copy_line_to_map(vars, &a, &i);
 		free(vars->line);
