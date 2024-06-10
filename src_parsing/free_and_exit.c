@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_and_exit.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/09 10:57:12 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 11:17:35 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	free_triple_int(t_vars *vars)
 	int	i;
 	int	j;
 
+	if (!vars->sprite)
+		return ;
 	i = 0;
 	while (i < 5)
 	{
@@ -49,6 +51,12 @@ void	free_triple_int(t_vars *vars)
 	}
 	free(vars->sprite);
 	vars->sprite = NULL;
+}
+
+void	destroy_image2(t_vars *vars)
+{
+	if (vars->button_clicked == 1)
+		mlx_destroy_image(vars->mlx, vars->img);
 }
 
 void	destroy_image(t_vars *vars)
@@ -77,7 +85,7 @@ void	destroy_image(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->loading_sky);
 	if (vars->loading_360)
 		mlx_destroy_image(vars->mlx, vars->loading_360);
-	mlx_destroy_image(vars->mlx, vars->img);
+	destroy_image2(vars);
 }
 
 void	ft_exit(t_vars *vars)
