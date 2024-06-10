@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:30:38 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 16:57:25 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:04:18 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	load_menu(t_vars *vars)
 	vars->loading_sky = mlx_xpm_file_to_image(vars->mlx,
 			"./img/loading_sky.xpm", &vars->width, &vars->height);
 	vars->loading_360 = mlx_xpm_file_to_image(vars->mlx,
-			"./img/loading_360.xpm", &vars->width, &vars->height);
+			"./img/loading_sky_360.xpm", &vars->width, &vars->height);
 	vars->play_click = mlx_xpm_file_to_image(vars->mlx,
 			"./img/play.xpm", &vars->width, &vars->height);
 	vars->play_selec = mlx_xpm_file_to_image(vars->mlx,
