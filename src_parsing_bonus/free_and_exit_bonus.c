@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 11:44:58 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 11:49:05 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	destroy_image(t_vars *vars)
 		mlx_destroy_image(vars->mlx, vars->loading_sky);
 	if (vars->loading_360)
 		mlx_destroy_image(vars->mlx, vars->loading_360);
-	mlx_destroy_image(vars->mlx, vars->img);
+	destroy_image2(vars);
 }
 
 void	ft_exit(t_vars *vars)
