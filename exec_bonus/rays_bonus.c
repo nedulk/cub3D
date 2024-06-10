@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/10 14:57:56 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 15:05:58 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,26 @@ void	draw_floor(t_vars *vars)
 	}
 }
 
+void	draw_minimap(t_vars *vars)
+{
+	double	distance;
+	float	column_start;
+	double	angle_init;
+
+	angle_init = vars->angle;
+	column_start = 0;
+	distance = 0;
+	define_fov(vars);
+	while (vars->draw < vars->rays_number)
+	{
+		rotation_matrix(vars);
+		ft_draw_line_bresenham(vars);
+		vars->draw++;
+		vars->angle += vars->angle_step;
+		ft_correct_angle(vars);
+	}
+}
+
 void	draw_rays(t_vars *vars)
 {
 	double	distance;
@@ -101,16 +121,5 @@ void	draw_rays(t_vars *vars)
 		vars->angle += vars->angle_step;
 		ft_correct_angle(vars);
 	}
-	angle_init = vars->angle;
-	column_start = 0;
-	distance = 0;
-	define_fov(vars);
-	while (vars->draw < vars->rays_number)
-	{
-		rotation_matrix(vars);
-		ft_draw_line_bresenham(vars);
-		vars->draw++;
-		vars->angle += vars->angle_step;
-		ft_correct_angle(vars);
-	}
+	draw_minimap(vars);
 }
