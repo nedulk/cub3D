@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 15:11:53 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 17:54:22 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	open_door(t_vars *vars)
 	vars->ray_y0 = vars->play_y;
 	rotation_matrix(vars);
 	vars->door = 1;
-	ft_draw_line_bresenham(vars);
+	ft_draw_line_bresenham(vars, 0);
 	distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
 				- vars->play_y, 2));
 	if (distance <= 40 && vars->map[vars->y_map][vars->x_map] == 'D')

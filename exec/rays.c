@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 17:33:30 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 17:54:07 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	draw_rays(t_vars *vars)
 	while (vars->draw < vars->rays_number)
 	{
 		rotation_matrix(vars);
-		ft_draw_line_bresenham(vars);
+		ft_draw_line_bresenham(vars, 0);
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
 					- vars->play_y, 2));
 		h = (HEIGHT / distance) * 20.;

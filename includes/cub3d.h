@@ -232,9 +232,9 @@ void				draw_sky_img(t_vars *vars, double angle);
 // check where the player needs to face
 void				check_player_angle(t_vars *vars, int i, int y);
 void				ft_correct_angle(t_vars *vars);
-void				ft_draw_horizontal(t_vars *vars);
-void				ft_draw_vertical(t_vars *vars);
-int					ft_draw_line_bresenham(t_vars *vars);
+void				ft_draw_horizontal(t_vars *vars, int put);
+void				ft_draw_vertical(t_vars *vars, int put);
+int					ft_draw_line_bresenham(t_vars *vars, int put);
 void				draw_rays(t_vars *vars);
 void				redraw_grid_wo_p(t_vars *vars);
 void				rotation_matrix(t_vars *vars);
