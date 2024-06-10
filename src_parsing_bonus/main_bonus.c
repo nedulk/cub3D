@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/09 10:43:22 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 16:51:49 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 void	load_img(t_vars *vars)
 {
 	load_menu(vars);
+	if (vars->title == NULL || vars->loading == NULL || vars->loading_1 == NULL
+		|| vars->loading_2 == NULL || vars->loading_3 == NULL
+		|| vars->loading_sky == NULL || vars->loading_360 == NULL
+		|| vars->play_click == NULL || vars->play_selec == NULL)
+	{
+		printf(RED"Error\nLoading menu textures failed\n"RESET);
+		ft_exit(vars);
+	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->title,
 		vars->title_x, vars->title_y);
 	game_textures(vars);

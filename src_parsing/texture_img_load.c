@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:30:38 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 12:32:50 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/10 16:57:25 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,23 @@ void	load_menu(t_vars *vars)
 
 void	game_textures(t_vars *vars)
 {
-	vars->texture_n = load_texture(vars, vars->texture[0]);
-	vars->texture_s = load_texture(vars, vars->texture[1]);
-	vars->texture_w = load_texture(vars, vars->texture[2]);
-	vars->texture_e = load_texture(vars, vars->texture[3]);
-	vars->texture_d = load_texture(vars, "./img/texture_d.xpm");
+	vars->texture_n = load_texture(vars, vars->texture[0], RESOLUTION);
+	vars->texture_s = load_texture(vars, vars->texture[1], RESOLUTION);
+	vars->texture_w = load_texture(vars, vars->texture[2], RESOLUTION);
+	vars->texture_e = load_texture(vars, vars->texture[3], RESOLUTION);
+	vars->texture_d = load_texture(vars, "./img/texture_d.xpm", RESOLUTION);
 	if (SKY == 1)
 	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->loading_sky,
 			LOAD_X, LOAD_Y);
-		vars->texture_sky = load_texture(vars, "./img/texture_sky.xpm");
+		vars->texture_sky = load_texture(vars, "./img/texture_sky.xpm", 1920);
 	}
 	if (SKY == 2)
 	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->loading_360,
 			LOAD_X, LOAD_Y);
-		vars->texture_sky = load_texture(vars, "./img/texture_sky_360.xpm");
+		vars->texture_sky = load_texture(vars, "./img/texture_sky_360.xpm",
+				7680);
 	}
 }
 
@@ -60,15 +61,15 @@ void	sprites_sky_floor(t_vars *vars)
 	vars->sprite = ft_calloc(5, sizeof(int **));
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->loading,
 		LOAD_X, LOAD_Y);
-	vars->sprite[0] = load_texture(vars, "./img/sprite_11.xpm");
+	vars->sprite[0] = load_texture(vars, "./img/sprite_11.xpm", 1421);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->loading_1,
 		LOAD_X, LOAD_Y);
-	vars->sprite[1] = load_texture(vars, "./img/sprite_22.xpm");
-	vars->sprite[2] = load_texture(vars, "./img/sprite_33.xpm");
+	vars->sprite[1] = load_texture(vars, "./img/sprite_22.xpm", 1421);
+	vars->sprite[2] = load_texture(vars, "./img/sprite_33.xpm", 1421);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->loading_2,
 		LOAD_X, LOAD_Y);
-	vars->sprite[3] = load_texture(vars, "./img/sprite_44.xpm");
+	vars->sprite[3] = load_texture(vars, "./img/sprite_44.xpm", 1421);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->loading_3,
 		LOAD_X, LOAD_Y);
-	vars->sprite[4] = load_texture(vars, "./img/sprite_55.xpm");
+	vars->sprite[4] = load_texture(vars, "./img/sprite_55.xpm", 1421);
 }

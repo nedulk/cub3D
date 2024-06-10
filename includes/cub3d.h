@@ -272,7 +272,7 @@ void				my_mlx_pixel_put(t_vars *vars, int x, int y, int color);
 
 ////// MENU AND PARSING //////
 
-int					**load_texture(t_vars *vars, char *texture_path);
+int					**load_texture(t_vars *vars, char *texture_path, int reso);
 void				fill_texture(t_texture_data *data);
 int					**initialize_texture(t_texture_data *data);
 int					check_left_right(t_vars *vars, int a, int i);
