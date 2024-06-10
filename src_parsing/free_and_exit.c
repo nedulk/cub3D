@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 17:15:08 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:38:27 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	free_triple_int(t_vars *vars)
 	if (!vars->sprite)
 		return ;
 	i = 0;
-	while (i < 5)
+	while (vars->sprite[i] && i < 5)
 	{
 		j = 0;
 		while (j < SPRITE_HEIGHT)
