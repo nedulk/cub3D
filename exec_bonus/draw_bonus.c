@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:41:55 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 17:16:39 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:25:27 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 {
 	char	*dst;
 
+	if (!vars || !vars->addr)
+		return;
+	if (x < 0 || x >= 1920 || y < 0 || y >= 1080)
+		return;
 	dst = vars->addr + (y * vars->line_length + x * (vars->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	*(long long int *)dst = color;
 }

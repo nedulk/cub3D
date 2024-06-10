@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   exec_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/09 10:59:49 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 11:26:41 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	re_draw_img(t_vars *vars)
 			&vars->line_length, &vars->endian);
 	redraw_grid(vars);
 	redraw_grid_wo_p(vars);
-	// draw_sprites(vars);
+	draw_sprites(vars);
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->img, 0, 0);
 }
 
