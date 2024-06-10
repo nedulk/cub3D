@@ -17,7 +17,6 @@
 # include "../mlx/mlx_int.h"
 # include "libft.h"
 # include <math.h>
-# include <stdint.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -168,8 +167,6 @@ typedef struct s_vars
 	int				doory;
 	int				color_img;
 	t_texture_data	*texture_data;
-	uint32_t		color;
-	uint32_t		color1;
 }					t_vars;
 
 typedef struct s_point
