@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:30:38 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/05 15:31:25 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/10 12:32:50 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	load_menu(t_vars *vars)
 void	game_textures(t_vars *vars)
 {
 	vars->texture_n = load_texture(vars, vars->texture[0]);
-	vars->texture_w = load_texture(vars, vars->texture[1]);
-	vars->texture_s = load_texture(vars, vars->texture[2]);
+	vars->texture_s = load_texture(vars, vars->texture[1]);
+	vars->texture_w = load_texture(vars, vars->texture[2]);
 	vars->texture_e = load_texture(vars, vars->texture[3]);
 	vars->texture_d = load_texture(vars, "./img/texture_d.xpm");
 	if (SKY == 1)
