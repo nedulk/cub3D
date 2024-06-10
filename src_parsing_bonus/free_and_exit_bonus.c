@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 16:26:40 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/10 17:35:54 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	free_triple_int(t_vars *vars)
 	if (!vars->sprite)
 		return ;
 	i = 0;
-	while (i < 5)
+	while (vars->sprite[i] && i < 5)
 	{
 		j = 0;
 		while (j < SPRITE_HEIGHT)
@@ -100,8 +100,7 @@ void	ft_exit(t_vars *vars)
 	free_double_int(vars->texture_d);
 	if (SKY == 1 || SKY == 2)
 		free_double_int(vars->texture_sky);
-	if (vars->button_clicked == 1)
-		free_triple_int(vars);
+	free_triple_int(vars);
 	if (vars->mlx && vars->win)
 	{
 		mlx_destroy_window(vars->mlx, vars->win);

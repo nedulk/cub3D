@@ -6,7 +6,7 @@
 #    By: dboire <dboire@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/10 18:00:24 by dboire           ###   ########.fr        #
+#    Updated: 2024/06/10 18:02:30 by dboire           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ MAIN_SRCS = src_parsing/main.c \
 			libft/ft_strncmp.c \
 			exec/exec.c\
 			exec/draw.c\
-			exec/sprites_handle.c\
 			exec/redraw.c\
 			exec/bresenham.c\
 			exec/rays.c\

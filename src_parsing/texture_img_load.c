@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 11:30:38 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 17:05:06 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 18:02:37 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,22 +54,4 @@ void	game_textures(t_vars *vars)
 		vars->texture_sky = load_texture(vars, "./img/texture_sky_360.xpm",
 				7680);
 	}
-}
-
-void	sprites_sky_floor(t_vars *vars)
-{
-	vars->sprite = ft_calloc(5, sizeof(int **));
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->loading,
-		LOAD_X, LOAD_Y);
-	vars->sprite[0] = load_texture(vars, "./img/sprite_11.xpm", 1421);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->loading_1,
-		LOAD_X, LOAD_Y);
-	vars->sprite[1] = load_texture(vars, "./img/sprite_22.xpm", 1421);
-	vars->sprite[2] = load_texture(vars, "./img/sprite_33.xpm", 1421);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->loading_2,
-		LOAD_X, LOAD_Y);
-	vars->sprite[3] = load_texture(vars, "./img/sprite_44.xpm", 1421);
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->loading_3,
-		LOAD_X, LOAD_Y);
-	vars->sprite[4] = load_texture(vars, "./img/sprite_55.xpm", 1421);
 }

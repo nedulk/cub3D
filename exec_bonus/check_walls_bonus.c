@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_walls.c                                      :+:      :+:    :+:   */
+/*   check_walls_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:28:19 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 17:38:33 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 17:42:53 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ int	check_door_path(t_vars *vars)
 		return (EAST);
 	else if (vars->play_y < vars->wall_hit_y && check_px_wall(vars,
 			vars->wall_hit_x, vars->wall_hit_y - 1) == 0)
-		return (SOUTH);
+		return (NORTH);
 	else if (vars->play_y > vars->wall_hit_y && check_px_wall(vars,
 			vars->wall_hit_x, vars->wall_hit_y + 1) == 0)
-		return (NORTH);
+		return (SOUTH);
 	return (0);
 }
 
