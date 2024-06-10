@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:43:32 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 14:17:44 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:16:32 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,12 @@ int	check_map(char *map, t_vars *vars)
 	{
 		printf(RED"Error\n"RESET);
 		printf(YELLOW"Check border of the map\n"RESET);
+		return (1);
+	}
+	if (check_size_map(vars->map) == 1)
+	{
+		printf(RED"Error\n"RESET);
+		printf(YELLOW"Map too large\n"RESET);
 		return (1);
 	}
 	return (0);

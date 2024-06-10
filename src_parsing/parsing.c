@@ -6,11 +6,33 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:14:21 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 15:12:34 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/10 14:26:25 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	check_size_map(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			j++;
+		}
+		if (j > 46)
+			return (1);
+		i++;
+	}
+	if (i > 26)
+		return (1);
+	return (0);
+}
 
 int	convert_color_string_to_int(t_vars *vars, char *color_string)
 {

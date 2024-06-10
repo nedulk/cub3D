@@ -309,5 +309,6 @@ void				free_double_char(char **tab);
 int					free_line(char *line, int fd);
 int					handle_error(char *message);
 void				free_texture(char **texture);
+int					check_size_map(char **map);
 
 #endif
