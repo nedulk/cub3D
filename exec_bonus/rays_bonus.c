@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rays.c                                             :+:      :+:    :+:   */
+/*   rays_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 17:33:30 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 14:57:56 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,18 @@ void	draw_rays(t_vars *vars)
 					- vars->play_y, 2));
 		h = (HEIGHT / distance) * 20.;
 		draw_wall(vars, column_start++, h, distance);
+		vars->draw++;
+		vars->angle += vars->angle_step;
+		ft_correct_angle(vars);
+	}
+	angle_init = vars->angle;
+	column_start = 0;
+	distance = 0;
+	define_fov(vars);
+	while (vars->draw < vars->rays_number)
+	{
+		rotation_matrix(vars);
+		ft_draw_line_bresenham(vars);
 		vars->draw++;
 		vars->angle += vars->angle_step;
 		ft_correct_angle(vars);
