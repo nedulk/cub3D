@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wasd.c                                             :+:      :+:    :+:   */
+/*   wasd_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:24:07 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 15:54:06 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 11:40:49 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	move_backward(t_vars *vars)
 
 void	move_right(t_vars *vars)
 {
-	vars->angle += FOV - (FOV / 3);
+	vars->angle += FOV - (FOV / 2);
 	vars->ray_x0 = vars->play_x;
 	vars->ray_y0 = vars->play_y;
 	rotation_matrix(vars);
@@ -72,12 +72,12 @@ void	move_right(t_vars *vars)
 		vars->prev_pos_x = vars->x_map;
 		vars->prev_pos_y = vars->y_map;
 	}
-	vars->angle -= FOV - (FOV / 3);
+	vars->angle -= FOV - (FOV / 2);
 }
 
 void	move_left(t_vars *vars)
 {
-	vars->angle -= FOV + (FOV / 3);
+	vars->angle -= FOV + (FOV / 2);
 	vars->ray_x0 = vars->play_x;
 	vars->ray_y0 = vars->play_y;
 	rotation_matrix(vars);
@@ -93,5 +93,5 @@ void	move_left(t_vars *vars)
 		vars->prev_pos_x = vars->x_map;
 		vars->prev_pos_y = vars->y_map;
 	}
-	vars->angle += FOV + (FOV / 3);
+	vars->angle += FOV + (FOV / 2);
 }
