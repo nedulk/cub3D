@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_grid.c                                        :+:      :+:    :+:   */
+/*   draw_grid_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 13:35:32 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/05 14:16:39 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/10 11:38:02 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	check_player_angle(t_vars *vars, int i, int y)
 {
 	if (vars->map[i][y] == 'N')
-		vars->angle = 300;
+		vars->angle = 360 - (FOV / 2);
 	if (vars->map[i][y] == 'W')
-		vars->angle = 210;
+		vars->angle = 180 + (FOV / 2);
 	if (vars->map[i][y] == 'S')
-		vars->angle = 120;
+		vars->angle = 90 + (FOV / 2);
 	if (vars->map[i][y] == 'E')
-		vars->angle = 30;
+		vars->angle = 90 - (FOV / 2);
 	draw_player(vars);
 	vars->map[i][y] = '0';
 	vars->y = vars->y0;
