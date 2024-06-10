@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 17:37:56 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/10 14:42:49 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 14:44:19 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,6 @@ int	check_walls_player(t_vars *vars)
 	if (vars->map[vars->y_map][vars->x_map] == '1'
 		|| vars->map[vars->y_map][vars->x_map] == 'D')
 		return (1);
-	printf("vars->prev_pos_x : %d\n", vars->prev_pos_x);
-	printf("vars->prev_pos_y : %d\n", vars->prev_pos_y);
-	printf("vars->prev_pos_y + 1 : %d\n", vars->prev_pos_y + 1);
-	printf("vars->prev_pos_x + 1 : %d\n", vars->prev_pos_x + 1);
-	printf("map y + 1 : %c\n",vars->map[vars->prev_pos_y + 1][vars->prev_pos_x]);
-	printf("map x + 1 : %c\n",vars->map[vars->prev_pos_y][vars->prev_pos_x + 1]);
-	printf("vars->prev_pos_x : %d\n", vars->x_map);
-	printf("vars->prev_pos_y : %d\n", vars->y_map);
-	printf("\n");
 	if (check_walls_player1(vars) == 1)
 		return (1);
 	if (vars->map[vars->prev_pos_y - 1][vars->prev_pos_x] == '1'
