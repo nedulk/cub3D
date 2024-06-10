@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:41:55 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/10 11:44:23 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/10 14:52:38 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	my_mlx_pixel_put(t_vars *vars, int x, int y, int color)
 	if (!vars || !vars->addr)
 		return ;
 	if (x < 0 || x >= 1920 || y < 0 || y >= 1080)
-		return;
+		return ;
 	dst = vars->addr + (y * vars->line_length + x * (vars->bits_per_pixel / 8));
 	*(long long int *)dst = color;
 }
