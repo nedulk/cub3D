@@ -159,8 +159,8 @@ typedef struct s_vars
 	double			incy;
 	double			angle_step;
 	int				diagonals;
-	int				first_x;
-	int				last_x;
+	double				first_x;
+	double				last_x;
 	int				last_xwall;
 	int				door;
 	int				doorx;

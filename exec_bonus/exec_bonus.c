@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/10 11:26:41 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/11 14:20:43 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,19 @@ int	move(int keycode, t_vars *vars)
 
 int	update_player_position(t_vars *vars)
 {
-	int	delta;
-
-	delta = vars->first_x - vars->last_x;
-	if (delta > 0)
-		vars->angle += delta / 2;
-	else if (delta < 0)
+	int	x;
+	int	y;
+	
+	mlx_mouse_get_pos(vars->mlx, vars->win, &x, &y);
+	if (vars->button_clicked)
+		mlx_mouse_move(vars->mlx, vars->win, WIDTH / 2, HEIGHT / 2);
+	if (vars->button_clicked)
+		mlx_mouse_hide(vars->mlx, vars->win);
+	if (x > WIDTH / 2)
+		vars->angle += 8;
+	else if (x < WIDTH / 2)
 	{
-		delta = -delta;
-		vars->angle -= delta / 2;
+		vars->angle -= 8;
 	}
 	if (vars->moving_forward)
 		move_forward(vars);
@@ -85,6 +89,9 @@ int	update_player_position(t_vars *vars)
 
 int	exec(t_vars *vars)
 {
+	int	x;
+	int	y;
+	
 	vars->x_map = 1;
 	vars->y_map = 1;
 	vars->y = 0;
@@ -101,9 +108,9 @@ int	exec(t_vars *vars)
 	draw_grid(vars);
 	mlx_hook(vars->win, KeyPress, KeyPressMask, move, vars);
 	mlx_hook(vars->win, KeyRelease, KeyReleaseMask, stop_move, vars);
-	mlx_hook(vars->win, MotionNotify, PointerMotionMask, mouse_move, vars);
+	mlx_mouse_get_pos(vars->mlx, vars->win, &x, &y);
 	mlx_loop_hook(vars->mlx, update_player_position, vars);
-	mlx_mouse_hide(vars->mlx, vars->win);
+	// mlx_mouse_hide(vars->mlx, vars->win);
 	mlx_loop(vars->mlx);
 	return (0);
 }
