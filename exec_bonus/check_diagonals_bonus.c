@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_diagonals_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 17:37:56 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/11 15:46:03 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:11:05 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	check_walls_player1(t_vars *vars)
 	map_value_px = vars->map[vars->prev_pos_y][vars->prev_pos_x + 1];
 	map_value_py = vars->map[vars->prev_pos_y + 1][vars->prev_pos_x];
 	map_value_mx = vars->map[vars->prev_pos_y][vars->prev_pos_x - 1];
-
 	if ((map_value_py == '1' || map_value_py == 'D')
 		&& (map_value_px == '1' || map_value_px == 'D'))
 	{
