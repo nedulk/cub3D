@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/11 15:15:30 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/11 15:22:27 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,4 @@ void	draw_rays(t_vars *vars)
 		vars->angle += vars->angle_step;
 		ft_correct_angle(vars);
 	}
-	draw_minimap(vars);
 }
