@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/11 16:25:29 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/11 16:31:38 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	update_player_position(t_vars *vars)
 	int	delta;
 
 	delta = vars->first_x - vars->last_x;
-	if (delta > 5)
+	if (delta > 0)
 		vars->angle += delta / 2;
 	else if (delta < 0)
 	{

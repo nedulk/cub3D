@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:54:10 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/09 11:03:07 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/11 16:40:40 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_px_wall(t_vars *vars, float x, float y)
 
 	x_map = (int)(x / EDGE);
 	y_map = (int)(y / EDGE);
-	if (vars->map[y_map][x_map] == '1' || vars->map[y_map][x_map] == 'D')
+	if (vars->map[y_map][x_map] == '1')
 		return (1);
 	return (0);
 }
@@ -49,8 +49,6 @@ int	move(int keycode, t_vars *vars)
 		vars->moving_backward = 1;
 	else if (keycode == XK_d)
 		vars->moving_right = 1;
-	else if (keycode == XK_e)
-		open_door(vars);
 	else if (keycode == XK_Escape)
 		ft_exit(vars);
 	return (0);

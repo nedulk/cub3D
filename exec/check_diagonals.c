@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_diagonals.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 17:37:56 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 17:38:24 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/11 16:37:23 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ int	check_walls_player(t_vars *vars)
 	vars->y_map = 0;
 	i = calculate_play_i(vars, i);
 	y = calculate_play_y(vars, y);
-	if (vars->map[vars->y_map][vars->x_map] == '1'
-		|| vars->map[vars->y_map][vars->x_map] == 'D')
+	if (vars->map[vars->y_map][vars->x_map] == '1')
 		return (1);
 	if (check_walls_player1(vars) == 1)
 		return (1);

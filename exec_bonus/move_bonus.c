@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:03:39 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/11 14:51:03 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:31:30 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	mouse_move(int x, int y, t_vars *vars)
 	(void)y;
 	vars->last_x = vars->first_x;
 	vars->first_x = x;
-	if (x > (WIDTH / 2 + 50) || x < (WIDTH / 2 - 50) || y > (HEIGHT / 2 + 50)
-		|| y < (HEIGHT / 2 - 50))
+	if (x > (WIDTH / 2 + 200) || x < (WIDTH / 2 - 200) || y > (HEIGHT / 2 + 200)
+		|| y < (HEIGHT / 2 - 200))
 		mlx_mouse_move(vars->mlx, vars->win, WIDTH / 2, HEIGHT / 2);
 	return (0);
 }

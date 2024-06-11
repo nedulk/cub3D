@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redraw.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:44:44 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/10 11:20:21 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/11 16:40:00 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ void	redraw_tile_and_floor(t_vars *vars, int i, int y)
 {
 	if (vars->map[i][y] == '1')
 		draw_wall_tile(vars);
-	else if (vars->map[i][y] == 'D')
-		draw_door_tile(vars, 1);
-	else if (vars->map[i][y] == 'O')
-		draw_door_tile(vars, 0);
 	else if (vars->map[i][y] == '0')
 	{
 		draw_floor_tile(vars);
