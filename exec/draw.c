@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:41:55 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/10 14:53:42 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/11 16:53:50 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,32 +37,6 @@ void	draw_floor_tile(t_vars *vars)
 			my_mlx_pixel_put(vars, vars->x, vars->y, 0x00FFFFFF);
 		vars->y++;
 	}
-}
-
-void	draw_door_tile(t_vars *vars, int state)
-{
-	int	color;
-
-	if (state == 1)
-		color = 0x00FFA500;
-	else if (state == 0)
-		color = 0x000FF000;
-	vars->x0 = vars->x;
-	vars->x1 = vars->x + EDGE;
-	vars->y = vars->y0;
-	vars->y1 = vars->y + EDGE;
-	while (vars->y < vars->y1)
-	{
-		vars->x = vars->x0;
-		while (vars->x < vars->x1)
-		{
-			if (vars->map_press == 1)
-				my_mlx_pixel_put(vars, vars->x, vars->y, color);
-			vars->x++;
-		}
-		vars->y++;
-	}
-	vars->y = vars->y0;
 }
 
 void	draw_wall_tile(t_vars *vars)

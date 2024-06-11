@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/11 16:39:37 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/11 16:53:41 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,4 @@ void	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 		j = draw_south_wall(vars, distance_to_wall, x, j);
 	else if (vars->direction == WEST)
 		j = draw_west_wall(vars, distance_to_wall, x, j);
-	else if (vars->direction == DOOR_X || vars->direction == DOOR_Y)
-		j = draw_door(vars, distance_to_wall, x, j);
 }

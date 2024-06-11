@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/08 15:03:39 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/08 15:07:02 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/11 16:51:47 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-int	mouse_move(int x, int y, t_vars *vars)
-{
-	(void)y;
-	vars->last_x = vars->first_x;
-	vars->first_x = x;
-	mlx_mouse_move(vars->mlx, vars->win, WIDTH / 2, HEIGHT / 2);
-	return (0);
-}
 
 int	stop_move(int keycode, t_vars *vars)
 {
