@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:57:47 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 17:54:22 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:32:36 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	draw_wall(t_vars *vars, int x, int wall_height, double distance_to_wall)
 {
 	int	j;
 
-	(void)distance_to_wall;
-	(void)x;
 	j = vars->draw_start;
 	init_draw(vars, wall_height);
 	if (vars->direction == NORTH)
