@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/10 17:49:59 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:25:55 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,26 +75,6 @@ void	draw_floor(t_vars *vars)
 	}
 }
 
-void	draw_minimap(t_vars *vars)
-{
-	double	distance;
-	float	column_start;
-	double	angle_init;
-
-	angle_init = vars->angle;
-	column_start = 0;
-	distance = 0;
-	define_fov(vars);
-	while (vars->draw < vars->rays_number)
-	{
-		rotation_matrix(vars);
-		ft_draw_line_bresenham(vars, 1);
-		vars->draw++;
-		vars->angle += vars->angle_step;
-		ft_correct_angle(vars);
-	}
-}
-
 void	draw_rays(t_vars *vars)
 {
 	double	distance;
@@ -112,7 +92,7 @@ void	draw_rays(t_vars *vars)
 	while (vars->draw < vars->rays_number)
 	{
 		rotation_matrix(vars);
-		ft_draw_line_bresenham(vars, 0);
+		ft_draw_line_bresenham(vars, 1);
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
 					- vars->play_y, 2));
 		h = (HEIGHT / distance) * 20.;
@@ -121,5 +101,4 @@ void	draw_rays(t_vars *vars)
 		vars->angle += vars->angle_step;
 		ft_correct_angle(vars);
 	}
-	draw_minimap(vars);
 }

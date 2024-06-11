@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 13:47:54 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/10 17:51:06 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:10:01 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_draw_horizontal(t_vars *vars, int put)
 		if (check_walls_path(vars) == 1)
 			break ;
 		if ((int)vars->draw % RAYS == 0 && vars->map_press == 1 && put == 1)
-			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFD3D3D3);
+			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFFFFFF);
 		error += slope;
 		if (error >= 0)
 		{
@@ -90,7 +90,7 @@ void	ft_draw_vertical(t_vars *vars, int put)
 		if (check_walls_path(vars) == 1)
 			break ;
 		if ((int)vars->draw % RAYS == 0 && vars->map_press == 1 && put == 1)
-			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFD3D3D3);
+			my_mlx_pixel_put(vars, vars->ray_x, vars->ray_y, 0xFFFFFFFF);
 		error += slope;
 		if (error >= 0)
 		{
