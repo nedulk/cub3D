@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_menu_event_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kleden <kleden@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 22:47:29 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/09 16:40:57 by kleden           ###   ########.fr       */
+/*   Updated: 2024/06/11 14:27:01 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	mouse_over(int x, int y, t_vars *vars)
 {
-	if (vars->play_click && vars->play_selec)
+	if (vars->play_click && vars->play_selec && vars->button_clicked == 0)
 	{
 		if (x >= vars->play_button_x && x <= vars->play_button_x + 168
 			&& y >= vars->play_button_y
