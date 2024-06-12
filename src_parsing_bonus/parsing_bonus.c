@@ -6,11 +6,23 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:14:21 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 14:25:56 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:40:05 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	close_fd(void)
+{
+	int	i;
+
+	i = 3;
+	while (i <= 1023)
+	{
+		close(i);
+		i++;
+	}
+}
 
 int	check_size_map(char **map)
 {

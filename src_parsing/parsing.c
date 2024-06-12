@@ -6,11 +6,23 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:14:21 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 14:26:25 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:34:50 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+void	close_fd(void)
+{
+	int	i;
+
+	i = 3;
+	while (i <= 1023)
+	{
+		close(i);
+		i++;
+	}
+}
 
 int	check_size_map(char **map)
 {
@@ -57,6 +69,16 @@ int	convert_color_string_to_int(t_vars *vars, char *color_string)
 	return (vars->color_img);
 }
 
+int	check_format(char **argv)
+{
+	if (ft_strncmp (argv[1] + ft_strlen(argv[1]) - 4, ".cub", 4) != 0)
+	{
+		printf(RED"Error\nPlease specify a .cub file\n"RESET);
+		return (1);
+	}
+	return (0);
+}
+
 int	parsing(t_vars *vars, char **argv, int argc)
 {
 	if (argc > 2)
@@ -71,6 +93,8 @@ int	parsing(t_vars *vars, char **argv, int argc)
 		printf(YELLOW"Please specify a map\n"RESET);
 		return (1);
 	}
+	if (check_format(argv) == 1)
+		return (1);
 	else if (check_param(argv[1], vars) == 1)
 		return (1);
 	else if ((vars->line_map != 0) && check_map(argv[1], vars) == 1)

@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:29:24 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 17:38:27 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/11 17:34:33 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ void	ft_exit(t_vars *vars)
 		free(vars->mlx);
 	}
 	free(vars);
+	close_fd();
 	exit(0);
 }

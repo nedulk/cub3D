@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 14:19:13 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 14:18:55 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:03:24 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*extract_number(char *tab, int *i, int *n)
 	char	*test_nb;
 
 	a = 0;
-	test_nb = ft_calloc(1, sizeof(char) * 5);
+	test_nb = ft_calloc(1, sizeof(char) * 5 + 1);
 	while (tab[*i] >= '0' && tab[*i] <= '9')
 	{
 		if (*n < 5)

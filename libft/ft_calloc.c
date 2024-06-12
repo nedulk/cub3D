@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:03:35 by kprigent          #+#    #+#             */
-/*   Updated: 2023/12/21 17:06:27 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/12 13:06:18 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_calloc(size_t elementCount, size_t elementSize)
 	size = elementCount * elementSize;
 	target = malloc(sizeof(void) * (size));
 	if (target == NULL)
-		return (NULL);
+		exit (1);
 	ft_bzero(target, (size));
 	return (target);
 }

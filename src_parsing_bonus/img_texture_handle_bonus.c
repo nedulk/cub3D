@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:00:53 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 16:34:47 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/12 12:30:25 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ void	check_resolution(t_vars *vars, t_texture_data *data, int reso)
 	}
 	else if (reso == 1920)
 	{
-		if (data->width != 1920 || data->height != 1080)
+		if (data->width != 1920 || data->height != 540)
 		{
-			printf(RED"Error\nSky resolution must be 1920x1080\n"RESET);
+			printf(RED"Error\nSky resolution must be 1920x540\n"RESET);
 			mlx_destroy_image(vars->mlx, data->img);
 			ft_exit(vars);
 		}
