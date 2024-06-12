@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/10 17:54:07 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:57:04 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,21 @@ void	draw_rays(t_vars *vars)
 	{
 		rotation_matrix(vars);
 		ft_draw_line_bresenham(vars, 0);
+		if(vars->play_y - vars->ray_y == 30 && vars->ray_x - vars->play_x == 0)
+		{
+			vars->play_y += 2;
+			vars->play_x += 2;
+		}
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
 					- vars->play_y, 2));
+		if(vars->draw == vars->rays_number / 2)
+		{
+			printf("vars->ray_x %f\n", vars->ray_x);
+			printf("vars->play_x %f\n", vars->play_x);
+			printf("vars->ray_y %f\n", vars->ray_y);
+			printf("vars->play_y %f\n", vars->play_y);
+			printf("distance %f\n", distance);
+		}
 		h = (HEIGHT / distance) * 20.;
 		draw_wall(vars, column_start++, h, distance);
 		vars->draw++;

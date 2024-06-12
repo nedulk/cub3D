@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/11 15:49:28 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:58:42 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,11 @@ void	draw_rays(t_vars *vars)
 	{
 		rotation_matrix(vars);
 		ft_draw_line_bresenham(vars, 1);
+		if(vars->play_y - vars->ray_y == 30 && vars->ray_x - vars->play_x == 0)
+		{
+			vars->play_y += 2;
+			vars->play_x += 2;
+		}
 		distance = sqrt(pow(vars->ray_x - vars->play_x, 2) + pow(vars->ray_y
 					- vars->play_y, 2));
 		h = (HEIGHT / distance) * 20.;
