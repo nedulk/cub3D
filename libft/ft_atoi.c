@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:36:13 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/12 13:03:50 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/15 10:06:21 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ft_atoi(const char *str)
 	i = 0;
 	stock = 0;
 	m = 0;
-	printf("str = %s\n", str);
 	while (str[i] != '\0' && ((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
 		i++;
 	if (str[i] != '\0' && (str[i] == '-' || str[i] == '+'))

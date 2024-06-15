@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 16:15:34 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/12 15:58:42 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/15 10:15:35 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,25 +75,28 @@ void	draw_floor(t_vars *vars)
 	}
 }
 
+void	init_rays(t_vars *vars)
+{
+	define_fov(vars);
+	ft_correct_angle(vars);
+	draw_celing(vars);
+	draw_floor(vars);
+}
+
 void	draw_rays(t_vars *vars)
 {
 	double	distance;
 	float	column_start;
 	int		h;
-	double	angle_init;
 
-	angle_init = vars->angle;
 	column_start = 0;
 	distance = 0;
-	define_fov(vars);
-	ft_correct_angle(vars);
-	draw_celing(vars);
-	draw_floor(vars);
+	init_rays(vars);
 	while (vars->draw < vars->rays_number)
 	{
 		rotation_matrix(vars);
 		ft_draw_line_bresenham(vars, 1);
-		if(vars->play_y - vars->ray_y == 30 && vars->ray_x - vars->play_x == 0)
+		if (vars->play_y - vars->ray_y == 30 && vars->ray_x - vars->play_x == 0)
 		{
 			vars->play_y += 2;
 			vars->play_x += 2;

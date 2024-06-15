@@ -20,7 +20,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define SPEED 5
+# define SPEED 3
 # define RAYS 1
 # define EDGE 40
 # define FOV 90
