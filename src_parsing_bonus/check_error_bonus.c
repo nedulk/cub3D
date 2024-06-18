@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 17:43:32 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 14:10:59 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/18 11:50:53 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,8 @@ int	check_char(char **tab)
 	{
 		while (tab[a][i])
 		{
-			if (tab[a][i] != '0' && tab[a][i] != '1' && tab[a][i] != '2'
-				&& is_nsew(tab[a][i]) == 0 && tab[a][i] != ' '
-				&& tab[a][i] != '\t' && tab[a][i] != '\n')
+			if (tab[a][i] != '0' && tab[a][i] != '1' && is_nsew(tab[a][i]) == 0
+				&& tab[a][i] != ' ' && tab[a][i] != '\t' && tab[a][i] != '\n')
 			{
 				printf(RED"Error\n"RESET);
 				printf(YELLOW"Wrong caracter found\n"RESET);
