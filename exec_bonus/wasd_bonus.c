@@ -6,7 +6,7 @@
 /*   By: dboire <dboire@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/01 11:24:07 by dboire            #+#    #+#             */
-/*   Updated: 2024/06/15 10:04:01 by dboire           ###   ########.fr       */
+/*   Updated: 2024/06/15 11:06:21 by dboire           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	move_forward(t_vars *vars)
 	vars->ray_x0 = vars->play_x;
 	vars->ray_y0 = vars->play_y;
 	rotation_matrix(vars);
-	vars->play_x = vars->play_x + (vars->rotate_x1 * 3);
-	vars->play_y = vars->play_y + (vars->rotate_y1 * 3);
+	vars->play_x = vars->play_x + vars->rotate_x1;
+	vars->play_y = vars->play_y + vars->rotate_y1;
 	if (check_walls_player(vars) == 1)
 	{
-		vars->play_x -= (vars->rotate_x1 * 3);
-		vars->play_y -= (vars->rotate_y1 * 3);
+		vars->play_x -= vars->rotate_x1;
+		vars->play_y -= vars->rotate_y1;
 	}
 	else
 	{
@@ -39,12 +39,12 @@ void	move_backward(t_vars *vars)
 	vars->ray_x0 = vars->play_x;
 	vars->ray_y0 = vars->play_y;
 	rotation_matrix(vars);
-	vars->play_x = vars->play_x - (vars->rotate_x1 * 3);
-	vars->play_y = vars->play_y - (vars->rotate_y1 * 3);
+	vars->play_x = vars->play_x - vars->rotate_x1;
+	vars->play_y = vars->play_y - vars->rotate_y1;
 	if (check_walls_player(vars) == 1)
 	{
-		vars->play_x += (vars->rotate_x1 * 3);
-		vars->play_y += (vars->rotate_y1 * 3);
+		vars->play_x += vars->rotate_x1;
+		vars->play_y += vars->rotate_y1;
 	}
 	else
 	{
@@ -60,12 +60,12 @@ void	move_right(t_vars *vars)
 	vars->ray_x0 = vars->play_x;
 	vars->ray_y0 = vars->play_y;
 	rotation_matrix(vars);
-	vars->play_x = vars->play_x + (vars->rotate_x1 * 3);
-	vars->play_y = vars->play_y + (vars->rotate_y1 * 3);
+	vars->play_x = vars->play_x + vars->rotate_x1;
+	vars->play_y = vars->play_y + vars->rotate_y1;
 	if (check_walls_player(vars) == 1)
 	{
-		vars->play_x -= (vars->rotate_x1 * 3);
-		vars->play_y -= (vars->rotate_y1 * 3);
+		vars->play_x -= vars->rotate_x1;
+		vars->play_y -= vars->rotate_y1;
 	}
 	else
 	{
@@ -81,12 +81,12 @@ void	move_left(t_vars *vars)
 	vars->ray_x0 = vars->play_x;
 	vars->ray_y0 = vars->play_y;
 	rotation_matrix(vars);
-	vars->play_x = vars->play_x + (vars->rotate_x1 * 3);
-	vars->play_y = vars->play_y + (vars->rotate_y1 * 3);
+	vars->play_x = vars->play_x + vars->rotate_x1;
+	vars->play_y = vars->play_y + vars->rotate_y1;
 	if (check_walls_player(vars) == 1)
 	{
-		vars->play_x -= (vars->rotate_x1 * 3);
-		vars->play_y -= (vars->rotate_y1 * 3);
+		vars->play_x -= vars->rotate_x1;
+		vars->play_y -= vars->rotate_y1;
 	}
 	else
 	{
