@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:14:21 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/11 17:34:50 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/18 11:08:48 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,18 @@ int	convert_color_string_to_int(t_vars *vars, char *color_string)
 
 	i = 0;
 	rgb_values = ft_split(color_string, ',');
-	red = ft_atoi(rgb_values[0]);
-	green = ft_atoi(rgb_values[1]);
-	blue = ft_atoi(rgb_values[2]);
-	while (i < 3)
+	if (rgb_values[0] && rgb_values[1] && rgb_values[2] && !rgb_values[3])
 	{
-		free(rgb_values[i]);
-		i++;
+		red = ft_atoi(rgb_values[0]);
+		green = ft_atoi(rgb_values[1]);
+		blue = ft_atoi(rgb_values[2]);
+		free_double_char(rgb_values);
+		vars->color_img = (red << 16) | (green << 8) | blue;
+		return (vars->color_img);
 	}
-	free(rgb_values);
-	vars->color_img = (red << 16) | (green << 8) | blue;
-	return (vars->color_img);
+	free_double_char(rgb_values);
+	printf(RED"Error\nCheck F/C\n"RESET);
+	return (-3);
 }
 
 int	check_format(char **argv)
@@ -103,5 +104,7 @@ int	parsing(t_vars *vars, char **argv, int argc)
 		return (1);
 	vars->floor_color = convert_color_string_to_int(vars, vars->texture[4]);
 	vars->celing_color = convert_color_string_to_int(vars, vars->texture[5]);
+	if (vars->floor_color == -3 || vars->celing_color == -3)
+		return (1);
 	return (0);
 }
