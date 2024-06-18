@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_param.c                                    :+:      :+:    :+:   */
+/*   parsing_param_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:23:19 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 17:49:40 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/18 11:44:54 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,12 @@ int	process_lines(int fd, t_vars *vars)
 	{
 		vars->pass = 0;
 		line = get_next_line(fd);
-		handle_texture(line, vars);
-		handle_fc(line, vars);
+		if (handle_texture(line, vars) == 0 && handle_fc(line, vars) == 0
+			&& found_map(line) == 0)
+		{
+			if (invalid_char(line) == 1)
+				return (free_line(line, fd));
+		}
 		if (vars->pass == 0 && found_map(line) == 0 && line[0] != ' '
 			&& line[0] != '\0' && line[0] != '\n' && line[0] != '\t')
 			return (free_line(line, fd));

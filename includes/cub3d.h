@@ -276,8 +276,8 @@ int					check_left_right(t_vars *vars, int a, int i);
 int					is_nsew(char c);
 int					check_top_bottom(t_vars *vars, int a, int i);
 int					check_diagonal(t_vars *vars, int a, int i);
-void				handle_texture(char *line, t_vars *vars);
-void				handle_fc(char *line, t_vars *vars);
+int					handle_texture(char *line, t_vars *vars);
+int					handle_fc(char *line, t_vars *vars);
 int					handle_map(char *line, t_vars *vars, int i, int fd);
 int					handle_error(char *error);
 char				*stock_path(char *line, int i);
@@ -308,5 +308,6 @@ int					handle_error(char *message);
 void				free_texture(char **texture);
 int					check_size_map(char **map);
 void				close_fd(void);
+int					invalid_char(char *line);
 
 #endif

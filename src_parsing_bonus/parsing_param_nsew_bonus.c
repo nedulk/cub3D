@@ -1,59 +1,92 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_param_nsew.c                               :+:      :+:    :+:   */
+/*   parsing_param_nsew_bonus.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:20:48 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 15:46:20 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/18 11:45:42 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	handle_texture(char *line, t_vars *vars)
+int	invalid_char(char *line)
 {
-	if (ft_strncmp(line, "NO ", 3) == 0 && vars->no == 0)
+	int	i;
+
+	i = 0;
+	while (line[i])
 	{
-		vars->no = 1;
-		vars->pass = 1;
-		vars->texture[0] = stock_path(line, 2);
+		if (line[i] != ' ' && line[i] != '\n' && line[i] != '\t')
+		{
+			printf(RED"Error\n"RESET);
+			printf(YELLOW"Invalid character found\n"RESET);
+			return (1);
+		}
+		i++;
 	}
-	else if (ft_strncmp(line, "SO ", 3) == 0 && vars->so == 0)
-	{
-		vars->so = 1;
-		vars->pass = 1;
-		vars->texture[1] = stock_path(line, 2);
-	}
-	else if (ft_strncmp(line, "WE ", 3) == 0 && vars->we == 0)
+	return (0);
+}
+
+int	handle_texture_we(char *line, t_vars *vars)
+{
+	if (ft_strncmp(line, "WE ", 3) == 0 && vars->we == 0)
 	{
 		vars->we = 1;
 		vars->pass = 1;
 		vars->texture[2] = stock_path(line, 2);
+		return (1);
 	}
 	else if (ft_strncmp(line, "EA ", 3) == 0 && vars->ea == 0)
 	{
 		vars->ea = 1;
 		vars->pass = 1;
 		vars->texture[3] = stock_path(line, 2);
+		return (1);
 	}
+	return (0);
 }
 
-void	handle_fc(char *line, t_vars *vars)
+int	handle_texture(char *line, t_vars *vars)
+{
+	if (ft_strncmp(line, "NO ", 3) == 0 && vars->no == 0)
+	{
+		vars->no = 1;
+		vars->pass = 1;
+		vars->texture[0] = stock_path(line, 2);
+		return (1);
+	}
+	else if (ft_strncmp(line, "SO ", 3) == 0 && vars->so == 0)
+	{
+		vars->so = 1;
+		vars->pass = 1;
+		vars->texture[1] = stock_path(line, 2);
+		return (1);
+	}
+	if (handle_texture_we(line, vars) == 1)
+		return (1);
+	return (0);
+}
+
+int	handle_fc(char *line, t_vars *vars)
 {
 	if (ft_strncmp(line, "F ", 2) == 0 && vars->f == 0)
 	{
 		vars->f = 1;
 		vars->pass = 1;
 		vars->texture[4] = stock_path(line, 1);
+		return (1);
 	}
 	else if (ft_strncmp(line, "C ", 2) == 0 && vars->c == 0)
 	{
 		vars->c = 1;
 		vars->pass = 1;
 		vars->texture[5] = stock_path(line, 1);
+		return (1);
 	}
+	return (0);
 }
 
 int	handle_map(char *line, t_vars *vars, int i, int fd)

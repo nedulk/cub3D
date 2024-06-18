@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:32:19 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/08 15:41:44 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/18 11:47:55 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ int	free_line(char *line, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	printf(YELLOW"Error\nWrong parameter\n"RESET);
 	return (1);
 }
