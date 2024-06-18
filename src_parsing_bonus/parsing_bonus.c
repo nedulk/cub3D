@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:14:21 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/18 11:09:04 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/18 11:12:31 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,16 @@ int	convert_color_string_to_int(t_vars *vars, char *color_string)
 	return (-3);
 }
 
+int	check_format(char **argv)
+{
+	if (ft_strncmp (argv[1] + ft_strlen(argv[1]) - 4, ".cub", 4) != 0)
+	{
+		printf(RED"Error\nPlease specify a .cub file\n"RESET);
+		return (1);
+	}
+	return (0);
+}
+
 int	parsing(t_vars *vars, char **argv, int argc)
 {
 	if (argc > 2)
@@ -84,6 +94,8 @@ int	parsing(t_vars *vars, char **argv, int argc)
 		printf(YELLOW"Please specify a map\n"RESET);
 		return (1);
 	}
+	if (check_format(argv) == 1)
+		return (1);
 	else if (check_param(argv[1], vars) == 1)
 		return (1);
 	else if ((vars->line_map != 0) && check_map(argv[1], vars) == 1)
