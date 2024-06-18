@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:20:48 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/18 11:45:42 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:53:26 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,39 +51,49 @@ int	handle_texture_we(char *line, t_vars *vars)
 
 int	handle_texture(char *line, t_vars *vars)
 {
-	if (ft_strncmp(line, "NO ", 3) == 0 && vars->no == 0)
+	char	*temp;
+
+	temp = line;
+	while (*temp == ' ')
+		temp++;
+	if (ft_strncmp(temp, "NO ", 3) == 0 && vars->no == 0)
 	{
 		vars->no = 1;
 		vars->pass = 1;
-		vars->texture[0] = stock_path(line, 2);
+		vars->texture[0] = stock_path(temp, 2);
 		return (1);
 	}
-	else if (ft_strncmp(line, "SO ", 3) == 0 && vars->so == 0)
+	else if (ft_strncmp(temp, "SO ", 3) == 0 && vars->so == 0)
 	{
 		vars->so = 1;
 		vars->pass = 1;
-		vars->texture[1] = stock_path(line, 2);
+		vars->texture[1] = stock_path(temp, 2);
 		return (1);
 	}
-	if (handle_texture_we(line, vars) == 1)
+	if (handle_texture_we(temp, vars) == 1)
 		return (1);
 	return (0);
 }
 
 int	handle_fc(char *line, t_vars *vars)
 {
-	if (ft_strncmp(line, "F ", 2) == 0 && vars->f == 0)
+	char	*temp;
+
+	temp = line;
+	while (*temp == ' ')
+		temp++;
+	if (ft_strncmp(temp, "F ", 2) == 0 && vars->f == 0)
 	{
 		vars->f = 1;
 		vars->pass = 1;
-		vars->texture[4] = stock_path(line, 1);
+		vars->texture[4] = stock_path(temp, 1);
 		return (1);
 	}
-	else if (ft_strncmp(line, "C ", 2) == 0 && vars->c == 0)
+	else if (ft_strncmp(temp, "C ", 2) == 0 && vars->c == 0)
 	{
 		vars->c = 1;
 		vars->pass = 1;
-		vars->texture[5] = stock_path(line, 1);
+		vars->texture[5] = stock_path(temp, 1);
 		return (1);
 	}
 	return (0);
