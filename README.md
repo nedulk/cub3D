@@ -1,6 +1,6 @@
 # Cub3D / PROJECT3D
 
-Welcome to Cub3D! This project is a 3D game implemented using the MinilibX library. Follow the instructions below to get started.
+Welcome to Cub3D! This project is a 3D game implemented using the MinilibX library and developed in collaboration with [doboy](https://github.com/doboy) Follow the instructions below to get started.
 
 <div style="display: flex; justify-content: space-between;">
     <img src="./screenshots/load_screen2.png" alt="Load Screen" width="45%">
