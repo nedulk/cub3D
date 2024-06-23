@@ -6,7 +6,7 @@
 #    By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/21 17:44:47 by kprigent          #+#    #+#              #
-#    Updated: 2024/06/18 14:10:58 by kprigent         ###   ########.fr        #
+#    Updated: 2024/06/23 13:50:54 by kprigent         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,7 +114,7 @@ OBJTS = $(MAIN_SRCS:.c=.o)
 OBJTSB = $(MAIN_SRCSB:.c=.o)
 
 HEADER = -I includes
-CFLAGS = -Wall -Wextra -Werror -I ./mlx/ -g -O3 -fPIE
+CFLAGS = -I ./mlx/ -g -O3 -fPIE
 
 SKY		?= 0
 ifeq ($(SKY), 1)
