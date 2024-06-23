@@ -90,3 +90,12 @@ Here are the default controls for Cub3D:
 ### Changing the Map
 
 You can have fun by changing the map files located in the `maps` folder. Simply edit or replace the existing `.cub` files to modify the game environment.
+
+### First render / Last render (pas mal non ? C'est Breton et Normand)
+
+<div style="display: flex; justify-content: space-between;">
+    <img src="./screenshots/bobo.png" alt="Load Screen" width="45%">
+    <img src="./screenshots/sky_360_screen.png" alt="360 Sky Screen" width="45%">
+</div>
+
+
