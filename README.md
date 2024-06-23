@@ -21,12 +21,12 @@ Make sure you have the necessary tools installed:
 
 1. Clone the repository:
     ```sh
-    git clone [<repository_url>](https://github.com/nedulk/cub3D.git)
+    git clone https://github.com/nedulk/cub3D.git
     ```
 
 2. Navigate to the project directory:
     ```sh
-    cd <Cub3D>
+    cd Cub3D
     ```
 
 3. Validate and download the MinilibX library:
