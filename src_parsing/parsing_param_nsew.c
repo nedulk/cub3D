@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:20:48 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/18 12:49:19 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:24:52 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ int	invalid_char(char *line)
 	int	i;
 
 	i = 0;
+	if (line == NULL)
+	{
+		printf(RED"Error\n"RESET);
+		return (1);
+	}
 	while (line[i])
 	{
 		if (line[i] != ' ' && line[i] != '\n' && line[i] != '\t')
@@ -54,7 +59,7 @@ int	handle_texture(char *line, t_vars *vars)
 	char	*temp;
 
 	temp = line;
-	while (*temp == ' ')
+	while (temp && *temp == ' ')
 		temp++;
 	if (ft_strncmp(temp, "NO ", 3) == 0 && vars->no == 0)
 	{
@@ -80,7 +85,7 @@ int	handle_fc(char *line, t_vars *vars)
 	char	*temp;
 
 	temp = line;
-	while (*temp == ' ')
+	while (temp && *temp == ' ')
 		temp++;
 	if (ft_strncmp(temp, "F ", 2) == 0 && vars->f == 0)
 	{

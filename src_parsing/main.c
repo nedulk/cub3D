@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:39:52 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/10 17:15:36 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:11:48 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ int	main(int argc, char **argv)
 		ft_exit(vars);
 	init_vars2(vars);
 	vars->mlx = mlx_init();
+	if (vars->mlx == NULL)
+	{
+		printf(RED"Error\n" RESET);
+		printf(YELLOW"Mlx failure\n"RESET);
+		ft_exit(vars);
+	}
 	menu_player(vars);
 	return (0);
 }

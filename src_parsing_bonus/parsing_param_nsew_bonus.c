@@ -6,7 +6,7 @@
 /*   By: kprigent <kprigent@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 12:20:48 by kprigent          #+#    #+#             */
-/*   Updated: 2024/06/18 12:53:26 by kprigent         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:29:07 by kprigent         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ int	invalid_char(char *line)
 	int	i;
 
 	i = 0;
+	if (line == NULL)
+	{
+		printf(RED"Error\n"RESET);
+		return (1);
+	}
 	while (line[i])
 	{
 		if (line[i] != ' ' && line[i] != '\n' && line[i] != '\t')
