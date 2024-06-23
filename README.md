@@ -79,6 +79,8 @@ Once compiled, you can run the game using the following command:
 ```sh
 ./cub3D <path_to_map_file>
 ```
+For the version with all options, use `./cub3D_bonus`.
+
 ### Controls
 
 Here are the default controls for Cub3D:
@@ -95,7 +97,7 @@ You can have fun by changing the map files located in the `maps` folder. Simply 
 
 <div style="display: flex; justify-content: space-between;">
     <img src="./screenshots/bobo.png" alt="Load Screen" width="45%">
-    <img src="./screenshots/sky_360_screen.png" alt="360 Sky Screen" width="45%">
+    <img src="./screenshots/sky_360_screen2.png" alt="360 Sky Screen" width="45%">
 </div>
 
 
