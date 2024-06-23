@@ -1,6 +1,12 @@
 # Cub3D / PROJECT3D
 
-Welcome to Cub3D! This project is a 3D game implemented using the MinilibX library and developed in collaboration with [doboy](https://github.com/doboy) Follow the instructions below to get started.
+This project is a 3D game implemented using the MinilibX library and developed in collaboration with [Doboy](https://github.com/Doboy9). 
+
+### Features
+
+Our Cub3D offers a smooth and immersive experience in Full HD. The game includes a small menu and graphical options to enhance the visual appeal of the sky. Whether you prefer a customizable sky color, a fixed sky texture, or a 360-degree realistic sky.
+
+Follow the instructions below to get started.
 
 <div style="display: flex; justify-content: space-between;">
     <img src="./screenshots/load_screen2.png" alt="Load Screen" width="45%">
